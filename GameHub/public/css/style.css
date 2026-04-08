@@ -1,6 +1,41 @@
+:root{
+  --green: oklch(72.3% 0.219 149.579);
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+}
+
+header {
+  display: grid;
+  padding: 0.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom-width: 2px;
+}
+
+#logo {
+  width: 8rem;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.username{
+  position: relative; 
+  font-weight: 500; 
+  cursor: pointer; 
+  
+  &:hover{
+    color: var(--green); 
+  }
+
+  &:after{
+    background-color: var(--green);
+  }
 }
