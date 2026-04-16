@@ -1,6 +1,380 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
+:root {
+  --green: oklch(72.3% 0.219 149.579);
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+/* -- Animated background pattern -- */
+.bg-pattern {
+  width: 100%;
+  height: 100%;
+  background-color: #050505;
+  background-image:
+    radial-gradient(circle at center, transparent 30%, #000 90%),
+    linear-gradient(rgba(3, 233, 244, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(3, 233, 244, 0.1) 1px, transparent 1px),
+    linear-gradient(rgba(217, 3, 244, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 3, 244, 0.05) 1px, transparent 1px);
+
+  background-size:
+    100% 100%,
+    60px 60px,
+    60px 60px,
+    20px 20px,
+    20px 20px;
+
+  animation: cyber-move 10s linear infinite;
+}
+
+@keyframes cyber-move {
+  0% {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+  }
+
+  100% {
+    background-position:
+      0 0,
+      60px 60px,
+      60px 60px,
+      40px 40px,
+      40px 40px;
+  }
+}
+
+/* --------------------------------- */
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+header {
+  justify-content: space-between;
+  display: flex;
+  padding: 0.75rem;
+
+  border: 2px solid #4b585b;
+  border-width: 0 0 2px 0;
+
+  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+
+  .logo {
+    width: 8rem;
+  }
+
+  .searchbar {
+    flex: 1;
+    max-width: 36rem;
+
+    form {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    input[type=search] {
+      width: 100%;
+      border-radius: calc(infinity * 1px);
+      border: 1px solid color-mix(in oklab, oklch(96.3% 0.002 197.1) 20%, transparent);
+      background-color: oklch(14.8% 0.004 228.8);
+      padding: 0.5rem 1rem;
+      color: white;
+
+      &::placeholder {
+        color: oklch(87.2% 0.007 219.6);
+      }
+
+      /* TODO: Add focus ring back */
+    }
+
+    .button-group {
+      display: flex;
+
+      button {
+        cursor: pointer;
+        border-radius: calc(infinity * 1px);
+        border: 1px solid color-mix(in oklab, oklch(96.3% 0.002 197.1) 20%, transparent);
+        background-color: oklch(27.5% 0.011 216.9);
+        padding: 0.25rem 1rem;
+        color: white;
+
+        &:hover {
+          @media (hover: hover) {
+            background-color: oklch(45% 0.017 213.2);
+            z-index: 10;
+          }
+        }
+
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+
+      }
+
+      .button-l {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      .button-r {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+
+  nav {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    align-items: center;
+
+    .change-theme {
+      padding: 0.5rem;
+      border-radius: calc(infinity * 1px);
+      background-color: oklch(27.4% 0.006 286.033);
+      transition-property: all;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+    }
+
+    .username {
+      position: relative;
+      font-weight: 500;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--green);
+
+        @media (hover: hover) {
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+
+      &::after {
+        background-color: var(--green);
+        position: absolute;
+        height: 2px;
+        width: 0;
+        bottom: -2px;
+        left: 0;
+        transition-property: all;
+        transition-duration: 300ms;
+      }
+    }
+
+    details {
+      position: relative;
+
+      summary {
+        cursor: pointer;
+        list-style-type: none;
+        padding: 0.5rem;
+        border-radius: calc(infinity * 1px);
+        background-color: oklch(27.4% 0.006 286.033);
+
+        &:hover {
+          @media (hover: hover) {
+            background-color: oklch(37% 0.013 285.805);
+          }
+        }
+
+        svg {
+          height: 1.5rem;
+          width: 1.5rem;
+        }
+      }
+
+      ul {
+        position: absolute;
+        right: 0;
+        margin-top: 0.5rem;
+        width: 10rem;
+        background-color: oklch(37.8% 0.015 216);
+        color: white;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        border: 1px solid black;
+
+        li a {
+          display: block;
+          padding: 0.25rem 0.5rem;
+          border-radius: 0.25rem;
+
+          &:hover {
+            @media (hover: hover) {
+              background-color: oklch(27.5% 0.011 216.9);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+aside {
+  grid-column: span 3 / span 3;
+  padding: 1rem;
+
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .aside-nav {
+    font-size: 1.875rem;
+    line-height: 1.2;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .nav-md {
+      font-size: 1.5rem;
+    }
+
+    li {
+      position: relative;
+      cursor: pointer;
+
+      &:first-child {
+        color: white;
+      }
+
+      color: oklch(72.3% 0.014 214.4);
+
+      &:hover {
+        @media (hover: hover) {
+          color: var(--green);
+
+          &::after {
+            width: 50%;
+          }
+        }
+      }
+
+
+      &::after {
+        background-color: var(--green);
+        position: absolute;
+        height: 2px;
+        width: 0;
+        left: 0;
+
+        transition-property: all;
+        transition-duration: 300ms;
+      }
+    }
+  }
+
+  h1 {
+    font-size: 1.125rem;
+  }
+
+  .menu-box {
+    border-color: oklch(27.5% 0.011 216.9);
+    border-radius: 0.75rem;
+    background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+    width: 14rem;
+    border-width: 2px;
+    padding: 0.75rem;
+
+    ul,
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    color: #e8e8e8;
+    display: inline;
+  }
+
+  input[type=checkbox] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--green);
+    border-radius: 5px;
+    background-color: transparent;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  input[type=checkbox]:before {
+    content: "";
+    background-color: var(--green);
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  input[type=checkbox]:checked:before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  label {
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+
+    .label-text {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 60%;
+    }
+  }
+}
+
+footer {
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  border: 2px solid #4b585b;
+  border-width: 2px 0 0 0;
+
+  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+}
+
+
+.ring-hover {
+  &:hover {
+    -webkit-box-shadow: 0px 0px 0px 2px var(--green);
+    box-shadow: 0px 0px 0px 2px var(--green);
+  }
+}
+
+.ring-focus {
+  &:focus {
+    -webkit-box-shadow: 0px 0px 0px 2px var(--green);
+    box-shadow: 0px 0px 0px 2px var(--green);
+  }
 }
