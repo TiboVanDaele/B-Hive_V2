@@ -1,0 +1,210 @@
+/* ── Layout ── */
+
+.game-detail-main {
+    flex: 1;
+    background-color: oklch(8% 0.008 223.9);
+}
+
+/* ── Header additions for this page ── */
+
+header .logo img {
+    height: 4rem;
+    width: auto;
+}
+
+.guess-link {
+    font-weight: 200;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+.guess-link:hover {
+    text-decoration: underline;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* ── Game detail wrapper ── */
+
+.game-detail-wrapper {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 2.5rem 1rem;
+}
+
+/* ── Hero image ── */
+
+.game-hero {
+    position: relative;
+}
+
+.game-hero-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    opacity: 0.8;
+}
+
+.game-hero-info {
+    position: absolute;
+    bottom: 1rem;
+    left: 1.5rem;
+}
+
+.game-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.game-released {
+    color: oklch(72.3% 0.014 214.4);
+    margin-top: 0.25rem;
+}
+
+/* ── Content grid ── */
+
+.game-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .game-content {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* ── Main column ── */
+
+.game-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.game-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.section-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.game-description {
+    color: oklch(72.3% 0.014 214.4);
+    line-height: 1.7;
+    white-space: pre-line;
+}
+
+/* ── Tags ── */
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    background-color: oklch(27.5% 0.011 216.9);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+}
+
+/* ── Sidebar ── */
+
+.game-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ── Info cards ── */
+
+.info-card {
+    background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+    border: 2px solid oklch(27.5% 0.011 216.9);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.info-card-text {
+    color: oklch(72.3% 0.014 214.4);
+    font-size: 0.875rem;
+}
+
+/* ── Rating ── */
+
+.game-rating {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: oklch(85% 0.18 85);
+}
+
+/* ── Genres ── */
+
+.genre-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.genre-tag {
+    background-color: oklch(27.5% 0.011 216.9);
+    border: 1px solid oklch(35% 0.015 216.9);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* ── Website ── */
+
+.game-website {
+    color: oklch(65% 0.15 240);
+    font-size: 0.875rem;
+    word-break: break-all;
+}
+
+.game-website:hover {
+    text-decoration: underline;
+}
+
+/* ── Error ── */
+
+.error-msg {
+    text-align: center;
+    margin-top: 2.5rem;
+    color: oklch(72.3% 0.014 214.4);
+}
+
+/* ── Footer ── */
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.6875rem;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
