@@ -19,6 +19,10 @@ app.get("/", (req, res) => {
     res.render("index", { title : "index"});
 });
 
+app.get("/home", (req, res) => {
+    res.render("home", { title : "Home"});
+});
+
 app.use("/game", gameDetailsRouter);
 
 app.listen(app.get("port"), () => {
