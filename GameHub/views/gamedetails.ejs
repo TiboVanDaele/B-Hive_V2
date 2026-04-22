@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+    <meta charset="UTF-8">
+    <title>Page</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/gamedetails.css">
+    </head>
+<body>
+<%- include("partials/header", {searchbar:true} ) %>
+
+<main class="game-detail-main">
+    <div id="game-detail">
+        <% if (error) { %>
+            <p class="error-msg"><%= error %></p>
+        <% } else if (game) { %>
+            <div class="game-detail-wrapper">
+
+                <div class="game-hero">
+                    <img src="<%= game.background_image %>" alt="<%= game.name %>" class="game-hero-img">
+                    <div class="game-hero-info">
+                        <h1 class="game-title"><%= game.name %></h1>
+                        <p class="game-released">Released: <%= game.released %></p>
+                    </div>
+                </div>
+
+                <div class="game-content">
+
+                    <div class="game-main">
+
+                        <div class="game-section">
+                            <h2 class="section-heading">Description</h2>
+                            <p class="game-description"><%= game.description_raw %></p>
+                        </div>
+
+                        <div class="game-section">
+                            <h2 class="section-heading">Tags</h2>
+                            <div class="tag-list">
+                                <% tags.forEach(function(tag) { %>
+                                    <span class="tag"><%= tag.name %></span>
+                                <% }); %>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="game-sidebar">
+
+                        <div class="info-card">
+                            <h3 class="info-card-title">Rating</h3>
+                            <p class="game-rating">&#11088; <%= game.rating %> / 5</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3 class="info-card-title">Genres</h3>
+                            <div class="genre-list">
+                                <% game.genres.forEach(function(genre) { %>
+                                    <span class="genre-tag"><%= genre.name %></span>
+                                <% }); %>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3 class="info-card-title">Platforms</h3>
+                            <p class="info-card-text"><%= platforms %></p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3 class="info-card-title">Website</h3>
+                            <a href="<%= game.website %>" target="_blank" class="game-website">
+                                <%= game.website %>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        <% } %>
+    </div>
+</main>
+
+
+<footer>
+    <div class="footer-content">
+        <span>© 2026 B-Hive</span>
+        <span>All rights reserved</span>
+        <a href="https://rawg.io" target="_blank">source of data used is RAWG API</a>
+    </div>
+</footer>
+</body>
+</html>
