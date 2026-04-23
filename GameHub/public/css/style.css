@@ -4,6 +4,10 @@
   color: white;
 }
 
+body{
+  min-height: 100vh;
+}
+
 /* -- Animated background pattern -- */
 .bg-pattern {
   width: 100%;
@@ -226,6 +230,7 @@ header {
 }
 
 aside {
+  min-height: 90vh;
   grid-column: span 3 / span 3;
   padding: 1rem;
 
