@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/RiotGamesStatTrackerRouter.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/lolStatTrackerRouter.css">
+    <title>lolStatTracker</title>
 </head>
 <body>
     <%- include('partials/header.ejs', {searchbar:true}); %>
-    <%- include('partials/aside.ejs'); %>
+    <%- include('partials/asideWithoutFilters.ejs'); %>
+    <main>
+        <h1>League Of Legends Stats</h1>
+    </main>
     <%- include('partials/footer.ejs'); %>
 </body>
 </html>

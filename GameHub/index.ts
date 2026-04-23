@@ -1,7 +1,7 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
-import rgStatTracker from"./routes/RiotGamesStatTrackerRouter"
+import lolStatTracker from"./routes/lolStatTracker"
 import gameDetailsRouter from "./routes/gamedetailsrouter";
 
 dotenv.config();
@@ -16,7 +16,7 @@ app.set('views', path.join(__dirname, "views"));
 
 app.set("port", process.env.PORT);
 
-app.use("/riotgames-stat-tracker",rgStatTracker)
+app.use("/lol-stat-tracker",lolStatTracker)
 
 app.get("/", (req, res) => {
     res.render("index", { title : "index"});
