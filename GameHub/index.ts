@@ -10,42 +10,24 @@ const collections = [
   {
     id: 1,
     name: "Mijn Xbox Games",
-    coverImage: "/images/collection-image.png"
+    coverImage: "/images/collection-image.png",
+    description: "Games die ik op Xbox speel",
+    games: [
+      {
+        name: "GTA V",
+        slug: "grand-theft-auto-v",
+        image: "/images/collection-image.png",
+        rating: 4.5,
+        released: "2013"
+      }
+    ]
   },
   {
     id: 2,
     name: "Mijn PS5 Games",
-    coverImage: "/images/collection-image.png"
-  },
-  {
-    id: 3,
-    name: "Mijn Steam Games",
-    coverImage: "/images/collection-image.png"
-  },
-  {
-    id: 4,
-    name: "100% completed games",
-    coverImage: "/images/collection-image.png"
-  },
-  {
-    id: 5,
-    name: "Games die ik samen met mijn broer speel",
-    coverImage: "/images/collection-image.png"
-  },
-  {
-    id: 6,
-    name: "Oldschool games",
-    coverImage: "/images/collection-image.png"
-  },
-  {
-    id: 7,
-    name: "Slechtste games ooit",
-    coverImage: "/images/collection-image.png"
-  },
-  {
-    id: 8,
-    name: "Mijn top 5",
-    coverImage: "/images/collection-image.png"
+    coverImage: "/images/collection-image.png",
+    description: "PS5 collectie",
+    games: []
   }
 ];
 
@@ -64,14 +46,11 @@ app.get("/home", (req, res) => {
     res.render("home", { title : "Home"});
 });
 app.get("/collections", (req, res) => {
-  res.render("collections", {
-    title: "Mijn collecties",
-    collections
-  });
+  res.render("collections", { collections });
 });
+
 app.get("/collections/:id", (req, res) => {
   const collection = collections.find(c => c.id === Number(req.params.id));
-
   res.render("collection", { collection });
 });
 app.get("/login", (req, res) => {
