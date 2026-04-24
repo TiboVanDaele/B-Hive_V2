@@ -48,6 +48,7 @@ const collections = [
     coverImage: "/images/collection-image.png"
   }
 ];
+
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -67,6 +68,11 @@ app.get("/collections", (req, res) => {
     title: "Mijn collecties",
     collections
   });
+});
+app.get("/collections/:id", (req, res) => {
+  const collection = collections.find(c => c.id === Number(req.params.id));
+
+  res.render("collection", { collection });
 });
 app.get("/login", (req, res) => {
     res.render("login", { title : "login"});
