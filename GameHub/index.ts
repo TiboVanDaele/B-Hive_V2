@@ -18,7 +18,6 @@ app.set("port", process.env.PORT);
 app.get("/", (req, res) => {
     res.render("index", { title : "index"});
 });
-
 app.get("/home", (req, res) => {
     res.render("home", { title : "Home"});
 });

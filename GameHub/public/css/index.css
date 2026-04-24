@@ -1,0 +1,96 @@
+body {
+  background-color: oklch(8% 0.008 223.9);
+  color: white;
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+}
+.index-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+
+}
+
+.index-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.index-header img {
+  height: 5rem;
+  width: auto;
+}
+
+.projects-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  text-decoration: none;
+  color: white;
+
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.1);
+}
+
+.project-card img {
+  width: 16rem;
+  border-radius: 0.75rem;
+  border: 2px solid transparent;
+  background-color: oklch(27.5% 0.011 216.9);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover img {
+  border-color: oklch(65% 0.15 240);
+  box-shadow: 0 0 25px oklch(65% 0.15 240 / 0.4);
+}
+
+.project-card h2 {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover h2 {
+  transform: scale(1.1);
+}
+
+
+.unavailable img {
+  opacity: 0.5;
+  width: 12rem;
+}
+
+.unavailable:hover img {
+  border-color: oklch(60% 0.2 30);
+  box-shadow: 0 0 20px oklch(60% 0.2 30 / 0.4);
+}
+
+.unavailable h2 {
+  color: oklch(72.3% 0.014 214.4);
+}
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
