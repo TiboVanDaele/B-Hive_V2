@@ -80,7 +80,17 @@ const compareGames = [
     playtime: 60
   }
 ];
-
+const user = {
+  username: "Jonas",
+  profilePic: "/images/collection-image.png",
+  level: 5,
+  stats: {
+    collections: 8,
+    games: 42,
+    comparisons: 12,
+    guesses: 27
+  }
+};
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -114,6 +124,13 @@ app.get("/compare", (req, res) => {
   res.render("compare", {
     title: "Game vergelijking",
     games: compareGames
+  });
+});
+
+app.get("/account", (req, res) => {
+  res.render("account", {
+    title: "Account",
+    user
   });
 });
 app.use("/game", gameDetailsRouter);
