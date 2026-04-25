@@ -1,8 +1,8 @@
 /* ── Layout ── */
-
 .game-detail-main {
     flex: 1;
     background-color: oklch(8% 0.008 223.9);
+    min-height: 100vh;
 }
 
 /* ── Header additions for this page ── */

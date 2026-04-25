@@ -1,0 +1,183 @@
+body {
+  background-color: oklch(8% 0.008 223.9);
+  color: white;
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-layout {
+  display: flex;
+  flex: 1;
+}
+
+.guessing-main {
+  flex: 1;
+}
+
+.guessing-wrapper {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2.5rem 1rem;
+}
+
+.guessing-card {
+  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+  border: 2px solid oklch(27.5% 0.011 216.9);
+  border-radius: 0.75rem;
+
+  padding: 2rem;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .guessing-card {
+    grid-template-columns: 1fr 1.4fr;
+    align-items: center;
+  }
+}
+
+.guessing-image-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.guessing-image {
+  width: 100%;
+  max-width: 20rem;
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+
+  border-radius: 0.75rem;
+  border: 2px solid oklch(27.5% 0.011 216.9);
+
+  filter: blur(10px);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.guessing-image:hover {
+  filter: blur(6px);
+  transform: scale(1.02);
+}
+
+.guessing-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.guessing-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.guessing-content p {
+  color: oklch(72.3% 0.014 214.4);
+  line-height: 1.5;
+}
+
+.lives {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1.75rem;
+  color: var(--green);
+}
+
+.lost-life {
+  color: oklch(35% 0.015 216.9);
+}
+
+.guessing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.guessing-form label {
+  font-weight: 600;
+}
+
+.guessing-form input {
+  padding: 0.75rem 1rem;
+
+  border-radius: 0.5rem;
+  border: 1px solid oklch(35% 0.015 216.9);
+
+  background-color: oklch(14.8% 0.004 228.8);
+  color: white;
+}
+
+.guessing-form input::placeholder {
+  color: oklch(72.3% 0.014 214.4);
+}
+
+.guessing-form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--green);
+}
+
+.guessing-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.guessing-buttons button {
+  padding: 0.6rem 1.25rem;
+
+  border-radius: 0.5rem;
+  border: 1px solid oklch(35% 0.015 216.9);
+
+  color: white;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.primary-button {
+  background-color: oklch(27.5% 0.011 216.9);
+}
+
+.secondary-button {
+  background-color: transparent;
+}
+
+.guessing-buttons button:hover {
+  border-color: var(--green);
+  filter: brightness(1.1);
+}
+
+.previous-guesses {
+  background-color: oklch(14.8% 0.004 228.8);
+  border: 2px solid oklch(27.5% 0.011 216.9);
+  border-radius: 0.75rem;
+
+  padding: 1rem;
+}
+
+.previous-guesses h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.previous-guesses ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.previous-guesses li {
+  background-color: oklch(27.5% 0.011 216.9);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+
+  color: oklch(72.3% 0.014 214.4);
+}

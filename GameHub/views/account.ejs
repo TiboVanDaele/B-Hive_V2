@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/aside.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/account.css">
+</head>
+
+<body>
+    <%- include("partials/header", { searchbar: false }) %>
+
+    <div class="page-layout">
+        <%- include("partials/aside", { showFilters: false }) %>
+
+        <main class="account-main">
+            <div class="account-wrapper">
+
+                <section class="profile-card">
+                    <div class="profile-header">
+
+                        <div class="profile-pic">
+                            <img src="<%= user.profilePic %>" alt="Profielfoto">
+                        </div>
+
+                        <div class="profile-info">
+                            <h1><%= user.username %></h1>
+                            <p class="subtitle">Level <%= user.level %></p>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button type="button">Profielfoto wijzigen</button>
+                        <button type="button">Profiel bewerken</button>
+                        <a href="/login" class="logout-btn">Uitloggen</a>
+                    </div>
+                </section>
+
+                <section class="stats-card">
+                    <h2>Statistieken</h2>
+
+                    <div class="stats-grid">
+                        <div>
+                            <h3><%= user.stats.collections %></h3>
+                            <p>Collecties</p>
+                        </div>
+
+                        <div>
+                            <h3><%= user.stats.games %></h3>
+                            <p>Games</p>
+                        </div>
+
+                        <div>
+                            <h3><%= user.stats.comparisons %></h3>
+                            <p>Vergelijkingen</p>
+                        </div>
+
+                        <div>
+                            <h3><%= user.stats.guesses %></h3>
+                            <p>Correct geraden</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <%- include("partials/footer") %>
+</body>
+</html>
