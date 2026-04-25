@@ -1,0 +1,160 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+
+  padding: 0.75rem 1.5rem;
+
+  border-bottom: 2px solid #4b585b;
+  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 8rem;
+  height: auto;
+}
+
+.searchbar {
+  flex: 1;
+  max-width: 36rem;
+}
+
+.searchbar form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.searchbar input[type="search"] {
+  width: 100%;
+  padding: 0.5rem 1rem;
+
+  border-radius: 999px;
+  border: 1px solid oklch(35% 0.015 216.9);
+  background-color: oklch(14.8% 0.004 228.8);
+
+  color: white;
+}
+
+.searchbar input::placeholder {
+  color: oklch(72.3% 0.014 214.4);
+}
+
+.button-group {
+  display: flex;
+}
+
+.button-group button {
+  cursor: pointer;
+
+  padding: 0.35rem 1rem;
+
+  border: 1px solid oklch(35% 0.015 216.9);
+  background-color: oklch(27.5% 0.011 216.9);
+  color: white;
+
+  transition: all 0.2s ease;
+}
+
+.button-group button:hover {
+  background-color: oklch(45% 0.017 213.2);
+}
+
+.button-l {
+  border-radius: 999px 0 0 999px;
+}
+
+.button-r {
+  border-radius: 0 999px 999px 0;
+}
+
+.user-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.username {
+  position: relative;
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.username:hover {
+  color: oklch(72.3% 0.219 149.579);
+}
+
+.username::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+
+  width: 0;
+  height: 2px;
+
+  background-color: oklch(72.3% 0.219 149.579);
+  transition: width 0.3s ease;
+}
+
+.username:hover::after {
+  width: 100%;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown summary {
+  list-style: none;
+  cursor: pointer;
+
+  padding: 0.5rem;
+  border-radius: 999px;
+
+  background-color: oklch(27.5% 0.011 216.9);
+}
+
+.dropdown summary:hover {
+  background-color: oklch(37% 0.013 285.805);
+}
+
+.dropdown svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+
+  width: 10rem;
+  padding: 0.5rem;
+
+  border-radius: 0.5rem;
+  background-color: oklch(37.8% 0.015 216);
+  border: 1px solid black;
+
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.35rem 0.5rem;
+
+  color: white;
+  text-decoration: none;
+  border-radius: 0.25rem;
+}
+
+.dropdown-menu a:hover {
+  background-color: oklch(27.5% 0.011 216.9);
+}
