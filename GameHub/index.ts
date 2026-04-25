@@ -22,8 +22,17 @@ app.get("/", (req, res) => {
 app.get("/home", (req, res) => {
     res.render("home", { title : "Home"});
 });
+app.get("/login", (req, res) => {
+    res.render("login", { title : "login"});
+});
 
 app.use("/game", gameDetailsRouter);
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
 
 app.listen(app.get("port"), () => {
     console.log(`Server running at http://localhost:${app.get("port")}`);
