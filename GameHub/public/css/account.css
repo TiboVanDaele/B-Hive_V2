@@ -1,0 +1,134 @@
+body {
+  background-color: oklch(8% 0.008 223.9);
+  color: white;
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-layout {
+  display: flex;
+  flex: 1;
+}
+
+.account-main {
+  flex: 1;
+  background-color: oklch(8% 0.008 223.9);
+}
+
+.account-wrapper {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2.5rem 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profile-card {
+  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+  border: 2px solid oklch(27.5% 0.011 216.9);
+  border-radius: 0.75rem;
+
+  padding: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.profile-pic {
+  width: 6rem;
+  height: 6rem;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  border: 2px solid oklch(27.5% 0.011 216.9);
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: oklch(72.3% 0.014 214.4);
+}
+
+.profile-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.profile-actions button,
+.logout-btn {
+  padding: 0.5rem 1rem;
+
+  border-radius: 0.5rem;
+  border: 1px solid oklch(35% 0.015 216.9);
+
+  background-color: oklch(27.5% 0.011 216.9);
+  color: white;
+
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.profile-actions button:hover,
+.logout-btn:hover {
+  border-color: var(--green);
+  filter: brightness(1.1);
+}
+
+.stats-card {
+  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+  border: 2px solid oklch(27.5% 0.011 216.9);
+  border-radius: 0.75rem;
+
+  padding: 1.5rem;
+}
+
+.stats-card h2 {
+  margin-bottom: 1rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.stats-grid div {
+  background-color: oklch(14.8% 0.004 228.8);
+  border-radius: 0.5rem;
+
+  padding: 1rem;
+  text-align: center;
+}
+
+.stats-grid h3 {
+  font-size: 1.4rem;
+}
+
+.stats-grid p {
+  color: oklch(72.3% 0.014 214.4);
+  font-size: 0.85rem;
+}

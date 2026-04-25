@@ -63,7 +63,7 @@ input {
 
 input:focus {
   outline: none;
-  border-color: oklch(65% 0.15 240);
+  border-color: oklch(72.3% 0.219 149.579);
 }
 
 .button-group {
@@ -85,7 +85,7 @@ button,
 
 button {
   border: none;
-  background-color: oklch(65% 0.15 240);
+  background-color: oklch(72.3% 0.219 149.579);
   color: white;
 }
 
@@ -112,9 +112,13 @@ button:hover {
 }
 
 .back-btn:hover {
-  color: oklch(65% 0.15 240);
+  color: oklch(72.3% 0.219 149.579);
 }
-
+.under-menu{
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
 footer{
   display: flex;
   justify-content: center;
