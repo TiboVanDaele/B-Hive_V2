@@ -16,7 +16,7 @@ main {
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
 }
 div img{
   display: flex;
@@ -101,6 +101,18 @@ button:hover {
 
 .secondary-btn:hover {
   background-color: oklch(32% 0.012 216.9);
+}
+
+.back-btn {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: oklch(72.3% 0.014 214.4);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.back-btn:hover {
+  color: oklch(65% 0.15 240);
 }
 
 footer{
