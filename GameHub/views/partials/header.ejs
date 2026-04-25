@@ -1,52 +1,52 @@
-<header>
-    <img class="logo" src="https://i.ibb.co/zWf54Dzw/b-hive-lg.png" alt="" />
+<header class="main-header">
+
+    <a href="/home" class="logo-link">
+        <img class="logo" src="/images/b-hive-lg.png" alt="B-Hive logo" />
+    </a>
+
     <% if (searchbar) { %>
-        <div class="searchbar">
-            <form>
-                <input class="ring-focus" type="search" placeholder="Zoek een game..." />
-                <div class="button-group">
-                    <button type="button" class="button-l ring-hover">
-                        Filter
-                    </button>
-                    <button type="button" class="button-r ring-hover">
-                        Zoeken
-                    </button>
-                </div>
-            </form>
-        </div>
-        <% } %>
+    <div class="searchbar">
+        <form action="/search" method="GET">
+            <input 
+                class="ring-focus" 
+                type="search" 
+                name="q"
+                placeholder="Zoek een game..." 
+            >
 
-            <nav aria-label="Gebruikersmenu">
-                <a href="#" class="username">username</a>
+            <div class="button-group">
+                <button type="button" class="button-l ring-hover">
+                    Filter
+                </button>
+                <button type="submit" class="button-r ring-hover">
+                    Zoeken
+                </button>
+            </div>
+        </form>
+    </div>
+    <% } %>
 
-                <a href="" class="change-theme" aria-label="Thema wijzigen">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-                    </svg>
-                </a>
+    <nav class="user-nav" aria-label="Gebruikersmenu">
 
-                <details>
-                    <summary>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                        </svg>
-                    </summary>
+        <a href="/account" class="username">username</a>
 
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Instellingen
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/html/login.html">
-                                Uitloggen
-                            </a>
-                        </li>
-                    </ul>
-                </details>
-            </nav>
+        <details class="dropdown">
+            <summary class="dropdown-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+            </summary>
+
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="/account">Instellingen</a>
+                </li>
+                <li>
+                    <a href="/login">Uitloggen</a>
+                </li>
+            </ul>
+        </details>
+
+    </nav>
+
 </header>

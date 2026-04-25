@@ -1,0 +1,234 @@
+body {
+  background-color: oklch(8% 0.008 223.9);
+  color: white;
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-main {
+  flex: 1;
+}
+
+.home-wrapper {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2.5rem 1rem;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+
+.game-card {
+  position: relative;
+}
+
+.card-actions {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  z-index: 5;
+
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none; /* allows clicking through except buttons */
+}
+
+.card-actions button {
+  pointer-events: all;
+
+  font-size: 0.7rem;
+  padding: 0.3rem 0.5rem;
+
+  border-radius: 0.4rem;
+  border: 1px solid oklch(35% 0.015 216.9);
+
+  background-color: oklch(27.5% 0.011 216.9);
+  color: white;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.card-actions button:hover {
+  border-color: var(--green);
+  filter: brightness(1.1);
+}
+
+.game-card {
+  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+  border: 2px solid oklch(27.5% 0.011 216.9);
+  border-radius: 0.75rem;
+
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--green);
+  box-shadow: 0 0 25px oklch(65% 0.15 240 / 0.25);
+}
+
+.game-card a {
+  color: white;
+  text-decoration: none;
+}
+
+.game-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.game-card-content {
+  padding: 0.75rem;
+}
+
+.game-card h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.game-card p {
+  color: oklch(72.3% 0.014 214.4);
+  font-size: 0.85rem;
+}
+
+.game-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 0.75rem 0.75rem;
+}
+
+.game-card-actions button {
+  flex: 1;
+  padding: 0.45rem 0.5rem;
+
+  border-radius: 0.5rem;
+  border: 1px solid oklch(35% 0.015 216.9);
+
+  background-color: oklch(27.5% 0.011 216.9);
+  color: white;
+
+  cursor: pointer;
+}
+
+.game-card-actions button:hover {
+  border-color: var(--green);
+}
+
+.compare-bar {
+  display: none;
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%);
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
+
+  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+  border: 2px solid oklch(27.5% 0.011 216.9);
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 0 25px oklch(65% 0.15 240 / 0.25);
+}
+.compare-bar {
+  display: none;
+}
+
+.compare-bar.active {
+  display: flex;
+}
+.compare-slot {
+  position: relative;
+
+  width: 8rem;
+  height: 8rem;
+
+  border: 2px dashed oklch(35% 0.015 216.9);
+  border-radius: 0.75rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+  color: oklch(72.3% 0.014 214.4);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.compare-slot.filled {
+  border-style: solid;
+}
+
+.compare-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.compare-slot h3 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 0.4rem;
+
+  background-color: rgb(0 0 0 / 70%);
+  color: white;
+  font-size: 0.75rem;
+}
+
+.remove-compare-btn {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  z-index: 2;
+
+  border: none;
+  border-radius: 999px;
+
+  background-color: oklch(60% 0.2 30);
+  color: white;
+
+  width: 1.4rem;
+  height: 1.4rem;
+
+  cursor: pointer;
+}
+
+.compare-page-btn {
+  padding: 0.75rem 1.25rem;
+
+  border-radius: 0.75rem;
+  border: 1px solid oklch(35% 0.015 216.9);
+
+  background-color: oklch(27.5% 0.011 216.9);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.compare-page-btn:hover {
+  border-color: var(--green);
+  filter: brightness(1.1);
+}
