@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/aside.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/collections.css">
 </head>
 
@@ -15,7 +16,7 @@
     <%- include("partials/header", { searchbar: true }) %>
 
     <div class="page-layout">
-        <%- include("partials/aside") %>
+        <%- include("partials/aside", { showFilters: false }) %>
 
         <main class="collections-main">
             <div class="collections-wrapper">
