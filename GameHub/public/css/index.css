@@ -62,7 +62,7 @@ main {
 }
 
 .project-card:hover img {
-  border-color: oklch(65% 0.15 240);
+  border-color: oklch(72.3% 0.219 149.579);
   box-shadow: 0 0 25px oklch(65% 0.15 240 / 0.4);
 }
 
