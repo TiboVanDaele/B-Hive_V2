@@ -114,7 +114,11 @@ button:hover {
 .back-btn:hover {
   color: oklch(72.3% 0.219 149.579);
 }
-
+.under-menu{
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
 footer{
   display: flex;
   justify-content: center;
