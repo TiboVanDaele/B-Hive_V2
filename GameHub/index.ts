@@ -91,6 +91,15 @@ const user = {
     guesses: 27
   }
 };
+const guessingGame = {
+  name: "DOOM",
+  slug: "doom",
+  image: "/images/collection-image.png"
+};
+const previousGuesses = [
+  "Quake",
+  "Wolfenstein"
+];
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -126,7 +135,20 @@ app.get("/compare", (req, res) => {
     games: compareGames
   });
 });
+app.get("/guessing-game", (req, res) => {
+  res.render("guessing-game", {
+    title: "Guessing Game",
+    game: guessingGame,
+    previousGuesses
+  });
+});
+app.post("/guessing-game", (req, res) => {
+  const guess = req.body.guess;
 
+  console.log("Gok:", guess);
+
+  res.redirect("/guessing-game");
+});
 app.get("/account", (req, res) => {
   res.render("account", {
     title: "Account",

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/aside.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/guessing-game.css">
+</head>
+
+<body>
+    <%- include("partials/header", { searchbar: false }) %>
+
+    <div class="page-layout">
+        <%- include("partials/aside", { showFilters: false }) %>
+
+        <main class="guessing-main">
+            <div class="guessing-wrapper">
+
+                <section class="guessing-card">
+                    <div class="guessing-image-wrapper">
+                        <img 
+                            class="guessing-image" 
+                            src="<%= game.image %>" 
+                            alt="Te raden game cover"
+                        >
+                    </div>
+
+                    <div class="guessing-content">
+                        <div>
+                            <h1>Guess the game!</h1>
+                            <p>Kan jij de game raden in 6 pogingen of minder?</p>
+                            <p>Test je kennis over covers van je favoriete games.</p>
+                        </div>
+
+                        <div class="lives" aria-label="Aantal pogingen">
+                            <span>♥</span>
+                            <span>♥</span>
+                            <span>♥</span>
+                            <span>♥</span>
+                            <span>♥</span>
+                            <span class="lost-life">♥</span>
+                        </div>
+
+                        <form class="guessing-form" action="/guessing-game" method="POST">
+                            <label for="guess">Jouw gok</label>
+
+                            <input 
+                                id="guess"
+                                name="guess"
+                                type="text"
+                                placeholder="Typ hier je gok..."
+                                autocomplete="off"
+                                required
+                            >
+
+                            <div class="guessing-buttons">
+                                <button type="button" class="secondary-button">
+                                    Sla over
+                                </button>
+
+                                <button type="submit" class="primary-button">
+                                    Raden!
+                                </button>
+                            </div>
+                        </form>
+
+                        <section class="previous-guesses">
+                            <h2>Vorige pogingen</h2>
+
+                            <ul>
+                                <% previousGuesses.forEach(guess => { %>
+                                    <li><%= guess %></li>
+                                <% }) %>
+                            </ul>
+                        </section>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <%- include("partials/footer") %>
+</body>
+</html>

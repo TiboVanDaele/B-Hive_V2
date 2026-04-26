@@ -5,10 +5,13 @@
     <title><%= game.name %> - B-Hive</title>
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/gamedetails.css">
+    <link rel="stylesheet" href="/css/gamedetailstest.css">
     </head>
 <body>
-<%- include("partials/header", {searchbar:true} ) %>
+<%- include("partials/header", {searchbar:false} ) %>
 
 <main class="game-detail-main">
     <div id="game-detail">
@@ -82,12 +85,6 @@
 </main>
 
 
-<footer>
-    <div class="footer-content">
-        <span>© 2026 B-Hive</span>
-        <span>All rights reserved</span>
-        <a href="https://rawg.io" target="_blank">source of data used is RAWG API</a>
-    </div>
-</footer>
+<%- include("partials/footer") %>
 </body>
 </html>
