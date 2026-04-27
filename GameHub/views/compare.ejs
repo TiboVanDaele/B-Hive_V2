@@ -2,55 +2,67 @@
 <html lang="nl-BE">
 <%- include("partials/head", {page:"compare", title:"Vergelijk games"}) %>
 
-<body>
-	<%- include("partials/header", { searchbar: true }) %>
+    <body>
+        <%- include("partials/header", { searchbar: true }) %>
 
-	<div class="page-layout">
-		<%- include("partials/aside", { showFilters: false }) %>
+            <div class="page-layout">
+                <%- include("partials/aside", { showFilters: false }) %>
 
-		<main class="compare-main">
-			<div class="compare-wrapper">
-				<a href="/home" class="leave-compare-link">Game vergelijking verlaten</a>
+                    <main class="compare-main">
+                        <div class="compare-wrapper">
+                            <a href="/home" class="leave-compare-link">Game vergelijking verlaten</a>
 
-				<section class="compare-grid" aria-label="Game vergelijking">
-					<% games.forEach(game => { %>
-					<article class="compare-card">
-						<img src="<%= game.image %>" alt="<%= game.name %>">
+                            <section class="compare-grid" aria-label="Game vergelijking">
+                                <% games.forEach(game=> { %>
+                                    <article class="compare-card">
+                                        <img src="<%= game.background_image %>" alt="<%= game.name %>">
 
-						<h1><%= game.name %></h1>
+                                        <h1>
+                                            <%= game.name %>
+                                        </h1>
 
-						<section>
-							<h2>Genre</h2>
-							<p><%= game.genres.join(", ") %></p>
-						</section>
+                                        <section>
+                                            <h2>Genre</h2>
+                                            <p>
+                                                <%= game.genres.map(g=> g.name).join(", ") %>
+                                            </p>
+                                        </section>
 
-						<section>
-							<h2>Platform(s)</h2>
-							<p><%= game.platforms.join(", ") %></p>
-						</section>
+                                        <section>
+                                            <h2>Platform(s)</h2>
+                                            <p>
+                                                <%= game.platforms.map(p=> p.platform.name).join(", ") %>
+                                            </p>
+                                        </section>
 
-						<section>
-							<h2>Rating</h2>
-							<p><%= game.rating %></p>
-						</section>
+                                        <section>
+                                            <h2>Rating</h2>
+                                            <p>
+                                                <%= game.rating %>/5
+                                            </p>
+                                        </section>
 
-						<section>
-							<h2>Beschrijving</h2>
-							<p class="description"><%= game.description %></p>
-						</section>
+                                        <section>
+                                            <h2>Beschrijving</h2>
+                                            <p class="description">
+                                                <%= game.description_raw %>
+                                            </p>
+                                        </section>
 
-						<section>
-							<h2>Gemiddelde speeltijd</h2>
-							<p><%= game.playtime %> uur</p>
-						</section>
-					</article>
-					<% }) %>
-				</section>
-			</div>
-		</main>
-	</div>
+                                        <section>
+                                            <h2>Gemiddelde speeltijd</h2>
+                                            <p>
+                                                <%= game.playtime %> uur
+                                            </p>
+                                        </section>
+                                    </article>
+                                    <% }) %>
+                            </section>
+                        </div>
+                    </main>
+            </div>
 
-	<%- include("partials/footer") %>
-</body>
+            <%- include("partials/footer") %>
+    </body>
 
 </html>
