@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
-    <%- include("partials/head", {page:"collections", title:"Mijn collecties"}) %>
+<%- include("partials/head", {page:"collections", title:"Mijn collecties"}) %>
 
 <body>
-    <%- include("partials/header", { searchbar: true }) %>
+	<%- include("partials/header", { searchbar: true }) %>
 
-    <div class="page-layout">
-        <%- include("partials/aside", { showFilters: false }) %>
+	<div class="page-layout">
+		<%- include("partials/aside", { showFilters: false }) %>
 
-        <main class="collections-main">
-            <div class="collections-wrapper">
-                <h1>Mijn collecties</h1>
+		<main class="collections-main">
+			<div class="collections-wrapper">
+				<h1>Mijn collecties</h1>
 
-                <section class="collections-actions" aria-label="Weergave en acties">
-                    <div class="view-toggle">
-                        <button type="button" aria-label="Rasterweergave">▦</button>
-                        <button type="button" aria-label="Lijstweergave">☰</button>
-                    </div>
+				<section class="collections-actions" aria-label="Weergave en acties">
+					<div class="view-toggle">
+						<button type="button" aria-label="Rasterweergave">▦</button>
+						<button type="button" aria-label="Lijstweergave">☰</button>
+					</div>
 
-                    <button type="button" class="create-collection-btn">
-                        Collectie aanmaken
-                    </button>
+					<button type="button" class="create-collection-btn">
+						Collectie aanmaken
+					</button>
 
-                    <button type="button" class="edit-btn" aria-label="Collecties bewerken">
-                        ✎
-                    </button>
-                </section>
+					<button type="button" class="edit-btn" aria-label="Collecties bewerken">
+						✎
+					</button>
+				</section>
 
-                <section class="collections-grid" aria-label="Overzicht van collecties">
+				<section class="collections-grid" aria-label="Overzicht van collecties">
 
-                    <% collections.forEach(collection => { %>
-                        <article class="collection-card">
-                            <a href="/collections/<%= collection.id %>">
-                                <img src="<%= collection.coverImage %>" alt="<%= collection.name %>">
-                                <h2><%= collection.name %></h2>
-                            </a>
-                        </article>
-                    <% }) %>
+					<% collections.forEach(collection => { %>
+					<article class="collection-card">
+						<a href="/collections/<%= collection.id %>">
+							<img src="<%= collection.coverImage %>" alt="<%= collection.name %>">
+							<h2><%= collection.name %></h2>
+						</a>
+					</article>
+					<% }) %>
 
-                </section>
-            </div>
-        </main>
-    </div>
+				</section>
+			</div>
+		</main>
+	</div>
 
-    <%- include("partials/footer") %>
+	<%- include("partials/footer") %>
 </body>
+
 </html>
