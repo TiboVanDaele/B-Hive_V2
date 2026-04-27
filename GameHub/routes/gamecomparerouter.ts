@@ -9,8 +9,6 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
     const apiKey = process.env.RAWG_API_KEY;
 
     var games:Game[] = [];
-    console.log(game1);
-    console.log(apiKey);
 
     try {
         const response = await fetch(`https://api.rawg.io/api/games/${game1}?key=${apiKey}`);
@@ -18,10 +16,7 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
         res.status(500).render("compare", { games:null, error: "Error loading game" });
             return;
         }
-
-        const game1Details:Game = await response.json();
-        games.push(game1Details);
-        console.log("Game details 1:" + game1Details);
+        games.push(await response.json());
     } catch (err) {
         console.error("RAWG API error:", err);
         res.status(500).render("compare", { games:null, error: "Error loading game" });
@@ -34,11 +29,8 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
             res.status(500).render("compare", { games:null, error: "Error loading game" });
             return;
         }
+        games.push(await response.json());
 
-        const game2Details:Game = await response.json();
-        console.log(response.json);
-        games.push(game2Details);
-        console.log("Game details 2:" + game2Details);
     } catch (err) {
         console.error("RAWG API error:", err);
         res.status(500).render("compare", { games:null, error: "Error loading game" });
