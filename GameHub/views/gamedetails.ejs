@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
-<head>
-    <meta charset="UTF-8">
-    <title><%= game.name %> - B-Hive</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/gamedetails.css">
-    <link rel="stylesheet" href="/css/gamedetailstest.css">
-    </head>
+<%- include("partials/head", {page:"gamedetails", title:"Game details"}) %>
+
 <body>
 <%- include("partials/header", {searchbar:false} ) %>
 

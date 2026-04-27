@@ -1,0 +1,21 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <% if(page!="index" ){%>
+        <link rel="stylesheet" href="/css/footer.css">
+        <%}%>
+            <% if (page!="login" || page!="index" ) { %>
+                <link rel="stylesheet" href="/css/header.css">
+                <link rel="stylesheet" href="/css/aside.css">
+                <% } %>
+                    <link rel="stylesheet" href="/css/<%= page %>.css">
+                    <% if (page=="home" ) { %>
+                        <link rel="stylesheet" href="/css/collections.css">
+                        <script defer src="/js/compare-bar.js"></script>
+                        <% } %>
+</head>

@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/aside.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/guessing-game.css">
-</head>
+<%- include("partials/head", {page:"guessing-game", title:"Guessing game"}) %>
 
 <body>
     <%- include("partials/header", { searchbar: false }) %>
