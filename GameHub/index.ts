@@ -2,6 +2,7 @@ import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
 import gameDetailsRouter from "./routes/gamedetailsrouter";
+import gameCompareRouter from "./routes/gamecomparerouter";
 dotenv.config();
 
 const app : Express = express();
@@ -129,12 +130,6 @@ app.get("/login", (req, res) => {
     res.render("login", { title : "login"});
 });
 
-app.get("/compare", (req, res) => {
-  res.render("compare", {
-    title: "Game vergelijking",
-    games: compareGames
-  });
-});
 app.get("/guessing-game", (req, res) => {
   res.render("guessing-game", {
     title: "Guessing Game",
@@ -156,6 +151,7 @@ app.get("/account", (req, res) => {
   });
 });
 app.use("/game", gameDetailsRouter);
+app.use("/compare", gameCompareRouter);
 
 const PORT = process.env.PORT || 3000;
 

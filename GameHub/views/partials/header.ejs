@@ -1,52 +1,47 @@
 <header class="main-header">
 
-    <a href="/home" class="logo-link">
-        <img class="logo" src="/images/b-hive-lg.png" alt="B-Hive logo" />
-    </a>
+	<a href="/home" class="logo-link">
+		<img class="logo" src="/images/b-hive-lg.png" alt="B-Hive logo" />
+	</a>
 
-    <% if (searchbar) { %>
-    <div class="searchbar">
-        <form action="/search" method="GET">
-            <input 
-                class="ring-focus" 
-                type="search" 
-                name="q"
-                placeholder="Zoek een game..." 
-            >
+	<% if (searchbar) { %>
+	<div class="searchbar">
+		<form action="/search" method="GET">
+			<input class="ring-focus" type="search" name="q" placeholder="Zoek een game...">
 
-            <div class="button-group">
-                <button type="button" class="button-l ring-hover">
-                    Filter
-                </button>
-                <button type="submit" class="button-r ring-hover">
-                    Zoeken
-                </button>
-            </div>
-        </form>
-    </div>
-    <% } %>
+			<div class="button-group">
+				<button type="button" class="button-l ring-hover">
+					Filter
+				</button>
+				<button type="submit" class="button-r ring-hover">
+					Zoeken
+				</button>
+			</div>
+		</form>
+	</div>
+	<% } %>
 
-    <nav class="user-nav" aria-label="Gebruikersmenu">
+	<nav class="user-nav" aria-label="Gebruikersmenu">
 
-        <a href="/account" class="username">username</a>
+		<a href="/account" class="username">username</a>
 
-        <details class="dropdown">
-            <summary class="dropdown-toggle">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                </svg>
-            </summary>
+		<details class="dropdown">
+			<summary class="dropdown-toggle">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+				</svg>
+			</summary>
 
-            <ul class="dropdown-menu">
-                <li>
-                    <a href="/account">Instellingen</a>
-                </li>
-                <li>
-                    <a href="/login">Uitloggen</a>
-                </li>
-            </ul>
-        </details>
+			<ul class="dropdown-menu">
+				<li>
+					<a href="/account">Instellingen</a>
+				</li>
+				<li>
+					<a href="/login">Uitloggen</a>
+				</li>
+			</ul>
+		</details>
 
-    </nav>
+	</nav>
 
 </header>
