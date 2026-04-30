@@ -1,8 +1,6 @@
 body {
   background-color: oklch(8% 0.008 223.9);
   color: white;
-  margin: 0;
-  font-family: Arial, sans-serif;
 
   min-height: 100vh;
   display: flex;

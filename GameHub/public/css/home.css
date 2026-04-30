@@ -1,7 +1,5 @@
 body {
   background-color: oklch(8% 0.008 223.9);
-  margin: 0;
-  font-family: Arial, sans-serif;
 
   min-height: 100vh;
   display: flex;

@@ -7,7 +7,6 @@
   --radius-50: 0.5rem;
   --radius-75: 0.75rem;
   --radius-round: calc(infinity * 1px);
-
 }
 
 .wrapper {
