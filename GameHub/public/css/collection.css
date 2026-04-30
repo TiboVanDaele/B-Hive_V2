@@ -14,13 +14,13 @@
 }
 
 .collections-wrapper h1 {
-  font-size: 2rem;
+  font-size: var(--text-4xl);
   font-weight: 700;
 }
 
 .collections-wrapper p {
   color: oklch(72.3% 0.014 214.4);
-  font-size: 0.95rem;
+  font-size: var(--text-md);
 }
 
 .collections-actions {
@@ -74,13 +74,13 @@
 }
 
 .collection-card h2 {
-  font-size: 1rem;
+  font-size: var(--text-md);
   font-weight: 600;
   padding: 0.5rem 0.75rem 0.25rem;
 }
 
 .collection-card p {
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   padding: 0 0.75rem;
   color: oklch(72.3% 0.014 214.4);
 }

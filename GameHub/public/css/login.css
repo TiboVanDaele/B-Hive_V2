@@ -34,7 +34,7 @@ div img{
 
 .login-box h1 {
   text-align: center;
-  font-size: 1.75rem;
+  font-size: var(--text-3xl);
   font-weight: 600;
 }
 
@@ -45,7 +45,7 @@ div img{
 }
 
 label {
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   color: oklch(72.3% 0.014 214.4);
 }
 
@@ -54,7 +54,7 @@ input {
   border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
   background-color: oklch(27.5% 0.011 216.9);
-  font-size: 0.95rem;
+  font-size: var(--text-md);
 }
 
 input:focus {
@@ -73,7 +73,7 @@ button,
   flex: 1;
   padding: 0.7rem;
   border-radius: var(--radius-50);
-  font-size: 0.9rem;
+  font-size: var(--text-md);
   cursor: pointer;
   text-align: center;
 }
@@ -99,7 +99,7 @@ button:hover {
 
 .back-btn {
   margin-top: 1rem;
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   color: oklch(72.3% 0.014 214.4);
   transition: color 0.2s ease;
 }

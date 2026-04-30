@@ -71,7 +71,7 @@ body {
 }
 
 .guessing-content h1 {
-  font-size: 2rem;
+  font-size: var(--text-4xl);
   font-weight: 700;
 }
 
@@ -83,7 +83,7 @@ body {
 .lives {
   display: flex;
   gap: 0.5rem;
-  font-size: 1.75rem;
+  font-size: var(--text-3xl);
   color: var(--green);
 }
 

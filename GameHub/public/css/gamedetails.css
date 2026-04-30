@@ -15,7 +15,7 @@ header .logo img {
 .guess-link {
     font-weight: 200;
     text-transform: uppercase;
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     white-space: nowrap;
 }
 
@@ -56,7 +56,7 @@ header nav a:hover {
 }
 
 .game-title {
-    font-size: 2.25rem;
+    font-size: var(--text-4xl);
     font-weight: 700;
     line-height: 1.2;
 }
@@ -96,7 +96,7 @@ header nav a:hover {
 }
 
 .section-heading {
-    font-size: 1.5rem;
+    font-size: var(--text-2xl);
     font-weight: 600;
 }
 
@@ -142,19 +142,19 @@ header nav a:hover {
 }
 
 .info-card-title {
-    font-size: 1rem;
+    font-size: var(--text-md);
     font-weight: 600;
 }
 
 .info-card-text {
     color: oklch(72.3% 0.014 214.4);
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
 }
 
 /* ── Rating ── */
 
 .game-rating {
-    font-size: 1.5rem;
+    font-size: var(--text-2xl);
     font-weight: 700;
     color: oklch(85% 0.18 85);
 }
@@ -172,14 +172,14 @@ header nav a:hover {
     border: 1px solid oklch(35% 0.015 216.9);
     padding: 0.25rem 0.75rem;
     border-radius: var(--radius-50);
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
 }
 
 /* ── Website ── */
 
 .game-website {
     color: oklch(65% 0.15 240);
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     word-break: break-all;
 }
 
@@ -202,7 +202,7 @@ header nav a:hover {
     flex-direction: column;
     align-items: center;
     gap: 0.25rem;
-    font-size: 0.6875rem;
+    font-size: var(--text-xs);
 }
 
 .footer-content a:hover {

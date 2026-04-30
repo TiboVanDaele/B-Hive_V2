@@ -5,9 +5,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 main {
   flex: 1;
 }
+
 .index-header {
   display: flex;
   justify-content: center;
@@ -18,7 +20,7 @@ main {
 }
 
 .index-header h1 {
-  font-size: 3rem;
+  font-size: var(--text-5xl);
   font-weight: 700;
 }
 
@@ -61,7 +63,7 @@ main {
 }
 
 .project-card h2 {
-  font-size: 1.1rem;
+  font-size: var(--text-3xl);
   transition: transform 0.2s ease;
 }
 
@@ -82,9 +84,11 @@ main {
 
 .unavailable h2 {
   color: oklch(72.3% 0.014 214.4);
+  font-size: var(--text-2xl);
 }
-footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
