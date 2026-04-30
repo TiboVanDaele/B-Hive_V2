@@ -1,6 +1,5 @@
 body {
   background-color: oklch(8% 0.008 223.9);
-  color: white;
   margin: 0;
   font-family: Arial, sans-serif;
 
@@ -27,7 +26,7 @@ body {
 .guessing-card {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
 
   padding: 2rem;
 
@@ -55,7 +54,7 @@ body {
 
   object-fit: cover;
 
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   border: 2px solid oklch(27.5% 0.011 216.9);
 
   filter: blur(10px);
@@ -107,11 +106,10 @@ body {
 .guessing-form input {
   padding: 0.75rem 1rem;
 
-  border-radius: 0.5rem;
+  border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
 
   background-color: oklch(14.8% 0.004 228.8);
-  color: white;
 }
 
 .guessing-form input::placeholder {
@@ -132,10 +130,9 @@ body {
 .guessing-buttons button {
   padding: 0.6rem 1.25rem;
 
-  border-radius: 0.5rem;
+  border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
 
-  color: white;
   cursor: pointer;
 
   transition: all 0.2s ease;
@@ -157,7 +154,7 @@ body {
 .previous-guesses {
   background-color: oklch(14.8% 0.004 228.8);
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
 
   padding: 1rem;
 }
@@ -176,7 +173,7 @@ body {
 
 .previous-guesses li {
   background-color: oklch(27.5% 0.011 216.9);
-  border-radius: 0.5rem;
+  border-radius: var(--radius-50);
   padding: 0.5rem 0.75rem;
 
   color: oklch(72.3% 0.014 214.4);

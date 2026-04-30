@@ -2,51 +2,13 @@
   --green: oklch(72.3% 0.219 149.579);
   font-family: Arial, Helvetica, sans-serif;
   color: white;
+
+  --radius-25: 0.25rem;
+  --radius-50: 0.5rem;
+  --radius-75: 0.75rem;
+  --radius-round: calc(infinity * 1px);
+
 }
-
-/* -- Animated background pattern -- */
-.bg-pattern {
-  width: 100%;
-  height: 100%;
-  background-color: #050505;
-  background-image:
-    radial-gradient(circle at center, transparent 30%, #000 90%),
-    linear-gradient(rgba(3, 233, 244, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(3, 233, 244, 0.1) 1px, transparent 1px),
-    linear-gradient(rgba(217, 3, 244, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(217, 3, 244, 0.05) 1px, transparent 1px);
-
-  background-size:
-    100% 100%,
-    60px 60px,
-    60px 60px,
-    20px 20px,
-    20px 20px;
-
-  animation: cyber-move 10s linear infinite;
-}
-
-@keyframes cyber-move {
-  0% {
-    background-position:
-      0 0,
-      0 0,
-      0 0,
-      0 0,
-      0 0;
-  }
-
-  100% {
-    background-position:
-      0 0,
-      60px 60px,
-      60px 60px,
-      40px 40px,
-      40px 40px;
-  }
-}
-
-/* --------------------------------- */
 
 .wrapper {
   display: grid;
@@ -79,11 +41,10 @@ header {
 
     input[type=search] {
       width: 100%;
-      border-radius: calc(infinity * 1px);
+      border-radius: var(--radius-round);
       border: 1px solid color-mix(in oklab, oklch(96.3% 0.002 197.1) 20%, transparent);
       background-color: oklch(14.8% 0.004 228.8);
       padding: 0.5rem 1rem;
-      color: white;
 
       &::placeholder {
         color: oklch(87.2% 0.007 219.6);
@@ -97,11 +58,10 @@ header {
 
       button {
         cursor: pointer;
-        border-radius: calc(infinity * 1px);
+        border-radius: var(--radius-round);
         border: 1px solid color-mix(in oklab, oklch(96.3% 0.002 197.1) 20%, transparent);
         background-color: oklch(27.5% 0.011 216.9);
         padding: 0.25rem 1rem;
-        color: white;
 
         &:hover {
           @media (hover: hover) {
@@ -136,7 +96,7 @@ header {
 
     .change-theme {
       padding: 0.5rem;
-      border-radius: calc(infinity * 1px);
+      border-radius: var(--radius-round);
       background-color: oklch(27.4% 0.006 286.033);
       transition-property: all;
       display: flex;
@@ -183,7 +143,7 @@ header {
         cursor: pointer;
         list-style-type: none;
         padding: 0.5rem;
-        border-radius: calc(infinity * 1px);
+      border-radius: var(--radius-round);
         background-color: oklch(27.4% 0.006 286.033);
 
         &:hover {
@@ -204,15 +164,14 @@ header {
         margin-top: 0.5rem;
         width: 10rem;
         background-color: oklch(37.8% 0.015 216);
-        color: white;
-        border-radius: 0.5rem;
+        border-radius: var(--radius-50);
         padding: 0.5rem;
         border: 1px solid black;
 
         li a {
           display: block;
           padding: 0.25rem 0.5rem;
-          border-radius: 0.25rem;
+          border-radius: var(--radius-25);
 
           &:hover {
             @media (hover: hover) {
@@ -286,7 +245,7 @@ aside {
 
   .menu-box {
     border-color: oklch(27.5% 0.011 216.9);
-    border-radius: 0.75rem;
+    border-radius: var(--radius-75);
     background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
     width: 14rem;
     border-width: 2px;
@@ -312,7 +271,7 @@ aside {
     width: 20px;
     height: 20px;
     border: 2px solid var(--green);
-    border-radius: 5px;
+    border-radius: var(--radius-25);
     background-color: transparent;
     display: inline-block;
     position: relative;
@@ -330,7 +289,7 @@ aside {
     transform: translate(-50%, -50%) scale(0);
     width: 10px;
     height: 10px;
-    border-radius: 3px;
+    border-radius: var(--radius-25);
     transition: all 0.3s ease-in-out;
   }
 

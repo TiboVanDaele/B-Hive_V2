@@ -1,6 +1,5 @@
 body {
   background-color: oklch(8% 0.008 223.9);
-  color: white;
   margin: 0;
   font-family: Arial, sans-serif;
 
@@ -32,7 +31,7 @@ body {
 .profile-card {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
 
   padding: 1.5rem;
 
@@ -51,7 +50,7 @@ body {
   width: 6rem;
   height: 6rem;
 
-  border-radius: 50%;
+  border-radius: var(--radius-round);
   overflow: hidden;
 
   border: 2px solid oklch(27.5% 0.011 216.9);
@@ -82,14 +81,12 @@ body {
 .logout-btn {
   padding: 0.5rem 1rem;
 
-  border-radius: 0.5rem;
+  border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
 
   background-color: oklch(27.5% 0.011 216.9);
-  color: white;
 
   cursor: pointer;
-  text-decoration: none;
 }
 
 .profile-actions button:hover,
@@ -101,8 +98,7 @@ body {
 .stats-card {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 0.75rem;
-
+  border-radius: var(--radius-75);
   padding: 1.5rem;
 }
 
@@ -118,7 +114,7 @@ body {
 
 .stats-grid div {
   background-color: oklch(14.8% 0.004 228.8);
-  border-radius: 0.5rem;
+  border-radius: var(--radius-50);
 
   padding: 1rem;
   text-align: center;

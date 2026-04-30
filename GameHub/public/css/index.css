@@ -1,6 +1,5 @@
 body {
   background-color: oklch(8% 0.008 223.9);
-  color: white;
   margin: 0;
   font-family: Arial, sans-serif;
 
@@ -43,9 +42,6 @@ main {
   align-items: center;
   gap: 1rem;
 
-  text-decoration: none;
-  color: white;
-
   transition: transform 0.3s ease;
 }
 
@@ -55,7 +51,7 @@ main {
 
 .project-card img {
   width: 16rem;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   border: 2px solid transparent;
   background-color: oklch(27.5% 0.011 216.9);
   transition: all 0.3s ease;

@@ -1,4 +1,3 @@
-
 .collections-main {
   flex: 1;
   background-color: oklch(8% 0.008 223.9);
@@ -32,11 +31,10 @@
 
 .collections-actions button {
   padding: 0.4rem 0.9rem;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
 
   background-color: oklch(27.5% 0.011 216.9);
-  color: white;
 
   cursor: pointer;
   transition: all 0.2s ease;
@@ -56,7 +54,7 @@
 .collection-card {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
 
   overflow: hidden;
   transition: all 0.25s ease;
@@ -65,8 +63,6 @@
 .collection-card a {
   display: flex;
   flex-direction: column;
-  text-decoration: none;
-  color: white;
   height: 100%;
 }
 

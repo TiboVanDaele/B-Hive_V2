@@ -1,6 +1,5 @@
 body {
   background-color: oklch(8% 0.008 223.9);
-  color: white;
   margin: 0;
   font-family: Arial, sans-serif;
 
@@ -39,7 +38,8 @@ body {
 
   display: flex;
   justify-content: space-between;
-  pointer-events: none; /* allows clicking through except buttons */
+  pointer-events: none;
+  /* allows clicking through except buttons */
 }
 
 .card-actions button {
@@ -48,11 +48,10 @@ body {
   font-size: 0.7rem;
   padding: 0.3rem 0.5rem;
 
-  border-radius: 0.4rem;
+  border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
 
   background-color: oklch(27.5% 0.011 216.9);
-  color: white;
 
   cursor: pointer;
   transition: 0.2s ease;
@@ -66,7 +65,7 @@ body {
 .game-card {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
 
   overflow: hidden;
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
@@ -78,10 +77,7 @@ body {
   box-shadow: 0 0 25px oklch(65% 0.15 240 / 0.25);
 }
 
-.game-card a {
-  color: white;
-  text-decoration: none;
-}
+
 
 .game-card img {
   width: 100%;
@@ -115,11 +111,10 @@ body {
   flex: 1;
   padding: 0.45rem 0.5rem;
 
-  border-radius: 0.5rem;
+  border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
 
   background-color: oklch(27.5% 0.011 216.9);
-  color: white;
 
   cursor: pointer;
 }
@@ -144,11 +139,12 @@ body {
 
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 1rem;
+  border-radius: calc(var(--radius-50)*2);
   backdrop-filter: blur(10px);
 
   box-shadow: 0 0 25px oklch(65% 0.15 240 / 0.25);
 }
+
 .compare-bar {
   display: none;
 }
@@ -156,6 +152,7 @@ body {
 .compare-bar.active {
   display: flex;
 }
+
 .compare-slot {
   position: relative;
 
@@ -163,7 +160,7 @@ body {
   height: 8rem;
 
   border: 2px dashed oklch(35% 0.015 216.9);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
 
   display: flex;
   justify-content: center;
@@ -194,7 +191,6 @@ body {
   padding: 0.4rem;
 
   background-color: rgb(0 0 0 / 70%);
-  color: white;
   font-size: 0.75rem;
 }
 
@@ -205,10 +201,9 @@ body {
   z-index: 2;
 
   border: none;
-  border-radius: 999px;
+  border-radius: var(--radius-round);
 
   background-color: oklch(60% 0.2 30);
-  color: white;
 
   width: 1.4rem;
   height: 1.4rem;
@@ -219,12 +214,10 @@ body {
 .compare-page-btn {
   padding: 0.75rem 1.25rem;
 
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   border: 1px solid oklch(35% 0.015 216.9);
 
   background-color: oklch(27.5% 0.011 216.9);
-  color: white;
-  text-decoration: none;
   font-weight: 600;
 }
 

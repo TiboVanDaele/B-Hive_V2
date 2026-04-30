@@ -26,7 +26,7 @@ body {
 
 .game-hero {
   position: relative;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   overflow: hidden;
 
   border: 2px solid oklch(27.5% 0.011 216.9);
@@ -76,7 +76,7 @@ body {
 .info-card {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   padding: 1.25rem;
 }
 
@@ -104,7 +104,7 @@ body {
 .genre-tag {
   background-color: oklch(27.5% 0.011 216.9);
   border: 1px solid oklch(35% 0.015 216.9);
-  border-radius: 0.5rem;
+  border-radius: var(--radius-50);
 
   padding: 0.35rem 0.75rem;
 
@@ -121,7 +121,6 @@ body {
 .game-website {
   color: var(--green);
   word-break: break-all;
-  text-decoration: none;
 }
 
 .game-website:hover {
@@ -137,7 +136,7 @@ body {
   text-align: center;
 
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
 }
 
@@ -153,7 +152,6 @@ body {
 
 .footer-content a {
   color: var(--green);
-  text-decoration: none;
 }
 
 .footer-content a:hover {

@@ -1,6 +1,5 @@
 body {
   background-color: oklch(8% 0.008 223.9);
-  color: white;
   margin: 0;
   font-family: Arial, sans-serif;
 
@@ -25,7 +24,7 @@ div img{
 .login-box {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   padding: 2rem;
   width: 100%;
   max-width: 400px;
@@ -54,10 +53,9 @@ label {
 
 input {
   padding: 0.6rem;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
   background-color: oklch(27.5% 0.011 216.9);
-  color: white;
   font-size: 0.95rem;
 }
 
@@ -76,17 +74,15 @@ button,
 .secondary-btn {
   flex: 1;
   padding: 0.7rem;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-50);
   font-size: 0.9rem;
   cursor: pointer;
   text-align: center;
-  text-decoration: none;
 }
 
 button {
   border: none;
   background-color: oklch(72.3% 0.219 149.579);
-  color: white;
 }
 
 button:hover {
@@ -107,7 +103,6 @@ button:hover {
   margin-top: 1rem;
   font-size: 0.85rem;
   color: oklch(72.3% 0.014 214.4);
-  text-decoration: none;
   transition: color 0.2s ease;
 }
 

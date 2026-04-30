@@ -45,7 +45,7 @@ header nav a:hover {
     width: 100%;
     height: 400px;
     object-fit: cover;
-    border-radius: 0.75rem;
+    border-radius: var(--radius-75);
     opacity: 0.8;
 }
 
@@ -117,7 +117,7 @@ header nav a:hover {
 .tag {
     background-color: oklch(27.5% 0.011 216.9);
     padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
+    border-radius: var(--radius-25);
     font-size: 0.75rem;
 }
 
@@ -134,7 +134,7 @@ header nav a:hover {
 .info-card {
     background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
     border: 2px solid oklch(27.5% 0.011 216.9);
-    border-radius: 0.75rem;
+    border-radius: var(--radius-75);
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -171,7 +171,7 @@ header nav a:hover {
     background-color: oklch(27.5% 0.011 216.9);
     border: 1px solid oklch(35% 0.015 216.9);
     padding: 0.25rem 0.75rem;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-50);
     font-size: 0.875rem;
 }
 
