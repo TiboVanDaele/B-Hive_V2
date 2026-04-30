@@ -118,7 +118,7 @@ header nav a:hover {
     background-color: oklch(27.5% 0.011 216.9);
     padding: 0.25rem 0.5rem;
     border-radius: var(--radius-25);
-    font-size: 0.75rem;
+    font-size: var(--text-xs);
 }
 
 /* ── Sidebar ── */

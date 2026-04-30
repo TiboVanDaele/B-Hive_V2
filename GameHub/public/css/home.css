@@ -93,7 +93,7 @@ body {
 
 .game-card p {
   color: oklch(72.3% 0.014 214.4);
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
 }
 
 .game-card-actions {

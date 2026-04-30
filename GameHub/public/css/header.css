@@ -1,154 +1,168 @@
 header {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  display: flex;
+  padding: 0.75rem;
 
-  padding: 0.75rem 1.5rem;
+  border: 2px solid #4b585b;
+  border-width: 0 0 2px 0;
 
-  border-bottom: 2px solid #4b585b;
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
-}
 
-.logo-link {
-  display: flex;
-  align-items: center;
-}
+  .logo {
+    width: 8rem;
+  }
 
-.logo {
-  width: 8rem;
-  height: auto;
-}
+  .searchbar {
+    flex: 1;
+    max-width: 36rem;
 
-.searchbar {
-  flex: 1;
-  max-width: 36rem;
-}
+    form {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-.searchbar form {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
+    input[type=search] {
+      width: 100%;
+      border-radius: var(--radius-round);
+      border: 1px solid color-mix(in oklab, oklch(96.3% 0.002 197.1) 20%, transparent);
+      background-color: oklch(14.8% 0.004 228.8);
+      padding: 0.5rem 1rem;
 
-.searchbar input[type="search"] {
-  width: 100%;
-  padding: 0.5rem 1rem;
+      &::placeholder {
+        color: oklch(87.2% 0.007 219.6);
+      }
 
-  border-radius: var(--radius-round);
-  border: 1px solid oklch(35% 0.015 216.9);
-  background-color: oklch(14.8% 0.004 228.8);
+      /* TODO: Add focus ring back */
+    }
 
-}
+    .button-group {
+      display: flex;
 
-.searchbar input::placeholder {
-  color: oklch(72.3% 0.014 214.4);
-}
+      button {
+        cursor: pointer;
+        border-radius: var(--radius-round);
+        border: 1px solid color-mix(in oklab, oklch(96.3% 0.002 197.1) 20%, transparent);
+        background-color: oklch(27.5% 0.011 216.9);
+        padding: 0.25rem 1rem;
 
-.button-group {
-  display: flex;
-}
+        &:hover {
+          @media (hover: hover) {
+            background-color: oklch(45% 0.017 213.2);
+            z-index: 10;
+          }
+        }
 
-.button-group button {
-  cursor: pointer;
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
 
-  padding: 0.35rem 1rem;
+      }
 
-  border: 1px solid oklch(35% 0.015 216.9);
-  background-color: oklch(27.5% 0.011 216.9);
+      .button-l {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
 
-  transition: all 0.2s ease;
-}
+      .button-r {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
 
-.button-group button:hover {
-  background-color: oklch(45% 0.017 213.2);
-}
+  nav {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    align-items: center;
 
-.button-l {
-  border-radius: var(--radius-round) 0 0 var(--radius-round);
-}
+    .change-theme {
+      padding: 0.5rem;
+      border-radius: var(--radius-round);
+      background-color: oklch(27.4% 0.006 286.033);
+      transition-property: all;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-.button-r {
-  border-radius: 0 var(--radius-round) var(--radius-round) 0;
-}
+      svg {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+    }
 
-.user-nav {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+    .username {
+      position: relative;
+      font-weight: 500;
+      cursor: pointer;
 
-.username {
-  position: relative;
-  font-weight: 500;
-}
+      &:hover {
+        color: var(--green);
 
-.username:hover {
-  color: oklch(72.3% 0.219 149.579);
-}
+        @media (hover: hover) {
+          &::after {
+            width: 100%;
+          }
+        }
+      }
 
-.username::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
+      &::after {
+        background-color: var(--green);
+        position: absolute;
+        height: 2px;
+        width: 0;
+        bottom: -2px;
+        left: 0;
+        transition-property: all;
+        transition-duration: 300ms;
+      }
+    }
 
-  width: 0;
-  height: 2px;
+    details {
+      position: relative;
 
-  background-color: oklch(72.3% 0.219 149.579);
-  transition: width 0.3s ease;
-}
+      summary {
+        cursor: pointer;
+        list-style-type: none;
+        padding: 0.5rem;
+      border-radius: var(--radius-round);
+        background-color: oklch(27.4% 0.006 286.033);
 
-.username:hover::after {
-  width: 100%;
-}
+        &:hover {
+          @media (hover: hover) {
+            background-color: oklch(37% 0.013 285.805);
+          }
+        }
 
-.dropdown {
-  position: relative;
-}
+        svg {
+          height: 1.5rem;
+          width: 1.5rem;
+        }
+      }
 
-.dropdown summary {
-  list-style: none;
-  cursor: pointer;
+      ul {
+        position: absolute;
+        right: 0;
+        margin-top: 0.5rem;
+        width: 10rem;
+        background-color: oklch(37.8% 0.015 216);
+        border-radius: var(--radius-50);
+        padding: 0.5rem;
+        border: 1px solid black;
 
-  padding: 0.5rem;
-  border-radius: var(--radius-round);
+        li a {
+          display: block;
+          padding: 0.25rem 0.5rem;
+          border-radius: var(--radius-25);
 
-  background-color: oklch(27.5% 0.011 216.9);
-}
-
-.dropdown summary:hover {
-  background-color: oklch(37% 0.013 285.805);
-}
-
-.dropdown svg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.dropdown-menu {
-  position: absolute;
-  right: 0;
-  margin-top: 0.5rem;
-
-  width: 10rem;
-  padding: 0.5rem;
-
-  border-radius: var(--radius-50);
-  background-color: oklch(37.8% 0.015 216);
-  border: 1px solid black;
-
-  list-style: none;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 0.35rem 0.5rem;
-
-  border-radius: var(--radius-25);
-}
-
-.dropdown-menu a:hover {
-  background-color: oklch(27.5% 0.011 216.9);
+          &:hover {
+            @media (hover: hover) {
+              background-color: oklch(27.5% 0.011 216.9);
+            }
+          }
+        }
+      }
+    }
+  }
 }
