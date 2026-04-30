@@ -2,41 +2,39 @@
 <html lang="en">
 <%- include("partials/head", {page:"login", title:"Login"}) %>
 
-<body>
+    <body>
+        <main class="login-page">
+            <img class="logo" src="/images/b-hive-lg.png" alt="Logo B-Hive">
+            <section>
+                <form class="login-box" action="/login" method="POST">
+                    <h1>Login</h1>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
 
-    <main class="login-page">
-        <div>
-            <img src="/images/b-hive-lg.png" alt="">
-        </div>
-        <section class="login-box">
+                    <div class="form-group">
+                        <label for="password">Wachtwoord</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
 
-            <h1>Login</h1>
-
-            <form action="/login" method="POST">
-
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required>
+                    <div class="button-group">
+                        <button type="submit">Inloggen</button>
+                        <button class="secondary-btn">
+                            <a href="/register">Create account</a>
+                        </button>
+                    </div>
+                </form>
+                <div class="under-menu">
+                    <a href="/" class="back-btn">Back to Projects</a>
+                    <a href="/Home" class="back-btn">Skip login</a>
                 </div>
+            </section>
 
-                <div class="form-group">
-                    <label for="password">Wachtwoord</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
+        </main>
 
-                <div class="button-group">
-                    <button type="submit">Inloggen</button>
-                    <a href="/register" class="secondary-btn">Create account</a>
-                </div>
-            </form>
-        </section>
-        <div class="under-menu">
-            <a href="/" class="back-btn">Back to Projects</a>
-            <a href="/Home" class="back-btn">Skip login</a>
-        </div>
-    </main>
+        <%- include("./partials/footer") %>
 
-    <%- include("./partials/footer") %>
+    </body>
 
-</body>
 </html>

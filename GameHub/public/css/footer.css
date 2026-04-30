@@ -9,3 +9,13 @@ footer {
   border-top: 2px solid oklch(27.5% 0.011 216.9);
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
 }
+
+/* Mobile */
+@media only screen and (min-width: 320px) {
+  footer {
+    font-size: var(--text-xs);
+  }
+}
+
+/* Tablet */
+@media only screen and (min-width: 720px) {}
