@@ -5,27 +5,6 @@
     min-height: 100vh;
 }
 
-/* ── Header additions for this page ── */
-
-header .logo img {
-    height: 4rem;
-    width: auto;
-}
-
-.guess-link {
-    font-weight: 200;
-    text-transform: uppercase;
-    font-size: var(--text-sm);
-    white-space: nowrap;
-}
-
-.guess-link:hover {
-    text-decoration: underline;
-}
-
-header nav a:hover {
-    text-decoration: underline;
-}
 
 /* ── Game detail wrapper ── */
 
@@ -193,18 +172,4 @@ header nav a:hover {
     text-align: center;
     margin-top: 2.5rem;
     color: oklch(72.3% 0.014 214.4);
-}
-
-/* ── Footer ── */
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: var(--text-xs);
-}
-
-.footer-content a:hover {
-    text-decoration: underline;
 }
