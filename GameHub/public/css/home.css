@@ -13,7 +13,7 @@ body {
 .home-wrapper {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 2.5rem 1rem;
+  padding: 1.5rem 1rem;
 }
 
 .home-grid {
@@ -88,7 +88,6 @@ body {
 .game-card h2 {
   font-size: var(--text-md);
   font-weight: 600;
-  margin-bottom: 0.5rem;
 }
 
 .game-card p {
@@ -219,4 +218,9 @@ body {
 .compare-page-btn:hover {
   border-color: var(--green);
   filter: brightness(1.1);
+}
+
+.title {
+  font-size: var(--text-5xl);
+  margin-bottom: 1rem;
 }

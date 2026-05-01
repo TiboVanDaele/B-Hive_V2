@@ -25,6 +25,7 @@ aside {
         color: white;
       }
 
+
       color: oklch(72.3% 0.014 214.4);
 
       &:hover {
@@ -64,6 +65,7 @@ aside {
       flex-direction: column;
       gap: 0.5rem;
     }
+
   }
 
   label {
@@ -79,4 +81,17 @@ aside {
       width: 60%;
     }
   }
+}
+
+i {
+  color: #e8e8e8;
+}
+
+.reset {
+  margin-top: 0.5rem;
+}
+
+.menu-title {
+  font-size: var(--text-lg);
+  margin-bottom: 0.2rem;
 }
