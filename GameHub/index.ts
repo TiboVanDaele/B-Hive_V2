@@ -4,7 +4,7 @@ import path from "path";
 import gameDetailsRouter from "./routes/gamedetailsrouter";
 import gameCompareRouter from "./routes/gamecomparerouter";
 import collectionsRouter from "./routes/collectionsrouter";
-
+import { connectToDatabase } from "./database";
 dotenv.config();
 
 const app : Express = express();
@@ -154,6 +154,12 @@ app.use("/game", gameDetailsRouter);
 app.use("/compare", gameCompareRouter);
 
 const PORT = process.env.PORT || 3000;
+
+connectToDatabase();
+
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
