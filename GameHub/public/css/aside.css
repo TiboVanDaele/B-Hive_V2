@@ -95,3 +95,28 @@ i {
   font-size: var(--text-lg);
   margin-bottom: 0.2rem;
 }
+
+.menu-button {
+  display: none;
+}
+
+@media only screen and (min-width: 320px) {
+
+
+  .menu-button {
+    display: block;
+    margin: 0.5rem 0;
+
+  }
+
+  .hidden {
+
+    p,
+    a,
+    h1,
+    label,
+    .menu-box {
+      display: none;
+    }
+  }
+}

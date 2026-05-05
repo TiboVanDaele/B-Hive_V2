@@ -224,3 +224,15 @@ body {
   font-size: var(--text-5xl);
   margin-bottom: 1rem;
 }
+
+@media only screen and (min-width: 320px) {
+  .title {
+    font-size: var(--text-2xl);
+    line-height: 1;
+  }
+
+  .home-wrapper {
+    padding: 0.4rem 0.4rem 0.4rem 0;
+  }
+  
+}

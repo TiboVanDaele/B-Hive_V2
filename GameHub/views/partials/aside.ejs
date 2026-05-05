@@ -1,7 +1,9 @@
 <% showFilters=typeof showFilters !=="undefined" ? showFilters : false; %>
 
-	<aside>
-		<ul class="aside-nav">
+	<aside class="aside-nav-wrapper">
+		<i class="menu-button fa-solid fa-bars fa-xl"></i>
+		<div class="hidden">
+			<ul class="aside-nav">
 			<li>
 				<i class="fa-solid fa-house fa-sm"></i>
 				<a href="/home">Home</a>
@@ -114,4 +116,5 @@
 				</div>
 			</div>
 			<% } %>
+		</div>
 	</aside>
