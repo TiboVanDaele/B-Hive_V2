@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import path from "path";
 import gameDetailsRouter from "./routes/gamedetailsrouter";
 import gameCompareRouter from "./routes/gamecomparerouter";
+import collectionsRouter from "./routes/collectionsrouter";
+
 dotenv.config();
 
 const app : Express = express();
@@ -122,10 +124,8 @@ app.get("/collections", (req, res) => {
   res.render("collections", { collections });
 });
 
-app.get("/collections/:id", (req, res) => {
-  const collection = collections.find(c => c.id === Number(req.params.id));
-  res.render("collection", { collection });
-});
+app.use("/collections", collectionsRouter);
+
 app.get("/login", (req, res) => {
     res.render("login", { title : "login"});
 });
