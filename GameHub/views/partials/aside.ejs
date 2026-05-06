@@ -2,119 +2,121 @@
 
 	<aside class="aside-nav-wrapper">
 		<i class="menu-button fa-solid fa-bars fa-xl"></i>
-		<div class="hidden">
+		<div class="inner-wrapper hidden">
 			<ul class="aside-nav">
-			<li>
-				<i class="fa-solid fa-house fa-sm"></i>
-				<a href="/home">Home</a>
-			</li>
+				<li>
+					<a href="/home"><i class="fa-solid fa-house fa-sm fa-fw"></i><span>Home</span></a>
+				</li>
 
-			<li>
-				<i class="fa-solid fa-box fa-sm"></i>
-				<a href="/collections">Collecties</a>
-			</li>
+				<li>
 
-			<li>
-				<i class="fa-solid fa-user fa-xs"></i>
-				<a href="/account">Account</a>
-			</li>
+					<a href="/collections"><i class="fa-solid fa-box fa-sm fa-fw"></i><span>Collecties</span></a>
+				</li>
 
-			<li class="nav-md">
-				<i class="fa-solid fa-arrow-right-arrow-left fa-xs"></i>
-				<a href="/compare">Vergelijking</a>
-			</li>
+				<li>
 
-			<li class="nav-md">
-				<i class="fa-solid fa-gamepad fa-xs"></i>
-				<a href="/guessing-game">Guessing game</a>
-			</li>
-		</ul>
+					<a href="/account"><i class="fa-solid fa-user fa-xs fa-fw"></i><span>Account</span></a>
+				</li>
 
-		<div>
-			<h1 class="menu-title"><i class="fa-solid fa-angle-right fa-sm"></i>Collecties</h1>
+				<li class="nav-md">
 
-			<div class="menu-box">
-				<ul>
-					<li><a href="#">Collectie 1</a></li>
-					<li><a href="#">Collectie 2</a></li>
-					<li><a href="#">Collectie 3</a></li>
-					<a class="reset" href="#"><i class="fa-solid fa-x"></i>
-						Reset collecties
-					</a>
-				</ul>
-			</div>
-		</div>
+					<a href="/compare"><i
+							class="fa-solid fa-arrow-right-arrow-left fa-xs fa-fw"></i><span>Vergelijking</span></a>
+				</li>
 
-		<% if (showFilters) { %>
-			<div>
-				<h1 class="menu-title"><i class="fa-solid fa-angle-right fa-sm"></i>Filters</h1>
+				<li class="nav-md">
+
+					<a href="/guessing-game"><i class="fa-solid fa-gamepad fa-xs fa-fw"></i><span>Guessing
+							game</span></a>
+				</li>
+			</ul>
+
+
+			<div class="collections">
+				<h1 class="menu-title"><i class="fa-solid fa-angle-right fa-sm"></i>Collecties</h1>
 
 				<div class="menu-box">
-					<div>
-						<label for="cb-collection">
-							<input id="cb-collection" type="checkbox">
-							Uit collectie
-						</label>
-
-						<label for="cb-not-collection">
-							<input id="cb-not-collection" type="checkbox">
-							Niet uit collectie
-						</label>
-
-						<label for="cb-action">
-							<input id="cb-action" type="checkbox">
-							<div class="label-text">
-								Actie
-								<i class="fa-solid fa-hand-fist"></i>
-							</div>
-						</label>
-
-						<label for="cb-rpg">
-							<input id="cb-rpg" type="checkbox">
-							<div class="label-text">
-								RPG
-								<i class="fa-solid fa-dice-d20"></i>
-							</div>
-						</label>
-
-						<label for="cb-fps">
-							<input id="cb-fps" type="checkbox">
-							<div class="label-text">
-								FPS
-								<i class="fa-solid fa-gun"></i>
-							</div>
-						</label>
-
-						<label for="cb-rts">
-							<input id="cb-rts" type="checkbox">
-							<div class="label-text">
-								RTS
-								<i class="fa-solid fa-chess-rook"></i>
-							</div>
-						</label>
-
-						<label for="cb-sports">
-							<input id="cb-sports" type="checkbox">
-							<div class="label-text">
-								Sport
-								<i class="fa-solid fa-futbol"></i>
-							</div>
-						</label>
-
-						<label for="cb-adventure">
-							<input id="cb-adventure" type="checkbox">
-							<div class="label-text">
-								Avontuur
-								<i class="fa-solid fa-book-skull"></i>
-							</div>
-						</label>
-
+					<ul>
+						<li><a href="#">Collectie 1</a></li>
+						<li><a href="#">Collectie 2</a></li>
+						<li><a href="#">Collectie 3</a></li>
 						<a class="reset" href="#"><i class="fa-solid fa-x"></i>
-							Reset filters
+							Reset collecties
 						</a>
-					</div>
+					</ul>
 				</div>
 			</div>
-			<% } %>
+
+			<% if (showFilters) { %>
+				<div class="filters">
+					<h1 class="menu-title"><i class="fa-solid fa-angle-right fa-sm"></i>Filters</h1>
+
+					<div class="menu-box">
+						<div>
+							<label for="cb-collection">
+								<input id="cb-collection" type="checkbox">
+								Uit collectie
+							</label>
+
+							<label for="cb-not-collection">
+								<input id="cb-not-collection" type="checkbox">
+								Niet uit collectie
+							</label>
+
+							<label for="cb-action">
+								<input id="cb-action" type="checkbox">
+								<div class="label-text">
+									Actie
+									<i class="fa-solid fa-hand-fist"></i>
+								</div>
+							</label>
+
+							<label for="cb-rpg">
+								<input id="cb-rpg" type="checkbox">
+								<div class="label-text">
+									RPG
+									<i class="fa-solid fa-dice-d20"></i>
+								</div>
+							</label>
+
+							<label for="cb-fps">
+								<input id="cb-fps" type="checkbox">
+								<div class="label-text">
+									FPS
+									<i class="fa-solid fa-gun"></i>
+								</div>
+							</label>
+
+							<label for="cb-rts">
+								<input id="cb-rts" type="checkbox">
+								<div class="label-text">
+									RTS
+									<i class="fa-solid fa-chess-rook"></i>
+								</div>
+							</label>
+
+							<label for="cb-sports">
+								<input id="cb-sports" type="checkbox">
+								<div class="label-text">
+									Sport
+									<i class="fa-solid fa-futbol"></i>
+								</div>
+							</label>
+
+							<label for="cb-adventure">
+								<input id="cb-adventure" type="checkbox">
+								<div class="label-text">
+									Avontuur
+									<i class="fa-solid fa-book-skull"></i>
+								</div>
+							</label>
+
+							<a class="reset" href="#"><i class="fa-solid fa-x"></i>
+								Reset filters
+							</a>
+						</div>
+					</div>
+				</div>
+				<% } %>
 		</div>
 	</aside>

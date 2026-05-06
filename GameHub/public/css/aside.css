@@ -1,5 +1,15 @@
+body {
+  overflow: hidden;
+}
+
+.inner-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 aside {
-  grid-column: span 3 / span 3;
+  background-color: oklch(8% 0.008 223.9);
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -101,22 +111,73 @@ i {
 }
 
 @media only screen and (min-width: 320px) {
+  aside {
+    align-items: flex-start;
+    z-index: 10;
+    border-radius: 0 0 var(--radius-75) var(--radius-75);
+    flex: none;
+    transition: all 0.3s;
+    position: absolute;
+
+    height: fit-content;
+    width: 4rem;
+
+    &.open {
+      width: 18rem;
+    }
+
+    i {
+      text-align: left;
+    }
+
+    a {
+      padding: 0;
+    }
+
+    ul {
+      a {
+        display: flex;
+        gap: 1.4rem;
+        padding: 0 0.2rem;
+        align-items: center;
+        color: white;
+        text-decoration: none;
+
+        span {
+          transition: opacity 0.3s ease-in-out;
+          text-wrap: nowrap;
+        }
+
+      }
+    }
+
+    .menu-button {
+      display: block;
+      margin: 0.5rem 0;
+    }
 
 
-  .menu-button {
-    display: block;
-    margin: 0.5rem 0;
+    @starting-style {
+      .hidden {
+        opacity: 0;
+      }
+    }
 
-  }
+    .hidden {
+      span {
+        opacity: 0;
+      }
 
-  .hidden {
+      .menu-title,
+      label,
+      .menu-box {
+        display: none;
+        opacity: 0;
 
-    p,
-    a,
-    h1,
-    label,
-    .menu-box {
-      display: none;
+        transition: opacity 0.3s ease-in-out, display 0.3s ease-in-outallow-discrete;
+      }
+
+
     }
   }
 }
