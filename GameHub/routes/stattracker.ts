@@ -37,7 +37,7 @@ router.get("/:gtag", async(req: Request, res: Response): Promise<void> => {
     let ChampLevels:number[] = [];
     let ChampLevelProgress:string[] = [];
 
-    const resp = await fetch("https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/"+gtag.replace(".","/")+"?api_key=RGAPI-14dc5a67-693d-416e-b39c-1c02da24f388")
+    const resp = await fetch("https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/"+gtag.replace(".","/")+"?api_key="+process.env.RG_API_KEY)
     const puuid: PUUID = await resp.json();
 
     if(resp.status == 200){
