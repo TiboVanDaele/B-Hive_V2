@@ -3,7 +3,6 @@ import { ChampionMasteryData , PUUID} from "../types/champTypes";
 
 const router = Router();
 
-const tempAPIKEY:string = "RGAPI-ba518650-d0c3-479a-8598-ae495c84e4df"
 
 router.get("/",(req, res)=>{
     let ChampNames:string[] = [];
@@ -15,7 +14,8 @@ router.get("/",(req, res)=>{
             ChampNames:ChampNames,
             ChampSplashArtUrl:ChampSplashArtUrl,
             ChampLevels:ChampLevels,
-            ChampLevelProgress:ChampLevelProgress
+            ChampLevelProgress:ChampLevelProgress,
+            responsecode: 200
         });
 })
 
@@ -37,12 +37,10 @@ router.get("/:gtag", async(req: Request, res: Response): Promise<void> => {
     let ChampLevels:number[] = [];
     let ChampLevelProgress:string[] = [];
 
-    console.log(gtag)
     const resp = await fetch("https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/"+gtag.replace(".","/")+"?api_key=RGAPI-14dc5a67-693d-416e-b39c-1c02da24f388")
-    console.log(resp.status)
     const puuid: PUUID = await resp.json();
 
-    if(gtag.length > 0){
+    if(resp.status == 200){
         const response = await fetch("https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/"+ puuid.puuid +"?api_key="+process.env.RG_API_KEY);
         const champMasteryData: ChampionMasteryData[] = await response.json();
 
@@ -69,7 +67,8 @@ router.get("/:gtag", async(req: Request, res: Response): Promise<void> => {
             ChampNames:ChampNames,
             ChampSplashArtUrl:ChampSplashArtUrl,
             ChampLevels:ChampLevels,
-            ChampLevelProgress:ChampLevelProgress
+            ChampLevelProgress:ChampLevelProgress,
+            responsecode: resp.status
         });
 })
 

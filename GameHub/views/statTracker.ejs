@@ -33,6 +33,14 @@
                         </div>
                     </div>
                 <%}%>
+                <% if (ChampNames.length < 1){%>
+                    <% if(responsecode != 200){%>
+                    <p class="error">Uw gamertag is niet gevonden. Hebt u deze correct ingevuld?</p>
+                    <%}else{%>
+                        <p></p>
+                    <p class="no-user-loaded">Welkom bij de riot games stat tracker. Hierboven kan je je gamertag ingeven en je champions met de hoogste mastery op je account vinden</p>
+                    <%}%>
+                <%}%>
             </div>
         </div>
         <%- include("partials/footer") %>
