@@ -110,6 +110,7 @@ i {
   display: none;
 }
 
+/*
 @media only screen and (min-width: 320px) {
   aside {
     align-items: flex-start;
@@ -181,3 +182,4 @@ i {
     }
   }
 }
+  */
