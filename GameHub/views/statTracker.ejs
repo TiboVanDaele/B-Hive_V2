@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+    <head>
+        <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/reset.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/index.css">
+  	    <link rel="stylesheet" href="/css/footer.css">
+        <link rel="stylesheet" href="/css/header.css">
+	    <link rel="stylesheet" href="/css/aside.css">
+        <link rel="stylesheet" href="/css/stattracker.css">
+        <title>stat-tracker</title>
+    </head>
+<body>
+	    <%- include("partials/header", { searchbar: true }) %>
+	    <div class="page-layout">
+	    	<%- include("partials/aside", { showFilters: false }) %>
+            <div class="stat-tracker">
+                <form class="search-by-name" method="post">
+                    <input type="text" class="search-bar outline-black" placeholder="GamerTag#2200" name="GamerTag" >
+                    <button type="submit" class="outline-black search-button">search</button>
+                </form>
+                <% for(let i = 0; i < ChampNames.length;i++){ %>
+                    <div class="champ-listing">
+                        <img src="<%=ChampSplashArtUrl[i]%>" alt="">
+                        <div class="champ-info">
+                            <h2>
+                                <%=ChampNames[i]%>
+                            </h2>
+                            <h3>Mastery : <%=ChampLevels[i]%></h3>
+                            <h3>Level Progress : <%=ChampLevelProgress[i]%>%</h3>
+                        </div>
+                    </div>
+                <%}%>
+            </div>
+        </div>
+        <%- include("partials/footer") %>
+    </body>
+</html>

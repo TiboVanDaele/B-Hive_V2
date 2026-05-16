@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import gameDetailsRouter from "./routes/gamedetailsrouter";
 import gameCompareRouter from "./routes/gamecomparerouter";
+import stattracker from "./routes/stattracker"
 dotenv.config();
 
 const app : Express = express();
@@ -152,6 +153,7 @@ app.get("/account", (req, res) => {
 });
 app.use("/game", gameDetailsRouter);
 app.use("/compare", gameCompareRouter);
+app.use("/rg-stat-tracker",stattracker);
 
 const PORT = process.env.PORT || 3000;
 
