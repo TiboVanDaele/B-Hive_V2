@@ -186,6 +186,12 @@ body {
     color: oklch(72.3% 0.014 214.4);
 }
 
+.iconBrand{
+  display: inline;
+}
+.platforms span{
+  display: inline-block;
+}
 
 /* Mobile */
 @media only screen and (min-width: 320px) {

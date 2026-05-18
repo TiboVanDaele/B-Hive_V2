@@ -224,6 +224,12 @@ body {
   margin-bottom: 1rem;
 }
 
+.iconBrand{
+  display: inline;
+}
+.platforms span{
+  display: inline-block;
+}
 @media only screen and (min-width: 320px) {
   .title {
     font-size: var(--text-3xl);
@@ -243,4 +249,7 @@ body {
     max-height: 98%;
   }
 
+  
+
 }
+
