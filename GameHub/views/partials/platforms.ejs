@@ -31,7 +31,7 @@
     <% let versions= platformList.filter(p => xboxCheck.includes(p)).sort().map(p => p.replace("Xbox", "").trim()).join(", "); %>
     <span>
     	<i class="fa-brands fa-xbox"></i>
-    	[ <%= versions %> ]
+    	<%= versions %>
     </span>
     <% } %>
 
@@ -40,7 +40,7 @@
 
     <span>
     	<i class="fa-brands fa-playstation"></i>
-    	[ <%= versions %> ]
+    	<%= versions %>
     </span>
     <% } %>
 
@@ -50,7 +50,7 @@
                         "GBC").replace("Game Boy", "GB").trim()).join(", ");%>
     <span>
     	<img class="iconBrand" src="/images/nintendo-switch.svg" alt="">
-    	[ <%= versions %> ]
+    	<%= versions %>
     </span>
     <% } %>
 
@@ -58,7 +58,7 @@
     <% let versions=platformList.filter(p => appleCheck.includes(p)).sort().map(p=> p.trim()).join(", ");%>
     <span>
     	<i class="fa-brands fa-apple"></i>
-    	[ <%= versions %> ]
+    	<%= versions %>
     </span>
     <% } %>
 

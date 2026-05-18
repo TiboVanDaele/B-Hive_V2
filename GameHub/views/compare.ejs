@@ -12,7 +12,7 @@
                     vergelijking verlaten</a>
                 <section class="compare-grid" aria-label="Game vergelijking">
                     <% games.forEach(game => { %>
-                    <article class="compare-card"> <img
+                    <article class="compare-card"> <img class="game-img"
                             src="<%= game.background_image %>"
                             alt="<%= game.name %>">
                         <h1>
@@ -30,9 +30,7 @@
                         </section>
                         <section>
                             <h2>Rating</h2>
-                            <p>
-                                <%= game.rating %>/5
-                            </p>
+                            <p class="game-rating">&#11088; <%= game.rating %> / 5</p>
                         </section>
                         <section>
                             <h2>Beschrijving</h2>

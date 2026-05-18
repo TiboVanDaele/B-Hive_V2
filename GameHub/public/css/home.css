@@ -226,6 +226,9 @@ body {
 
 .iconBrand{
   display: inline;
+  height: 16px;
+  width: 20px;
+  margin-top: -4px;
 }
 .platforms span{
   display: inline-block;
