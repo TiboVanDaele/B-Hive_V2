@@ -9,7 +9,6 @@ body {
 }
 
 /* ── Game detail wrapper ── */
-
 .game-detail-wrapper {
     max-width: 72rem;
     margin: 0 auto;
@@ -17,7 +16,6 @@ body {
 }
 
 /* ── Hero image ── */
-
 .game-hero {
     position: relative;
 }
@@ -25,9 +23,9 @@ body {
 .game-hero::after {
     position: absolute;
     inset: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 1%, rgba(0, 0, 0, 0.17) 38%, rgba(0, 0, 0, 0) 50%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 1%, rgba(0, 0, 0, 0.17) 38%,
+            rgba(0, 0, 0, 0) 50%);
     content: '';
-
 }
 
 .game-hero-img {
@@ -49,7 +47,6 @@ body {
     font-size: var(--text-4xl);
     font-weight: 700;
     line-height: 1.2;
-
 }
 
 .game-released {
@@ -58,7 +55,6 @@ body {
 }
 
 /* ── Content grid ── */
-
 .game-content {
     display: grid;
     grid-template-columns: 1fr;
@@ -73,7 +69,6 @@ body {
 }
 
 /* ── Main column ── */
-
 .game-main {
     display: flex;
     flex-direction: column;
@@ -98,7 +93,6 @@ body {
 }
 
 /* ── Tags ── */
-
 .tag-list {
     display: flex;
     flex-wrap: wrap;
@@ -113,7 +107,6 @@ body {
 }
 
 /* ── Sidebar ── */
-
 .game-sidebar {
     display: flex;
     flex-direction: column;
@@ -121,9 +114,9 @@ body {
 }
 
 /* ── Info cards ── */
-
 .info-card {
-    background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+    background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%,
+            transparent);
     border: 2px solid oklch(27.5% 0.011 216.9);
     border-radius: var(--radius-75);
     padding: 1rem;
@@ -143,7 +136,6 @@ body {
 }
 
 /* ── Rating ── */
-
 .game-rating {
     font-size: var(--text-2xl);
     font-weight: 700;
@@ -151,7 +143,6 @@ body {
 }
 
 /* ── Genres ── */
-
 .genre-list {
     display: flex;
     flex-wrap: wrap;
@@ -167,7 +158,6 @@ body {
 }
 
 /* ── Website ── */
-
 .game-website {
     color: oklch(65% 0.15 240);
     font-size: var(--text-sm);
@@ -179,33 +169,37 @@ body {
 }
 
 /* ── Error ── */
-
 .error-msg {
     text-align: center;
     margin-top: 2.5rem;
     color: oklch(72.3% 0.014 214.4);
 }
 
-.iconBrand{
-  display: inline;
-  height: 16px;
-  width: 20px;
-  margin-top: -4px;
+.iconBrand {
+    display: inline;
+    height: 16px;
+    width: 20px;
+    margin-top: -4px;
 }
-.platforms span{
-  display: inline-block;
+
+.platforms span {
+    display: inline-block;
 }
 
 .leave-details-link {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: oklch(72.3% 0.014 214.4);
-  font-weight: 600;
-  text-decoration: underline;
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: oklch(72.3% 0.014 214.4);
+    font-weight: 600;
+    text-decoration: underline;
 }
 
 .leave-details-link:hover {
-  color: var(--green);
+    color: var(--green);
+}
+
+.show-more-less {
+    display: none;
 }
 
 /* Mobile */
@@ -215,6 +209,33 @@ body {
     }
 
     .leave-details-link {
-    line-height: 2;
-  }
+        line-height: 2;
+    }
+
+    .show-more-less {
+        display: inline;
+        text-decoration: underline;
+        font-size: var(--text-sm);
+    }
+
+    .description {
+        font-size: var(--text-sm);
+        overflow: hidden;
+        transition: all 1s ease-in-out;
+    }
+
+    .showless {
+        max-height: calc(1.5em * 10);
+        transition: max-height 1s ease-in-out;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 8;
+        line-clamp: 8;
+        -webkit-box-orient: vertical;
+    }
+
+    .showmore {
+        max-height: 100rem;
+        transition: all 1s ease-in-out;
+    }
 }

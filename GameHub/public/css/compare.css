@@ -85,9 +85,9 @@ body {
   line-height: 1.5;
 }
 
-.description-wrapper{
-    padding: 1rem;
-      border-radius: var(--radius-75);
+.description-wrapper {
+  padding: 1rem;
+  border-radius: var(--radius-75);
   border: 2px solid oklch(27.5% 0.011 216.9);
 
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
@@ -95,39 +95,46 @@ body {
 }
 
 
-.iconBrand{
+.iconBrand {
   display: inline;
   height: 16px;
   width: 20px;
   margin-top: -4px;
 }
-.platforms span{
+
+.platforms span {
   display: inline-block;
 }
 
 .game-rating {
-    font-size: var(--text-md);
-    font-weight: 700;
-    color: oklch(85% 0.18 85);
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: oklch(85% 0.18 85);
 }
+
+.show-more-less {
+  display: none;
+}
+
 @media only screen and (min-width: 320px) {
   .leave-compare-link {
     margin-left: 3rem;
     line-height: 2;
   }
 
-  .iconBrand{
-  display: inline;
-  height: 12px;
-  width: 15px;
-}
+  .iconBrand {
+    display: inline;
+    height: 12px;
+    width: 15px;
+  }
 
-.description-wrapper{
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  gap:0.5rem;
-}
+  .description-wrapper {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
   .show-more-less {
     display: inline;
     text-decoration: underline;
@@ -155,18 +162,13 @@ body {
     width: 100%;
   }
 
-  @starting-style {
-      .description {
-        max-height: calc(1.5em * 4);
-      }
-    }
-
-  .description{
+  .description {
     font-size: var(--text-sm);
     overflow: hidden;
 
     transition: all 1s ease-in-out;
   }
+
   .showless {
     max-height: 6rem;
     transition: max-height 1s ease-in-out;
@@ -176,7 +178,8 @@ body {
     line-clamp: 4;
     -webkit-box-orient: vertical;
   }
-  .showmore{
+
+  .showmore {
     max-height: 100rem;
     transition: all 1s ease-in-out;
   }
