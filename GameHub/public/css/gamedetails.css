@@ -193,9 +193,25 @@ body {
   display: inline-block;
 }
 
+.leave-details-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: oklch(72.3% 0.014 214.4);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.leave-details-link:hover {
+  color: var(--green);
+}
+
 /* Mobile */
 @media only screen and (min-width: 320px) {
     .game-detail-wrapper {
         padding: 1rem 1rem;
     }
+
+    .leave-details-link {
+    line-height: 2;
+  }
 }
