@@ -85,15 +85,15 @@ body {
   line-height: 1.5;
 }
 
-.description {
-  padding: 1rem;
-
-  border-radius: var(--radius-75);
+.description-wrapper{
+    padding: 1rem;
+      border-radius: var(--radius-75);
   border: 2px solid oklch(27.5% 0.011 216.9);
 
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   font-size: var(--text-md);
 }
+
 
 .iconBrand{
   display: inline;
@@ -122,9 +122,16 @@ body {
   width: 15px;
 }
 
+.description-wrapper{
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap:0.5rem;
+}
   .show-more-less {
     display: inline;
     text-decoration: underline;
+    font-size: var(--text-sm);
   }
 
   .compare-wrapper {
@@ -148,14 +155,30 @@ body {
     width: 100%;
   }
 
-  .description {
+  @starting-style {
+      .description {
+        max-height: calc(1.5em * 4);
+      }
+    }
+
+  .description{
+    font-size: var(--text-sm);
+    overflow: hidden;
+
+    transition: all 1s ease-in-out;
+  }
+  .showless {
+    max-height: 6rem;
+    transition: max-height 1s ease-in-out;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
     -webkit-box-orient: vertical;
-
-    font-size: var(--text-sm);
+  }
+  .showmore{
+    max-height: 100rem;
+    transition: all 1s ease-in-out;
   }
 
   .platforms {

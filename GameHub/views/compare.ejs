@@ -11,6 +11,7 @@
                         class="fa-solid fa-arrow-right-from-bracket"></i> Game
                     vergelijking verlaten</a>
                 <section class="compare-grid" aria-label="Game vergelijking">
+                    <% let counter = 0; %>
                     <% games.forEach(game => { %>
                     <article class="compare-card"> <img class="game-img"
                             src="<%= game.background_image %>"
@@ -34,10 +35,13 @@
                         </section>
                         <section>
                             <h2>Beschrijving</h2>
-                            <p class="description">
+                            <div class="description-wrapper">
+                            <p class="description showless descGame<%= counter+1 %>">
                                 <%= game.description_raw %>
-                            </p> <button class="show-more-less">Toon
-                                meer</button>
+                            </p> 
+                            <button class="show-more-less showBtnGame<%= counter+1 %>">Toon meer</button>
+                            </div>
+
                         </section>
                         <section>
                             <h2>Gemiddelde speeltijd</h2>
@@ -51,6 +55,7 @@
                             </p>
                         </section>
                     </article>
+                    <% counter++; %>
                     <% }) %>
                 </section>
             </div>
