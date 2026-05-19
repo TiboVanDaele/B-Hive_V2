@@ -10,9 +10,7 @@ header {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   max-height: 4rem;
 
-  .logo {
-    width: 8rem;
-  }
+
 
   .avatar {
     border-radius: var(--radius-round);
@@ -184,8 +182,14 @@ header {
   }
 }
 
+ .logo {
+      height: 2rem;
+      width: 2rem;
+ }
+
 @media only screen and (min-width: 320px) {
   header {
+    gap: 0.5rem;
     .username {
       display: none;
     }
@@ -198,15 +202,19 @@ header {
       gap: 0.4rem;
     }
 
-    .logo {
-      height: 2rem;
-      width: 2rem;
-    }
+
 
     .button-group {
       display: none;
     }
 
-    gap: 0.5rem;
+    
+  }
+}
+
+@media only screen and (min-width: 600px){
+  .logo {
+    width: 8rem;
+    height: auto;
   }
 }
