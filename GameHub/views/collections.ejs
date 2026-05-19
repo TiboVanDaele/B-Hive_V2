@@ -6,11 +6,12 @@
 	<%- include("partials/header", { searchbar: true }) %>
 
 	<div class="page-layout">
-		<%- include("partials/aside", { showFilters: false }) %>
 
 		<main class="collections-main">
+					<%- include("partials/aside", { showFilters: false }) %>
+
 			<div class="collections-wrapper">
-				<h1>Mijn collecties</h1>
+				<h1 class="title">Mijn collecties</h1>
 
 				<section class="collections-actions" aria-label="Weergave en acties">
 					<div class="view-toggle">
