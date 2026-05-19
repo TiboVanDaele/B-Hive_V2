@@ -22,7 +22,10 @@
                     <button type="submit" class="outline-black search-button">search</button>
                 </form>
                 <% for(let i = 0; i < ChampNames.length;i++){ %>
-                    <div class="champ-listing">
+                    <div class="champ-listing <%if(i>4){%>
+                        devided
+                        <%}%> 
+                    </div>">
                         <img src="<%=ChampSplashArtUrl[i]%>" alt="">
                         <div class="champ-info">
                             <h2>
