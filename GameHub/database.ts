@@ -45,12 +45,14 @@ async function createInitialUser() {
     }
     let email : string | undefined = process.env.ADMIN_EMAIL;
     let password : string | undefined = process.env.ADMIN_PASSWORD;
+    let username : string | undefined = process.env.ADMIN_USERNAME;
     const saltRounds : number = 10;
-    if (email === undefined || password === undefined) {
+    if (email === undefined || password === undefined || username === undefined) {
         throw new Error("ADMIN_EMAIL and ADMIN_PASSWORD must be set in environment");
     }
     await userCollection.insertOne({
         email: email,
+        username: username,
         password: await bcrypt.hash(password, saltRounds),
     });
     console.log("user initialised");
@@ -72,6 +74,26 @@ export async function login(email: string, password: string) {
         console.log("user not found");
         throw new Error("User not found");
     }
+}
+
+export async function register(username: string, email: string, password: string) {
+    if (!username || !email || !password) {
+        throw new Error("Alle velden zijn verplicht");
+    }
+
+    const existingUser = await userCollection.findOne({ email });
+    if (existingUser) {
+        throw new Error("Er bestaat al een account met dit e-mailadres");
+    }
+
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    await userCollection.insertOne({
+        username,
+        email,
+        password: hashedPassword,
+    });
 }
 
 export { db, connectToDatabase };

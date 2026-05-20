@@ -1,6 +1,6 @@
 import express from "express";
 import { User } from "../types/user";
-import { login } from "../database";
+import { login, register } from "../database";
 import { secureMiddleware } from "../middleware/secureMiddleware";
 
 export function loginRouter() {
@@ -17,9 +17,25 @@ export function loginRouter() {
             let user: User = await login(email, password);
             delete user.password;
             req.session.user = user;
-            res.redirect("/home")
+            res.redirect("/home");
         } catch (e: any) {
             res.redirect("/login");
+        }
+    });
+
+    router.get("/register", async (req, res) => {
+        res.render("register", { error: undefined });
+    });
+
+    router.post("/register", async (req, res) => {
+        const username: string = req.body.username;
+        const email: string = req.body.email;
+        const password: string = req.body.password;
+        try {
+            await register(username, email, password);
+            res.redirect("/login");
+        } catch (e: any) {
+            res.render("register", { error: e.message });
         }
     });
 

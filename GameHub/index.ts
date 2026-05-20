@@ -117,6 +117,8 @@ app.set('views', path.join(__dirname, "views"));
 
 app.set("port", process.env.PORT);
 
+app.use(session);
+
 app.get("/", (req, res) => {
   res.render("index", { title: "index" });
 });
@@ -131,10 +133,6 @@ app.get("/collections", secureMiddleware, (req, res) => {
 });
 
 app.use("/collections", collectionsRouter);
-
-app.get("/login", (req, res) => {
-  res.render("login", { title: "login" });
-});
 
 app.get("/guessing-game", secureMiddleware, (req, res) => {
   res.render("guessing-game", {
@@ -161,24 +159,8 @@ app.use("/compare", gameCompareRouter);
 app.use("/rg-stat-tracker", stattracker);
 app.use(loginRouter());
 app.use(homeRouter());
-app.use(session);
 
 const PORT = process.env.PORT || 3000;
-
-connectToDatabase();
-
-app.post("/login", async(req, res) => {
-    const email : string = req.body.email;
-    const password : string = req.body.password;
-    try {
-        let user : User = await login(email, password);
-        delete user.password;
-        req.session.user = user;
-        res.redirect("/home")
-    } catch (e : any) {
-        res.redirect("/login");
-    }
-});
 
 app.listen(PORT, async () => {
   try {
