@@ -3,9 +3,13 @@ import dotenv from "dotenv";
 import path from "path";
 import gameDetailsRouter from "./routes/gamedetailsrouter";
 import gameCompareRouter from "./routes/gamecomparerouter";
+import stattracker from "./routes/stattracker"
+import collectionsRouter from "./routes/collectionsrouter";
+import { connectToDatabase } from "./database";
 dotenv.config();
 
 const app : Express = express();
+getGame();
 /* MOCK DATA - MOET WEG NADAT WE ALLES BINNENTREKKEN VIA DE API*/
 const collections = [
   {
@@ -92,14 +96,17 @@ const user = {
     guesses: 27
   }
 };
-const guessingGame = {
+let attempts = 6;
+let guessingGame = {
   name: "DOOM",
-  slug: "doom",
   image: "/images/collection-image.png"
 };
-const previousGuesses = [
-  "Quake",
-  "Wolfenstein"
+
+interface guess{guess:string,
+  correct:boolean;
+}
+let previousGuesses : guess[] = [
+  {guess:"Quake",correct:false},
 ];
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -122,26 +129,82 @@ app.get("/collections", (req, res) => {
   res.render("collections", { collections });
 });
 
-app.get("/collections/:id", (req, res) => {
-  const collection = collections.find(c => c.id === Number(req.params.id));
-  res.render("collection", { collection });
-});
+app.use("/collections", collectionsRouter);
+
 app.get("/login", (req, res) => {
     res.render("login", { title : "login"});
 });
+let correctGuess = false;
 
-app.get("/guessing-game", (req, res) => {
+async function getGame() {
+  try {
+        // Kies een willekeurige pagina voor meer variatie
+        const randomPage = Math.floor(Math.random() * 5) + 1;
+        const url = `https://api.rawg.io/api/games?key=${process.env.RAWG_API_KEY}&page=${randomPage}&page_size=20`;
+
+        // Voer het fetch-verzoek uit naar RAWG
+        const response = await fetch(url);
+        
+        // Controleer of de RAWG API goed reageert
+        if (!response.ok) {
+            throw new Error(`RAWG API gaf een status ${response.status} code`);
+        }
+
+        // Converteer de response naar JSON
+        const data = await response.json();
+        const gamesList = data.results;
+
+        if (!gamesList || gamesList.length === 0) {
+            return "GamesList error: list not found"
+        }
+
+        // Kies een willekeurige game uit de lijst
+        const randomIndex = Math.floor(Math.random() * gamesList.length);
+        const randomGame = gamesList[randomIndex];
+
+
+        guessingGame.name = randomGame.name;
+        guessingGame.image = randomGame.background_image
+
+    } catch (error) {
+        console.error('an issue occurred retrieving RAWG data');
+    }
+}
+
+app.get("/guessing-game", async(req, res) => {
   res.render("guessing-game", {
     title: "Guessing Game",
     game: guessingGame,
-    previousGuesses
+    previousGuesses,
+    attempts,
+    correctGuess
   });
 });
-app.post("/guessing-game", (req, res) => {
-  const guess = req.body.guess;
-
-  console.log("Gok:", guess);
-
+app.post("/guessing-game", async(req, res) => {
+  let guess = req.body.guess;
+  if(guess == "Next-Game-To-Show"){
+    correctGuess = false;
+    attempts = 7;
+  }
+  let correct
+  if(guess.toUpperCase() == guessingGame.name.toUpperCase()){
+    getGame();
+    correctGuess = true;
+    correct = true;
+    guess = guessingGame.name;
+  }else if(guessingGame.name.toUpperCase().includes(guess.toUpperCase()) && guess.length >= 5){
+    getGame();
+    correctGuess = true;
+    correct = true;
+    guess = guessingGame.name;
+  }  
+  else{
+    attempts -= 1;
+    correct = false;
+  }
+if(guess != "Next-Game-To-Show"){ 
+  previousGuesses.push({guess,correct});
+}
   res.redirect("/guessing-game");
 });
 app.get("/account", (req, res) => {
@@ -152,8 +215,15 @@ app.get("/account", (req, res) => {
 });
 app.use("/game", gameDetailsRouter);
 app.use("/compare", gameCompareRouter);
+app.use("/rg-stat-tracker",stattracker);
 
 const PORT = process.env.PORT || 3000;
+
+connectToDatabase();
+
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
