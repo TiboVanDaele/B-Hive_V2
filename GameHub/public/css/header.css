@@ -158,3 +158,33 @@ header {
 .dropdown-menu a:hover {
   background-color: oklch(27.5% 0.011 216.9);
 }
+
+.searchbar form {
+    position: relative;
+}
+
+.autocomplete-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    
+    background-color: oklch(21.8% 0.008 223.9);
+    border: 1px solid oklch(35% 0.015 216.9);
+    border-radius: 0.5rem;
+    margin-top: 0.25rem;
+    
+    list-style: none;
+}
+
+.autocomplete-dropdown li {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: white;
+}
+
+.autocomplete-dropdown li:hover {
+    background-color: oklch(27.5% 0.011 216.9);
+    color: var(--green);
+}

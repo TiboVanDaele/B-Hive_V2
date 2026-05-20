@@ -40,4 +40,5 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
         res.render("Home", { title: "Home", games: [], search: "", activeGenres: [] });
     }
 });
+
 export default router;

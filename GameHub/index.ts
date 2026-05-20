@@ -130,7 +130,18 @@ app.get("/login", (req, res) => {
     res.render("login", { title : "login"});
 });
 let correctGuess = false;
+app.get("/suggestions", async (req, res) => {
+    const search = req.query.q as string;
+    if (!search || search.length < 2) return res.json([]);
 
+    try {
+        const response = await fetch(`https://api.rawg.io/api/games?key=${process.env.RAWG_API_KEY}&search=${encodeURIComponent(search)}&page_size=5`);
+        const data = await response.json();
+        res.json(data.results.map((game: any) => ({ name: game.name, slug: game.slug })));
+    } catch {
+        res.json([]);
+    }
+});
 async function getGame() {
   try {
         const randomPage = Math.floor(Math.random() * 5) + 1;
