@@ -1,16 +1,16 @@
 body {
   background-color: oklch(8% 0.008 223.9);
-  color: white;
-  margin: 0;
-  font-family: Arial, sans-serif;
 
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
+
 main {
+  display: flex;
   flex: 1;
 }
+
 .index-header {
   display: flex;
   justify-content: center;
@@ -21,7 +21,7 @@ main {
 }
 
 .index-header h1 {
-  font-size: 3rem;
+  font-size: var(--text-5xl);
   font-weight: 700;
 }
 
@@ -43,9 +43,6 @@ main {
   align-items: center;
   gap: 1rem;
 
-  text-decoration: none;
-  color: white;
-
   transition: transform 0.3s ease;
 }
 
@@ -55,7 +52,7 @@ main {
 
 .project-card img {
   width: 16rem;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   border: 2px solid transparent;
   background-color: oklch(27.5% 0.011 216.9);
   transition: all 0.3s ease;
@@ -67,7 +64,7 @@ main {
 }
 
 .project-card h2 {
-  font-size: 1.1rem;
+  font-size: var(--text-3xl);
   transition: transform 0.2s ease;
 }
 
@@ -88,9 +85,11 @@ main {
 
 .unavailable h2 {
   color: oklch(72.3% 0.014 214.4);
+  font-size: var(--text-2xl);
 }
-footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,34 +1,12 @@
-body {
-  background-color: oklch(8% 0.008 223.9);
-  color: white;
-  margin: 0;
-  font-family: Arial, sans-serif;
-
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.page-layout {
-  display: flex;
-  flex: 1;
-}
-
 .collections-main {
+  display: flex;
   flex: 1;
   background-color: oklch(8% 0.008 223.9);
 }
 
 .collections-wrapper {
   max-width: 72rem;
-  margin: 0 auto;
-  padding: 2.5rem 1rem;
-}
-
-.collections-wrapper h1 {
-  font-size: 2.25rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
+  padding: 1rem 1rem;
 }
 
 .collections-actions {
@@ -43,7 +21,7 @@ body {
   display: flex;
   overflow: hidden;
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
 }
 
 .view-toggle button,
@@ -51,9 +29,8 @@ body {
 .edit-btn {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
-  color: white;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: var(--text-md);
 }
 
 .view-toggle button {
@@ -69,14 +46,14 @@ body {
 .create-collection-btn {
   height: 2.75rem;
   padding: 0 1.5rem;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   font-weight: 600;
 }
 
 .edit-btn {
   width: 2.75rem;
   height: 2.75rem;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
 }
 
 .view-toggle button:hover,
@@ -92,22 +69,10 @@ body {
   gap: 1.5rem;
 }
 
-@media (min-width: 640px) {
-  .collections-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .collections-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
 .collection-card {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -121,8 +86,6 @@ body {
 
 .collection-card a {
   display: block;
-  color: white;
-  text-decoration: none;
 }
 
 .collection-card img {
@@ -130,7 +93,7 @@ body {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   padding: 0.5rem;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   transition: transform 0.3s ease;
 }
 
@@ -142,7 +105,42 @@ body {
   min-height: 4rem;
   padding: 1rem;
   border-top: 2px solid oklch(27.5% 0.011 216.9);
-  font-size: 1rem;
+  font-size: var(--text-md);
   font-weight: 600;
   color: oklch(72.3% 0.014 214.4);
+}
+
+@media (min-width: 320px) {
+  .title {
+    font-size: var(--text-3xl);
+    line-height: 1.5;
+    text-align: center;
+    font-weight: 700;
+    padding: 0 2.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .collections-actions button{
+    font-size: var(--text-sm);
+  }
+}
+
+@media (min-width: 640px) {
+  .collections-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .title {
+  font-size: var(--text-4xl);
+  }
+
+    .collections-actions button{
+    font-size: var(--text-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .collections-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

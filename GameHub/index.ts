@@ -9,6 +9,10 @@ import homeRouter from "./routes/homerouter";
 import { connectToDatabase } from "./database";
 
 dotenv.config();
+import session from "./session";
+import { User } from "./types/user";
+import { secureMiddleware } from "./middleware/secureMiddleware";
+import { loginRouter } from "./routes/loginRouter";
 
 const app : Express = express();
 getGame();
@@ -119,12 +123,14 @@ app.set('views', path.join(__dirname, "views"));
 
 app.set("port", process.env.PORT);
 
+app.use(session);
+
 app.get("/", (req, res) => {
-    res.render("index", { title : "index"});
+  res.render("index", { title: "index" });
 });
 
-app.use("/home", homeRouter);
-app.use("/collections", collectionsRouter);
+app.use("/home", secureMiddleware, homeRouter);
+app.use("/collections", secureMiddleware, collectionsRouter);
 
 app.get("/login", (req, res) => {
     res.render("login", { title : "login"});
@@ -170,7 +176,7 @@ async function getGame() {
         console.error('an issue occurred retrieving RAWG data');
     }
 }
-app.get("/guessing-game", async(req, res) => {
+app.get("/guessing-game", secureMiddleware, async(req, res) => {
   res.render("guessing-game", {
     title: "Guessing Game",
     game: guessingGame,
@@ -206,20 +212,27 @@ if(guess != "Next-Game-To-Show"){
 }
   res.redirect("/guessing-game");
 });
-app.get("/account", (req, res) => {
+app.get("/account", secureMiddleware, (req, res) => {
   res.render("account", {
     title: "Account",
-    user
+    user: req.session.user
   });
 });
 app.use("/game", gameDetailsRouter);
 app.use("/compare", gameCompareRouter);
-app.use("/rg-stat-tracker",stattracker);
+app.use("/rg-stat-tracker", stattracker);
+app.use(loginRouter());
 
 const PORT = process.env.PORT || 3000;
 
-connectToDatabase();
-
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+app.listen(PORT, async () => {
+  try {
+    await connectToDatabase();
+    console.log(`Server running at http://localhost:${PORT}`);
+  } catch (e) {
+    console.log(e);
+    process.exit(1);
+  }
 });
+
+
