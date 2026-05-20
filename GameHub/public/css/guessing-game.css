@@ -6,12 +6,8 @@ body {
   flex-direction: column;
 }
 
-.page-layout {
-  display: flex;
-  flex: 1;
-}
-
 .guessing-main {
+  display: flex;
   flex: 1;
 }
 

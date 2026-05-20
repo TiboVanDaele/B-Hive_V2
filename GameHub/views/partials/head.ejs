@@ -14,21 +14,24 @@
     <script defer src="/js/aside-nav.js"></script>
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
     <% if (typeof(collection) != "undefined") { %>
     <!--<link rel="stylesheet" href="/css/collections.css">-->
     <% } %>
-    <% if (page != "index") { %>
-    <link rel="stylesheet" href="/css/footer.css">
-    <% } %>
-    <% if (page != "login" || page != "index") { %>
+
+    <% if (page != "login" && page != "index") { %>
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/aside.css">
     <% } %>
+
     <link rel="stylesheet" href="/css/<%= page %>.css">
+
     <% if (page == "home") { %>
     <link rel="stylesheet" href="/css/home.css">
     <script defer src="/js/compare-bar.js"></script>
     <% } %>
+
     <% if (page == "compare" || page == "gamedetails") { %>
     <script defer src="/js/show-more-less.js"></script>
     <% } %>

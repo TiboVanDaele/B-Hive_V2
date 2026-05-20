@@ -6,12 +6,8 @@ body {
   flex-direction: column;
 }
 
-.page-layout {
-  display: flex;
-  flex: 1;
-}
-
 .compare-main {
+  display: flex;
   flex: 1;
 }
 
@@ -27,6 +23,7 @@ body {
   color: oklch(72.3% 0.014 214.4);
   font-weight: 600;
   text-decoration: underline;
+  font-size: var(--text-lg);
 }
 
 .leave-compare-link:hover {

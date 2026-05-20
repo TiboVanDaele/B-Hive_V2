@@ -1,7 +1,7 @@
 /* ── Layout ── */
 .game-detail-main {
+    display: flex;
     flex: 1;
-    min-height: 100vh;
 }
 
 body {
@@ -192,6 +192,8 @@ body {
     color: oklch(72.3% 0.014 214.4);
     font-weight: 600;
     text-decoration: underline;
+    margin-left: 3rem;
+
 }
 
 .leave-details-link:hover {
@@ -205,11 +207,12 @@ body {
 /* Mobile */
 @media only screen and (min-width: 320px) {
     .game-detail-wrapper {
-        padding: 1rem 1rem;
+        padding: 1.5rem 1rem;
     }
 
     .leave-details-link {
         line-height: 2;
+        font-size: var(--text-lg);
     }
 
     .show-more-less {

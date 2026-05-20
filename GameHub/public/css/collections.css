@@ -1,22 +1,13 @@
-
-
-.page-layout {
-  display: flex;
-  flex: 1;
-}
-
 .collections-main {
+  display: flex;
   flex: 1;
   background-color: oklch(8% 0.008 223.9);
 }
 
 .collections-wrapper {
   max-width: 72rem;
-  margin: 0 auto;
   padding: 1rem 1rem;
 }
-
-
 
 .collections-actions {
   display: flex;

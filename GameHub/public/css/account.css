@@ -6,12 +6,8 @@ body {
   flex-direction: column;
 }
 
-.page-layout {
-  display: flex;
-  flex: 1;
-}
-
 .account-main {
+  display: flex;
   flex: 1;
   background-color: oklch(8% 0.008 223.9);
 }
