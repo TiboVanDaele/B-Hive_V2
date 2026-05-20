@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/head", {page:"login", title:"Register"}) %>
+
+<body>
+
+    <main class="login-page">
+        <div>
+            <img src="/images/b-hive-lg.png" alt="">
+        </div>
+        <section class="login-box">
+
+            <h1>Maak een account</h1>
+
+            <form action="/register" method="POST">
+
+                <div class="form-group">
+                    <label for="username">Gebruikersnaam</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Wachtwoord</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <% if (typeof error !== 'undefined' && error) { %>
+                    <p class="error-message"><%= error %></p>
+                <% } %>
+
+                <div class="button-group">
+                    <button type="submit">Registreren</button>
+                    <a href="/login" class="secondary-btn">Al een account?</a>
+                </div>
+            </form>
+        </section>
+        <div class="under-menu">
+            <a href="/" class="back-btn">Back to Projects</a>
+            <a href="/Home" class="back-btn">Skip login</a>
+        </div>
+    </main>
+
+    <%- include("./partials/footer") %>
+
+</body>
+</html>
