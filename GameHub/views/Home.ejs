@@ -39,22 +39,44 @@
 									<% }) %>
 							</section>
 						</div>
-					</main>
-			<section class="compare-bar" id="compareBar">
-				<div class="compare-slot" data-slot="0">
-					<p>Game 1</p>
-				</div>
 
-				<div class="compare-slot" data-slot="1">
-					<p>Game 2</p>
-				</div>
+						<a href="/game/<%= game.slug %>">
+							<img src="<%= game.image %>" alt="<%= game.name %>">
+							<h2><%= game.name %></h2>
+							<p>⭐ <%= game.rating %></p>
+							<p><%= game.released %></p>
+						</a>
+					</article>
+					<% }) %>
+				</section>
+				<nav class="pagination" aria-label="Paginering">
+					<% if (hasPrev) { %>
+						<a href="/home?page=<%= currentPage - 1 %><%= search ? '&q=' + search : '' %><%= activeGenres.length ? '&genres=' + activeGenres.join(',') : '' %>" aria-label="Vorige pagina">← Vorige</a>
+					<% } %>
+					<p aria-current="page">Pagina <%= currentPage %></p>
+					<% if (hasNext) { %>
+						<a href="/home?page=<%= currentPage + 1 %><%= search ? '&q=' + search : '' %><%= activeGenres.length ? '&genres=' + activeGenres.join(',') : '' %>" aria-label="Volgende pagina">Volgende →</a>
+					<% } %>
+				</nav>
+			</div>
+		</main>
+	</div>
 
-				<a href="/compare" class="compare-page-btn" id="comparePageBtn">
-					Vergelijk
-				</a>
-			</section>
+	<section class="compare-bar" id="compareBar">
+		<div class="compare-slot" data-slot="0">
+			<p>Game 1</p>
+		</div>
 
-			<%- include("partials/footer") %>
-	</body>
+		<div class="compare-slot" data-slot="1">
+			<p>Game 2</p>
+		</div>
+
+		<a href="/compare" class="compare-page-btn" id="comparePageBtn">
+			Vergelijk
+		</a>
+	</section>
+
+	<%- include("partials/footer") %>
+</body>
 
 </html>
