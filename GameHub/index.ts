@@ -5,7 +5,9 @@ import gameDetailsRouter from "./routes/gamedetailsrouter";
 import gameCompareRouter from "./routes/gamecomparerouter";
 import stattracker from "./routes/stattracker"
 import collectionsRouter from "./routes/collectionsrouter";
+import homeRouter from "./routes/homerouter";
 import { connectToDatabase } from "./database";
+
 dotenv.config();
 
 const app : Express = express();
@@ -108,6 +110,7 @@ interface guess{guess:string,
 let previousGuesses : guess[] = [
   {guess:"Quake",correct:false},
 ];
+
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -119,16 +122,8 @@ app.set("port", process.env.PORT);
 app.get("/", (req, res) => {
     res.render("index", { title : "index"});
 });
-app.get("/home", (req, res) => {
-  res.render("Home", {
-    title: "Home",
-    games
-  });
-});
-app.get("/collections", (req, res) => {
-  res.render("collections", { collections });
-});
 
+app.use("/home", homeRouter);
 app.use("/collections", collectionsRouter);
 
 app.get("/login", (req, res) => {
@@ -138,19 +133,15 @@ let correctGuess = false;
 
 async function getGame() {
   try {
-        // Kies een willekeurige pagina voor meer variatie
         const randomPage = Math.floor(Math.random() * 5) + 1;
         const url = `https://api.rawg.io/api/games?key=${process.env.RAWG_API_KEY}&page=${randomPage}&page_size=20`;
 
-        // Voer het fetch-verzoek uit naar RAWG
         const response = await fetch(url);
-        
-        // Controleer of de RAWG API goed reageert
+
         if (!response.ok) {
             throw new Error(`RAWG API gaf een status ${response.status} code`);
         }
 
-        // Converteer de response naar JSON
         const data = await response.json();
         const gamesList = data.results;
 
@@ -158,10 +149,8 @@ async function getGame() {
             return "GamesList error: list not found"
         }
 
-        // Kies een willekeurige game uit de lijst
         const randomIndex = Math.floor(Math.random() * gamesList.length);
         const randomGame = gamesList[randomIndex];
-
 
         guessingGame.name = randomGame.name;
         guessingGame.image = randomGame.background_image
@@ -170,7 +159,6 @@ async function getGame() {
         console.error('an issue occurred retrieving RAWG data');
     }
 }
-
 app.get("/guessing-game", async(req, res) => {
   res.render("guessing-game", {
     title: "Guessing Game",
@@ -220,10 +208,6 @@ app.use("/rg-stat-tracker",stattracker);
 const PORT = process.env.PORT || 3000;
 
 connectToDatabase();
-
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
-});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

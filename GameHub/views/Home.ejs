@@ -32,6 +32,15 @@
 					</article>
 					<% }) %>
 				</section>
+				<nav class="pagination" aria-label="Paginering">
+					<% if (hasPrev) { %>
+						<a href="/home?page=<%= currentPage - 1 %><%= search ? '&q=' + search : '' %><%= activeGenres.length ? '&genres=' + activeGenres.join(',') : '' %>" aria-label="Vorige pagina">← Vorige</a>
+					<% } %>
+					<p aria-current="page">Pagina <%= currentPage %></p>
+					<% if (hasNext) { %>
+						<a href="/home?page=<%= currentPage + 1 %><%= search ? '&q=' + search : '' %><%= activeGenres.length ? '&genres=' + activeGenres.join(',') : '' %>" aria-label="Volgende pagina">Volgende →</a>
+					<% } %>
+				</nav>
 			</div>
 		</main>
 	</div>
