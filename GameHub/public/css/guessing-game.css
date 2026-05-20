@@ -181,3 +181,19 @@ body {
 
   color: oklch(72.3% 0.014 214.4);
 }
+
+#succes{
+  color: green;
+}
+
+#fail{
+  color: red;
+}
+
+#answer{
+  color: blue;
+}
+
+#Next-Game-To-Show{
+  display: none;
+}
