@@ -5,10 +5,15 @@ import gameDetailsRouter from "./routes/gamedetailsrouter";
 import gameCompareRouter from "./routes/gamecomparerouter";
 import stattracker from "./routes/stattracker"
 import collectionsRouter from "./routes/collectionsrouter";
-import { connectToDatabase } from "./database";
+import { connectToDatabase, login } from "./database";
 dotenv.config();
+import session from "./session";
+import { User } from "./types/user";
+import { secureMiddleware } from "./middleware/secureMiddleware";
+import { loginRouter } from "./routes/loginRouter";
+import { homeRouter } from "./routes/homeRouter";
 
-const app : Express = express();
+const app: Express = express();
 /* MOCK DATA - MOET WEG NADAT WE ALLES BINNENTREKKEN VIA DE API*/
 const collections = [
   {
@@ -113,56 +118,76 @@ app.set('views', path.join(__dirname, "views"));
 app.set("port", process.env.PORT);
 
 app.get("/", (req, res) => {
-    res.render("index", { title : "index"});
+  res.render("index", { title: "index" });
 });
-app.get("/home", (req, res) => {
+app.get("/home", secureMiddleware, (req, res) => {
   res.render("Home", {
     title: "Home",
     games
   });
 });
-app.get("/collections", (req, res) => {
+app.get("/collections", secureMiddleware, (req, res) => {
   res.render("collections", { collections });
 });
 
 app.use("/collections", collectionsRouter);
 
 app.get("/login", (req, res) => {
-    res.render("login", { title : "login"});
+  res.render("login", { title: "login" });
 });
 
-app.get("/guessing-game", (req, res) => {
+app.get("/guessing-game", secureMiddleware, (req, res) => {
   res.render("guessing-game", {
     title: "Guessing Game",
     game: guessingGame,
     previousGuesses
   });
 });
-app.post("/guessing-game", (req, res) => {
+app.post("/guessing-game", secureMiddleware, (req, res) => {
   const guess = req.body.guess;
 
   console.log("Gok:", guess);
 
   res.redirect("/guessing-game");
 });
-app.get("/account", (req, res) => {
+app.get("/account", secureMiddleware, (req, res) => {
   res.render("account", {
     title: "Account",
-    user
+    user: req.session.user
   });
 });
 app.use("/game", gameDetailsRouter);
 app.use("/compare", gameCompareRouter);
-app.use("/rg-stat-tracker",stattracker);
+app.use("/rg-stat-tracker", stattracker);
+app.use(loginRouter());
+app.use(homeRouter());
+app.use(session);
 
 const PORT = process.env.PORT || 3000;
 
 connectToDatabase();
 
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+app.post("/login", async(req, res) => {
+    const email : string = req.body.email;
+    const password : string = req.body.password;
+    try {
+        let user : User = await login(email, password);
+        delete user.password;
+        req.session.user = user;
+        res.redirect("/home")
+    } catch (e : any) {
+        res.redirect("/login");
+    }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+app.listen(PORT, async () => {
+  try {
+    await connectToDatabase();
+    console.log(`Server running at http://localhost:${PORT}`);
+  } catch (e) {
+    console.log(e);
+    process.exit(1);
+  }
 });
+
+
