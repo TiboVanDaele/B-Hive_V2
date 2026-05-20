@@ -1,0 +1,88 @@
+<p class="platforms">
+    <% 
+        let platformList = platforms.map(p => p.platform.name);
+        let nintendoCheck = ["Nintendo Switch", "Nintendo 3DS", "Nintendo DS", "Nintendo DSi", "Wii U", "Wii", "GameCube", "Nintendo 64", "Game Boy Advance", "Game Boy Color", "Game Boy", "SNES", "NES"];
+        let playStationCheck = ["PlayStation", "PlayStation 2", "PlayStation 3", "PlayStation 4", "PlayStation 5", "PSP", "PS Vita"];
+        let appleCheck = ["iOS", "macOS", "Classic Macintosh", "Apple II"];
+        let atariCheck = ["Atari 7800", "Atari 5200", "Atari 2600", "Atari Flashback", "Atari 8-bit", "Atari ST", "Atari Lynx", "Atari XEGS", "Jaguar"];
+        let segaCheck = ["Genesis", "SEGA Saturn", "SEGA CD", "SEGA 32X", "SEGA Master System", "Dreamcast", "Game Gear"];
+        let xboxCheck = ["Xbox One", "Xbox Series S/X", "Xbox 360", "Xbox"];
+
+        let hasNintendo = platformList.some(p => nintendoCheck.includes(p));
+        let hasPlayStation = platformList.some(p => playStationCheck.includes(p));
+        let hasXbox = platformList.some(p => xboxCheck.includes(p));
+        let hasApple = platformList.some(p => appleCheck.includes(p));
+        let hasAtari = platformList.some(p => atariCheck.includes(p));
+
+        let hasPC = platformList.includes("PC");
+        let hasLinux = platformList.includes("Linux");
+        let hasAmiga = platformList.includes("Commodore / Amiga");
+        let has3DO = platformList.includes("3DO");
+        let hasNeoGeo = platformList.includes("Neo Geo");
+        let hasWeb = platformList.includes("Web");
+        let hasAndroid = platformList.includes("Android"); 
+    %>
+
+    <% if (hasPC) { %>
+    <i class="fa-brands fa-windows"></i>
+    <% } %>
+
+    <% if (hasXbox) { %>
+    <% let versions= platformList.filter(p => xboxCheck.includes(p)).sort().map(p => p.replace("Xbox", "").trim()).join(", "); %>
+    <span>
+    	<i class="fa-brands fa-xbox"></i>
+    	<%= versions %>
+    </span>
+    <% } %>
+
+    <% if (hasPlayStation) { %>
+    <% let versions=platformList.filter(p => playStationCheck.includes(p)).sort().map(p=> p.replace("PlayStation", "").trim()).join(", ");%>
+
+    <span>
+    	<i class="fa-brands fa-playstation"></i>
+    	<%= versions %>
+    </span>
+    <% } %>
+
+    <% if (hasNintendo) { %>
+    <% let versions=platformList.filter(p => nintendoCheck.includes(p)).sort().map(p=> p.replace("Nintendo", "").replace("GameCube",
+                        "GC").replace("Nintendo 64", "N64").replace("Game Boy Advance", "GBA").replace("Game Boy Color",
+                        "GBC").replace("Game Boy", "GB").trim()).join(", ");%>
+    <span>
+    	<img class="iconBrand" src="/images/nintendo-switch.svg" alt="">
+    	<%= versions %>
+    </span>
+    <% } %>
+
+    <% if (hasApple) { %>
+    <% let versions=platformList.filter(p => appleCheck.includes(p)).sort().map(p=> p.trim()).join(", ");%>
+    <span>
+    	<i class="fa-brands fa-apple"></i>
+    	<%= versions %>
+    </span>
+    <% } %>
+
+    <% if (hasLinux) { %>
+    <i class="fa-brands fa-linux"></i>
+    <% } %>
+
+    <% if (hasAndroid) { %>
+    <i class="fa-brands fa-android"></i>
+    <% } %>
+
+    <% if (hasWeb) { %>
+    <i class="fa-regular fa-globe"></i>
+    <% } %>
+
+    <% if (hasAmiga) { %>
+    <img class="iconBrand" src="/images/commodore-amiga.svg" alt="">
+    <% } %>
+
+    <% if (has3DO) { %>
+    <span>3DO</span>
+    <% } %>
+
+    <% if (hasNeoGeo) { %>
+    <span>NeoGeo</span>
+    <% } %>
+</p>

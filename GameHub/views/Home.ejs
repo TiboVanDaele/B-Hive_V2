@@ -2,25 +2,42 @@
 <html lang="nl-BE">
 <%- include("partials/head", {page:"home", title:"GameHub"}) %>
 
-<body>
-	<%- include("partials/header", { searchbar: true }) %>
+	<body>
+		<%- include("partials/header", { searchbar: true }) %>
+					<main class="home-main">
+										<%- include("partials/aside", { showFilters: true }) %>
+						<div class="home-wrapper">
+							<h1 class="title">Games ontdekken</h1>
 
-	<div class="page-layout">
-		<%- include("partials/aside", { showFilters: true }) %>
+							<section class="home-grid">
+								<% games.forEach(game=> { %>
+									<article class="game-card">
+										<div class="card-actions">
+											<button class="add-btn" type="button">Add</button>
 
-		<main class="home-main">
-			<div class="home-wrapper">
-				<h1>Games ontdekken</h1>
+											<button class="compare-btn" type="button" data-name="<%= game.name %>"
+												data-image="<%= game.image %>" data-slug="<%= game.slug %>">
+												Compare
+											</button>
+										</div>
 
-				<section class="home-grid">
-					<% games.forEach(game => { %>
-					<article class="game-card">
-						<div class="card-actions">
-							<button class="add-btn" type="button">Add</button>
+										<a href="/game/<%= game.slug %>">
 
-							<button class="compare-btn" type="button" data-name="<%= game.name %>" data-image="<%= game.image %>" data-slug="<%= game.slug %>">
-								Compare
-							</button>
+											<img src="<%= game.image %>" alt="<%= game.name %>">
+											<div class="game-card-content">
+												<h2>
+													<%= game.name %>
+												</h2>
+												<p>⭐ <%= game.rating %>
+												</p>
+												<p>
+													<%= game.released %>
+												</p>
+											</div>
+										</a>
+									</article>
+									<% }) %>
+							</section>
 						</div>
 
 						<a href="/game/<%= game.slug %>">

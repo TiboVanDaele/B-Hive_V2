@@ -4,8 +4,8 @@
 
 <body>
 	<%- include("partials/header", {searchbar:false} ) %>
-
 	<main class="game-detail-main">
+		<%- include("partials/aside", {showFilters: false}) %>
 		<div id="game-detail">
 			<% if (error) { %>
 			<p class="error-msg">
@@ -13,7 +13,9 @@
 			</p>
 			<% } else if (game) { %>
 			<div class="game-detail-wrapper">
-
+				<a href="/home" class="leave-details-link">
+					<i class="fa-solid fa-arrow-right-from-bracket"></i>
+					Terug naar homepage</a>
 				<div class="game-hero">
 					<img src="<%= game.background_image %>" alt="<%= game.name %>" class="game-hero-img">
 					<div class="game-hero-info">
@@ -31,9 +33,10 @@
 
 						<div class="game-section">
 							<h2 class="section-heading">Description</h2>
-							<p class="game-description">
+							<p class="game-description description showless">
 								<%= game.description_raw %>
 							</p>
+							<button class="show-more-less">Toon meer</button>
 						</div>
 
 						<div class="game-section">
@@ -69,9 +72,7 @@
 
 						<div class="info-card">
 							<h3 class="info-card-title">Platforms</h3>
-							<p class="info-card-text">
-								<%= platforms %>
-							</p>
+								<%- include("partials/platforms", {platforms: game.platforms}) %>
 						</div>
 
 						<div class="info-card">

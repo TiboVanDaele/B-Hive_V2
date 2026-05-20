@@ -1,29 +1,38 @@
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<% if (typeof(collection) !="undefined" ) { %>
-	<title>
-		<%= collection.name %>
-	</title>
-	<% } else { %>
-	<title>
-		<%= title %>
-	</title>
-	<%}%>
-  <link rel="stylesheet" href="/css/reset.css">
-  <% if (typeof(collection) !="undefined" ) { %>
-	<link rel="stylesheet" href="/css/collections.css">
-	<% } %>
-	<% if(page!="index" ){%>
-	<link rel="stylesheet" href="/css/footer.css">
-	<%}%>
-  <% if (page!="login" || page!="index" ) { %>
-	<link rel="stylesheet" href="/css/header.css">
-	<link rel="stylesheet" href="/css/aside.css">
-	<% } %>
-	<link rel="stylesheet" href="/css/<%= page %>.css">
-	<% if (page=="home" ) { %>
-	<link rel="stylesheet" href="/css/collections.css">
-	<script defer src="/js/compare-bar.js"></script>
-	<% } %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <% if (typeof(collection) != "undefined") { %>
+    <title>
+    	<%= collection.name %>
+    </title>
+    <% } else { %>
+    <title>
+    	<%= title %>
+    </title>
+    <% } %>
+    <script src="https://kit.fontawesome.com/de97115803.js" crossorigin="anonymous"></script>
+    <script defer src="/js/aside-nav.js"></script>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
+    <% if (typeof(collection) != "undefined") { %>
+    <!--<link rel="stylesheet" href="/css/collections.css">-->
+    <% } %>
+
+    <% if (page != "login" && page != "index") { %>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/aside.css">
+    <% } %>
+
+    <link rel="stylesheet" href="/css/<%= page %>.css">
+
+    <% if (page == "home") { %>
+    <link rel="stylesheet" href="/css/home.css">
+    <script defer src="/js/compare-bar.js"></script>
+    <% } %>
+
+    <% if (page == "compare" || page == "gamedetails") { %>
+    <script defer src="/js/show-more-less.js"></script>
+    <% } %>
 </head>

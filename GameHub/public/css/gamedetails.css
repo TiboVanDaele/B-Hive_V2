@@ -1,34 +1,14 @@
 /* ── Layout ── */
 .game-detail-main {
+    display: flex;
     flex: 1;
+}
+
+body {
     background-color: oklch(8% 0.008 223.9);
-    min-height: 100vh;
-}
-
-/* ── Header additions for this page ── */
-
-header .logo img {
-    height: 4rem;
-    width: auto;
-}
-
-.guess-link {
-    font-weight: 200;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    white-space: nowrap;
-}
-
-.guess-link:hover {
-    text-decoration: underline;
-}
-
-header nav a:hover {
-    text-decoration: underline;
 }
 
 /* ── Game detail wrapper ── */
-
 .game-detail-wrapper {
     max-width: 72rem;
     margin: 0 auto;
@@ -36,16 +16,23 @@ header nav a:hover {
 }
 
 /* ── Hero image ── */
-
 .game-hero {
     position: relative;
+}
+
+.game-hero::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 1%, rgba(0, 0, 0, 0.17) 38%,
+            rgba(0, 0, 0, 0) 50%);
+    content: '';
 }
 
 .game-hero-img {
     width: 100%;
     height: 400px;
     object-fit: cover;
-    border-radius: 0.75rem;
+    border-radius: var(--radius-75);
     opacity: 0.8;
 }
 
@@ -53,10 +40,11 @@ header nav a:hover {
     position: absolute;
     bottom: 1rem;
     left: 1.5rem;
+    z-index: 10;
 }
 
 .game-title {
-    font-size: 2.25rem;
+    font-size: var(--text-4xl);
     font-weight: 700;
     line-height: 1.2;
 }
@@ -67,7 +55,6 @@ header nav a:hover {
 }
 
 /* ── Content grid ── */
-
 .game-content {
     display: grid;
     grid-template-columns: 1fr;
@@ -82,7 +69,6 @@ header nav a:hover {
 }
 
 /* ── Main column ── */
-
 .game-main {
     display: flex;
     flex-direction: column;
@@ -96,7 +82,7 @@ header nav a:hover {
 }
 
 .section-heading {
-    font-size: 1.5rem;
+    font-size: var(--text-2xl);
     font-weight: 600;
 }
 
@@ -107,7 +93,6 @@ header nav a:hover {
 }
 
 /* ── Tags ── */
-
 .tag-list {
     display: flex;
     flex-wrap: wrap;
@@ -117,12 +102,11 @@ header nav a:hover {
 .tag {
     background-color: oklch(27.5% 0.011 216.9);
     padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
+    border-radius: var(--radius-25);
+    font-size: var(--text-xs);
 }
 
 /* ── Sidebar ── */
-
 .game-sidebar {
     display: flex;
     flex-direction: column;
@@ -130,11 +114,11 @@ header nav a:hover {
 }
 
 /* ── Info cards ── */
-
 .info-card {
-    background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+    background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%,
+            transparent);
     border: 2px solid oklch(27.5% 0.011 216.9);
-    border-radius: 0.75rem;
+    border-radius: var(--radius-75);
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -142,25 +126,23 @@ header nav a:hover {
 }
 
 .info-card-title {
-    font-size: 1rem;
+    font-size: var(--text-md);
     font-weight: 600;
 }
 
 .info-card-text {
     color: oklch(72.3% 0.014 214.4);
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
 }
 
 /* ── Rating ── */
-
 .game-rating {
-    font-size: 1.5rem;
+    font-size: var(--text-2xl);
     font-weight: 700;
     color: oklch(85% 0.18 85);
 }
 
 /* ── Genres ── */
-
 .genre-list {
     display: flex;
     flex-wrap: wrap;
@@ -171,15 +153,14 @@ header nav a:hover {
     background-color: oklch(27.5% 0.011 216.9);
     border: 1px solid oklch(35% 0.015 216.9);
     padding: 0.25rem 0.75rem;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
+    border-radius: var(--radius-50);
+    font-size: var(--text-sm);
 }
 
 /* ── Website ── */
-
 .game-website {
     color: oklch(65% 0.15 240);
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     word-break: break-all;
 }
 
@@ -188,23 +169,76 @@ header nav a:hover {
 }
 
 /* ── Error ── */
-
 .error-msg {
     text-align: center;
     margin-top: 2.5rem;
     color: oklch(72.3% 0.014 214.4);
 }
 
-/* ── Footer ── */
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.6875rem;
+.iconBrand {
+    display: inline;
+    height: 16px;
+    width: 20px;
+    margin-top: -4px;
 }
 
-.footer-content a:hover {
+.platforms span {
+    display: inline-block;
+}
+
+.leave-details-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: oklch(72.3% 0.014 214.4);
+    font-weight: 600;
     text-decoration: underline;
+    margin-left: 3rem;
+
+}
+
+.leave-details-link:hover {
+    color: var(--green);
+}
+
+.show-more-less {
+    display: none;
+}
+
+/* Mobile */
+@media only screen and (min-width: 320px) {
+    .game-detail-wrapper {
+        padding: 1.5rem 1rem;
+    }
+
+    .leave-details-link {
+        line-height: 2;
+        font-size: var(--text-lg);
+    }
+
+    .show-more-less {
+        display: inline;
+        text-decoration: underline;
+        font-size: var(--text-sm);
+    }
+
+    .description {
+        font-size: var(--text-sm);
+        overflow: hidden;
+        transition: all 1s ease-in-out;
+    }
+
+    .showless {
+        max-height: calc(1.5em * 10);
+        transition: max-height 1s ease-in-out;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 8;
+        line-clamp: 8;
+        -webkit-box-orient: vertical;
+    }
+
+    .showmore {
+        max-height: 100rem;
+        transition: all 1s ease-in-out;
+    }
 }

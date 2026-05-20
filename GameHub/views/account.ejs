@@ -4,11 +4,8 @@
 
 <body>
     <%- include("partials/header", { searchbar: false }) %>
-
-    <div class="page-layout">
-        <%- include("partials/aside", { showFilters: false }) %>
-
         <main class="account-main">
+                    <%- include("partials/aside", { showFilters: false }) %>
             <div class="account-wrapper">
 
                 <section class="profile-card">
@@ -59,8 +56,6 @@
 
             </div>
         </main>
-    </div>
-
     <%- include("partials/footer") %>
 </body>
 </html>

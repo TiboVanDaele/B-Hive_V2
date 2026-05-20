@@ -1,20 +1,13 @@
 body {
   background-color: oklch(8% 0.008 223.9);
-  color: white;
-  margin: 0;
-  font-family: Arial, sans-serif;
 
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.page-layout {
-  display: flex;
-  flex: 1;
-}
-
 .compare-main {
+  display: flex;
   flex: 1;
 }
 
@@ -26,11 +19,11 @@ body {
 
 .leave-compare-link {
   display: inline-block;
-  margin-bottom: 2rem;
-
+  margin-bottom: 1rem;
   color: oklch(72.3% 0.014 214.4);
-  text-decoration: none;
   font-weight: 600;
+  text-decoration: underline;
+  font-size: var(--text-lg);
 }
 
 .leave-compare-link:hover {
@@ -43,6 +36,10 @@ body {
   gap: 2rem;
 }
 
+.show-more-less {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .compare-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -52,31 +49,31 @@ body {
 .compare-card {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
 
   padding: 1rem;
-
+  height: fit-content;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.compare-card img {
+.compare-card .game-img {
   width: 14rem;
   aspect-ratio: 1 / 1;
   object-fit: cover;
 
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   border: 2px solid oklch(27.5% 0.011 216.9);
 }
 
 .compare-card h1 {
-  font-size: 1.5rem;
+  font-size: var(--text-2xl);
   font-weight: 700;
 }
 
 .compare-card h2 {
-  font-size: 1rem;
+  font-size: var(--text-md);
   font-weight: 600;
 }
 
@@ -85,12 +82,110 @@ body {
   line-height: 1.5;
 }
 
-.description {
+.description-wrapper {
   padding: 1rem;
-
-  border-radius: 0.75rem;
+  border-radius: var(--radius-75);
   border: 2px solid oklch(27.5% 0.011 216.9);
 
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
-  font-size: 0.9rem;
+  font-size: var(--text-md);
+}
+
+
+.iconBrand {
+  display: inline;
+  height: 16px;
+  width: 20px;
+  margin-top: -4px;
+}
+
+.platforms span {
+  display: inline-block;
+}
+
+.game-rating {
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: oklch(85% 0.18 85);
+}
+
+.show-more-less {
+  display: none;
+}
+
+@media only screen and (min-width: 320px) {
+  .leave-compare-link {
+    margin-left: 3rem;
+    line-height: 2;
+  }
+
+  .iconBrand {
+    display: inline;
+    height: 12px;
+    width: 15px;
+  }
+
+  .description-wrapper {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .show-more-less {
+    display: inline;
+    text-decoration: underline;
+    font-size: var(--text-sm);
+  }
+
+  .compare-wrapper {
+    padding: 1.5rem 1rem;
+    font-size: var(--text-xs);
+  }
+
+  .compare-wrapper h2 {
+    font-size: var(--text-sm);
+  }
+
+  .compare-grid {
+    gap: 0.5rem;
+  }
+
+  .compare-card h1 {
+    font-size: var(--text-lg);
+  }
+
+  .compare-card .game-img {
+    width: 100%;
+  }
+
+  .description {
+    font-size: var(--text-sm);
+    overflow: hidden;
+
+    transition: all 1s ease-in-out;
+  }
+
+  .showless {
+    max-height: 6rem;
+    transition: max-height 1s ease-in-out;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+
+  .showmore {
+    max-height: 100rem;
+    transition: all 1s ease-in-out;
+  }
+
+  .platforms {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
 }
