@@ -4,6 +4,8 @@ import path from "path";
 import gameDetailsRouter from "./routes/gamedetailsrouter";
 import gameCompareRouter from "./routes/gamecomparerouter";
 import stattracker from "./routes/stattracker"
+import collectionsRouter from "./routes/collectionsrouter";
+import { connectToDatabase } from "./database";
 dotenv.config();
 
 const app : Express = express();
@@ -127,10 +129,8 @@ app.get("/collections", (req, res) => {
   res.render("collections", { collections });
 });
 
-app.get("/collections/:id", (req, res) => {
-  const collection = collections.find(c => c.id === Number(req.params.id));
-  res.render("collection", { collection });
-});
+app.use("/collections", collectionsRouter);
+
 app.get("/login", (req, res) => {
     res.render("login", { title : "login"});
 });
@@ -218,6 +218,12 @@ app.use("/compare", gameCompareRouter);
 app.use("/rg-stat-tracker",stattracker);
 
 const PORT = process.env.PORT || 3000;
+
+connectToDatabase();
+
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
