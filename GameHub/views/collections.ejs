@@ -15,9 +15,23 @@
 						<button type="button" aria-label="Lijstweergave">☰</button>
 					</div>
 
+					<div class="create-collection-wrapper">
 					<button type="button" class="create-collection-btn">
 						Collectie aanmaken
 					</button>
+
+					<div id="createModal" class="modal">
+						<input type="text" id="newCollectionName" placeholder="Naam van de collectie...">
+						<button id="createConfirm">Aanmaken</button>
+						<button id="createCancel">Annuleren</button>
+					</div>
+				</div>
+
+					<div id="createModal" class="modal">
+						<input type="text" id="newCollectionName" placeholder="Naam van de collectie...">
+						<button id="createConfirm">Aanmaken</button>
+						<button id="createCancel">Annuleren</button>
+					</div>
 
 					<button type="button" class="edit-btn" aria-label="Collecties bewerken">
 						✎
@@ -38,6 +52,8 @@
 				</section>
 			</div>
 		</main>
+	<script src="/js/collections.js"></script>	
+
 	<%- include("partials/footer") %>
 </body>
 

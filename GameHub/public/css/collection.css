@@ -47,6 +47,7 @@
 }
 
 .collection-card {
+  position: relative;
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
   border-radius: var(--radius-75);
@@ -100,6 +101,26 @@
 .description{
   border-left: 3px solid var(--green);
   padding-left: 0.5rem;
+}
+
+.delete-collection-btn {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    background-color: oklch(50% 0.2 30);
+    border: none;
+    border-radius: var(--radius-round);
+    width: 1.6rem;
+    height: 1.6rem;
+    cursor: pointer;
+    color: white;
+    z-index: 2;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.delete-collection-btn:hover {
+    background-color: oklch(60% 0.25 30);
+    transform: scale(1.1);
 }
 
 @media (min-width: 320px) {
