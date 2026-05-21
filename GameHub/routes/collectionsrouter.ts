@@ -1,62 +1,80 @@
-import {Router, Request, Response} from "express";
-import {Game} from "../types/game";
+import { Router, Request, Response } from "express";
+import { Game } from "../types/game";
+import { collectionCollection } from "../database";
+import { ObjectId } from "mongodb";
 
 const router = Router();
 
-router.get("/:id", async (req: Request, res:Response): Promise<void> => {
-    const id = Number(req.params.id);
-    const apiKey= process.env.RAWG_API_KEY;
-
-    //mockdata - moeten we nog vervangen door mongoldb
-    const collections = [
-        {
-            id: 1,
-            name: "Mijn Xbox Games",
-            coverImage: "/images/collection-image.png",
-            description: "Games die ik op Xbox speel",
-            games: ["grand-theft-auto-v", "elden-ring"]
-        },
-        {
-            id: 2,
-            name: "Mijn PS5 Games",
-            coverImage: "/images/collection-image.png",
-            description: "PS5 collectie",
-            games: ["dead-island-2"]
-        }
-    ];
-
-    const collection = collections.find(c => c.id === id)
-
-    if (!collection) {
-        res.status(404).render("collection", {collection:null});
-        return;      
-    };
+router.get("/", async (req: Request, res: Response): Promise<void> => {
     try {
-        // Haal voor elke slug de echte game data op via RAWG
-        const gamePromises = collection.games.map(slug =>
-            fetch(`https://api.rawg.io/api/games/${slug}?key=${apiKey}`)
-                .then(res => res.json() as Promise<Game>)
+        const userId = new ObjectId(req.session.user!._id);
+        const collections = await collectionCollection.find({ userId }).toArray();
+        res.render("collections", { collections });
+    } catch (err) {
+        console.error(err);
+        res.status(500).render("collections", { collections: [] });
+    }
+});
+router.get("/api", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const userId = new ObjectId(req.session.user!._id);
+        const collections = await collectionCollection.find({ userId }).toArray();
+        res.json(collections);
+    } catch (err) {
+        res.json([]);
+    }
+});
+router.get("/", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const userId = new ObjectId(req.session.user!._id);
+        const collections = await collectionCollection.find({ userId }).toArray();
+        const apiKey = process.env.RAWG_API_KEY;
+
+        const collectionsWithImages = await Promise.all(collections.map(async col => {
+            let coverImage = "/images/collection-image.png";
+            if (col.games.length > 0) {
+                const res = await fetch(`https://api.rawg.io/api/games/${col.games[0]}?key=${apiKey}`);
+                const data = await res.json();
+                coverImage = data.background_image || coverImage;
+            }
+            return { ...col, coverImage };
+        }));
+
+        res.render("collections", { collections: collectionsWithImages });
+    } catch (err) {
+        console.error(err);
+        res.status(500).render("collections", { collections: [] });
+    }
+});
+
+router.post("/", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const userId = new ObjectId(req.session.user!._id);
+        const { name } = req.body;
+
+        await collectionCollection.insertOne({
+            userId,
+            name,
+            games: []
+        });
+
+        res.redirect("/collections");
+    } catch (err) {
+        console.error(err);
+        res.redirect("/collections");
+    }
+});
+
+router.post("/:id/add", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { slug } = req.body;
+        await collectionCollection.updateOne(
+            { _id: new ObjectId(req.params.id as string) },
+            { $addToSet: { games: slug } }
         );
-
-        const rawgGames = await Promise.all(gamePromises);
-
-         // Bouw collection object me echte data
-        const fullCollection = {
-            ...collection,
-            games: rawgGames.map(game => ({
-                name: game.name,
-                slug: game.slug,
-                image: game.background_image,
-                rating: game.rating,
-                released: game.released
-            }))
-        };
-
-        res.render("collection", { collection: fullCollection });
-
-        } catch (err) {
-        console.error("RAWG API error:", err);
-        res.status(500).render("collection", { collection: null });
+        res.json({ success: true });
+    } catch (err) {
+        res.json({ success: false });
     }
 });
 

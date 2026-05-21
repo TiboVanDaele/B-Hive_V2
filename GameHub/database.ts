@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { User } from "./types/user";
 dotenv.config();
 import bcrypt from "bcrypt";
+import { Collection } from "./types/collection";
 
 const uri = process.env.MONGO_URI;
 
@@ -16,7 +17,7 @@ export const client = new MongoClient(uri);
 let db: Db;
 
 export const userCollection = client.db("login-B-Hive").collection<User>("users");
-
+export const collectionCollection = client.db("gamehub").collection<Collection>("collections");
 async function connectToDatabase() {
     try {
         await client.connect();

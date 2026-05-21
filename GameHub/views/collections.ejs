@@ -28,7 +28,7 @@
 
 					<% collections.forEach(collection => { %>
 					<article class="collection-card">
-						<a href="/collections/<%= collection.id %>">
+						<a href="/collections/<%= collection._id %>">
 							<img src="<%= collection.coverImage %>" alt="<%= collection.name %>">
 							<h2><%= collection.name %></h2>
 						</a>
