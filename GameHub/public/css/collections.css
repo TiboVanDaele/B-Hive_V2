@@ -70,6 +70,7 @@
 }
 
 .collection-card {
+  position: relative;
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
   border-radius: var(--radius-75);
@@ -110,6 +111,11 @@
   color: oklch(72.3% 0.014 214.4);
 }
 
+/*collectie aanmaken knop*/
+.create-collection-wrapper {
+    position: relative;
+}
+
 @media (min-width: 320px) {
   .title {
     font-size: var(--text-3xl);
@@ -143,4 +149,54 @@
   .collections-grid {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+/*modal op collections page, voor een collectie toe te voegen*/
+
+
+.collections-actions {
+    position: relative;
+}
+
+.modal {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: auto;
+    flex-direction: column;
+    margin-top: 0.3rem;
+    gap: 0.5rem;
+    background: oklch(21.8% 0.008 223.9);
+    border: 2px solid oklch(27.5% 0.011 216.9);
+    padding: 0.5rem;
+    border-radius: var(--radius-75);
+    z-index: 10;
+    min-width: 15rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.modal.active {
+    display: flex;
+}
+
+/*delete knop*/
+.delete-collection-btn {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    background-color: oklch(50% 0.2 30);
+    border: none;
+    border-radius: var(--radius-round);
+    width: 1.6rem;
+    height: 1.6rem;
+    cursor: pointer;
+    color: white;
+    z-index: 2;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.delete-collection-btn:hover {
+    background-color: oklch(60% 0.25 30);
+    transform: scale(1.1);
 }
