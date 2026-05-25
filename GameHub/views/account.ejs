@@ -4,83 +4,34 @@
 
     <body>
         <%- include("partials/header", { searchbar: false }) %>
-            <div class="layout"></div>
+            <div class="layout">
             <%- include("partials/aside", { showFilters: false }) %>
                 <main class="account-main">
                     <div class="account-wrapper">
                         <section class="profile-card">
                             <div class="profile-header">
-
+                                <!--
                                 <div class="profile-pic">
                                     <img src="<%= user.profilePic %>" alt="Profielfoto">
                                 </div>
+                                -->
 
                                 <div class="profile-info">
                                     <h1>
                                         <%= user.username %>
                                     </h1>
-                                    <p class="subtitle">Level <%= user.level %>
+                                    <p class="subtitle">Level <%= user.xp %>
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="profile-actions">
-                                <button type="button">Profielfoto wijzigen</button>
-                                <button type="button">Profiel bewerken</button>
-                                <a href="/login" class="logout-btn">Uitloggen</a>
-                            </div>
-                        </section>
-
-                        <section class="stats-card">
-                            <h2>Statistieken</h2>
-
-                            <div class="stats-grid">
-                                <div>
-                                    <h3>
-                                        <%= user.stats.collections %>
-                                    </h3>
-                                    <p>Collecties</p>
-                                </div>
-
-                                <div>
-                                    <h3>
-                                        <%= user.stats.games %>
-                                    </h3>
-                                    <p>Games</p>
-                                </div>
-
-                                <div>
-                                    <h3>
-                                        <%= user.stats.comparisons %>
-                                    </h3>
-                                    <p>Vergelijkingen</p>
-                                </div>
-
-                                <div>
-                                    <h3>
-                                        <%= user.stats.guesses %>
-                                    </h3>
-                                    <p>Correct geraden</p>
-                                </div>
-                            </div>
-                        </section>
-
-                <section class="profile-card">
-                    <div class="profile-header">
-                        <div class="profile-info">
-                            <h1><%= user.username %></h1>
-                        </div>
-                    </div>
-
-                    <div class="profile-actions">
+                        <div class="profile-actions">
                         <button type="button" id="editProfileBtn">Profiel bewerken</button>
                         <form action="/logout" method="POST" style="display:inline">
                             <button type="submit" class="logout-btn">Uitloggen</button>
                         </form>
-                    </div>
-                </section>
 
-                <!-- Edit Profile Form (hidden by default) -->
+                        <!-- Edit Profile Form (hidden by default) -->
                 <section class="edit-profile-card" id="editProfileCard" style="display:none">
                     <h2>Profiel bewerken</h2>
                     <% if (typeof updateError !== 'undefined' && updateError) { %>
@@ -112,9 +63,36 @@
                         </div>
                     </form>
                 </section>
+                    </div>
+                        </section>
+                        <section class="stats-card">
+                            <h2>Statistieken</h2>
+                            <div class="stats-grid">
+                                <div>
+                                    <h3>
+                                    </h3>
+                                    <p>Collecties</p>
+                                </div>
+                                <div>
+                                    <h3>
+                                    </h3>
+                                    <p>Games</p>
+                                </div>
+                                <div>
+                                    <h3>
+                                    </h3>
+                                    <p>Vergelijkingen</p>
+                                </div>
+                                <div>
+                                    <h3>
+                                    </h3>
+                                    <p>Correct geraden</p>
+                                </div>
+                            </div>
+                        </section>
                 </div>
-            </div>
         </main>
+        </div>
     <%- include("partials/footer") %>
 
     <script src="/js/account.js"></script>
