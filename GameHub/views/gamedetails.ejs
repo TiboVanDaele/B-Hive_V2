@@ -4,8 +4,9 @@
 
 	<body>
 		<%- include("partials/header", {searchbar:false} ) %>
+						<%- include("partials/aside", {showFilters: false}) %>
 			<main class="game-detail-main">
-				<%- include("partials/aside", {showFilters: false}) %>
+
 					<div id="game-detail">
 						<% if (error) { %>
 							<p class="error-msg">

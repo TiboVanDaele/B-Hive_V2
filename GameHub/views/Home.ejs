@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
 <%- include("partials/head", {page:"home", title:"GameHub"}) %>
-
 <body>
 	<%- include("partials/header", { searchbar: true }) %>
-
+	<%- include("partials/aside", { showFilters: true }) %>
 	<main class="home-main">
-		<%- include("partials/aside", { showFilters: true }) %>
-
 		<div class="home-wrapper">
 			<h1 class="title">Games ontdekken</h1>
-
 			<section class="home-grid">
 				<% games.forEach(game=> { %>
 					<article class="game-card">
