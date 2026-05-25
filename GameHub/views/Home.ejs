@@ -3,6 +3,7 @@
 <%- include("partials/head", {page:"home", title:"GameHub"}) %>
 <body>
 	<%- include("partials/header", { searchbar: true }) %>
+	<div class="layout">
 	<%- include("partials/aside", { showFilters: true }) %>
 	<main class="home-main">
 		<div class="home-wrapper">
@@ -42,6 +43,7 @@
 			</nav>
 		</div>
 	</main>
+	</div>
 
 	<div class="compare-bar" id="compareBar">
 		<div class="compare-slot" data-slot="0">

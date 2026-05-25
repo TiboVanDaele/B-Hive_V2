@@ -4,9 +4,9 @@
 
 <body>
 	<%- include("partials/header", {searchbar: true}) %>
-			<%- include("partials/aside", {showFilters: true}) %>
+	<div class="layout">
+	<%- include("partials/aside", {showFilters: true}) %>
 	<main class="collections-main">
-
 		<div class="collections-wrapper">
 			<% if (!collection) { %>
 				<p>Collectie niet gevonden.</p>
@@ -40,6 +40,7 @@
 			<% } %>
 		</div>
 	</main>
+	</div>
 	<script src="/js/collection.js"></script>
 	<%- include("partials/footer") %>
 </body>

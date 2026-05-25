@@ -4,6 +4,7 @@
 
 <body>
 	<%- include("partials/header", { searchbar: true }) %>
+	                <div class="layout">
 						<%- include("partials/aside", { showFilters: false }) %>
 		<main class="collections-main">
 
@@ -53,8 +54,8 @@
 				</section>
 			</div>
 		</main>
+		</div>
 	<script src="/js/collections.js"></script>	
-
 	<%- include("partials/footer") %>
 </body>
 

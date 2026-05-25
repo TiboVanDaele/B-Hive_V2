@@ -10,8 +10,6 @@ header {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   max-height: 4rem;
 
-
-
   .avatar {
     border-radius: var(--radius-round);
   }
@@ -39,43 +37,6 @@ header {
   .searchbar {
     flex: 1;
     max-width: 36rem;
-  }
-
-  .button-group {
-    display: flex;
-
-    button {
-      cursor: pointer;
-      border-radius: var(--radius-round);
-      border: 1px solid color-mix(in oklab, oklch(96.3% 0.002 197.1) 20%, transparent);
-      background-color: oklch(27.5% 0.011 216.9);
-      padding: 0.25rem 1rem;
-
-      &:hover {
-        @media (hover: hover) {
-          background-color: oklch(45% 0.017 213.2);
-          z-index: 10;
-        }
-      }
-
-      transition-property: all;
-      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      transition-duration: 300ms;
-
-    }
-  }
-
-  .button-l {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .button-r {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
   }
 
   .user {
@@ -201,14 +162,6 @@ header {
     .user-nav {
       gap: 0.4rem;
     }
-
-
-
-    .button-group {
-      display: none;
-    }
-
-    
   }
 }
 
@@ -224,6 +177,7 @@ header {
 }
 
 .autocomplete-dropdown {
+  display: none;
     position: absolute;
     top: 100%;
     left: 0;
@@ -248,3 +202,51 @@ header {
     background-color: oklch(27.5% 0.011 216.9);
     color: var(--green);
 }
+
+// Makes the little "X" in the search bar green. Only works on webkit based browsers.
+//
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+
+  height: 14px;
+  width: 14px;
+
+  background-color: var(--green);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='black' d='M3.3 3.3a1 1 0 0 1 1.4 0L8 6.6l3.3-3.3a1 1 0 1 1 1.4 1.4L9.4 8l3.3 3.3a1 1 0 0 1-1.4 1.4L8 9.4l-3.3 3.3a1 1 0 0 1-1.4-1.4L6.6 8 3.3 4.7a1 1 0 0 1 0-1.4z'/%3E%3C/svg%3E")
+    no-repeat center;
+
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='black' d='M3.3 3.3a1 1 0 0 1 1.4 0L8 6.6l3.3-3.3a1 1 0 1 1 1.4 1.4L9.4 8l3.3 3.3a1 1 0 0 1-1.4 1.4L8 9.4l-3.3 3.3a1 1 0 0 1-1.4-1.4L6.6 8 3.3 4.7a1 1 0 0 1 0-1.4z'/%3E%3C/svg%3E")
+    no-repeat center;
+  cursor: pointer;
+}
+
+.search-button{
+  display:none;
+}
+
+@media (min-width: 1024px) {
+.search-button {
+  cursor: pointer;
+  width: fit-content;
+  border-radius: var(--radius-round);
+  border: 1px solid color-mix(in oklab, oklch(96.3% 0.002 197.1) 20%, transparent);
+
+  background-color: oklch(27.5% 0.011 216.9);
+  color: inherit;
+
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-button:hover {
+  background-color: oklch(45% 0.017 213.2);
+  border-color: var(--green);
+}
+}
+
+
+
