@@ -5,7 +5,7 @@ import gameDetailsRouter from "./routes/gamedetailsrouter";
 import gameCompareRouter from "./routes/gamecomparerouter";
 import stattracker from "./routes/stattracker"
 import collectionsRouter from "./routes/collectionsrouter";
-import homeRouter from "./routes/homeRouter";
+import homeRouter from "./routes/homerouter";
 import { connectToDatabase } from "./database";
 
 dotenv.config();

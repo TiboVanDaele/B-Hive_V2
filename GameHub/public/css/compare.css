@@ -13,7 +13,7 @@ body {
 
 .compare-wrapper {
   max-width: 72rem;
-  margin: 0 auto;
+  width: 100%;
   padding: 2.5rem 1rem;
 }
 
@@ -40,12 +40,83 @@ body {
   display: none;
 }
 
+
+.compare-btn{
+  cursor: pointer;
+}
+.compare-btn:hover{
+ box-shadow:  0 0 0 2px var(--green);
+}
+
+
+.compare-btn{
+    border-radius: var(--radius-round);
+    border: 1px solid color-mix(in oklab, oklch(96.3% 0.002 197.1) 20%, transparent);
+    background-color: oklch(14.8% 0.004 228.8);
+    padding: 0.5rem 1rem;
+    max-width: fit-content;
+
+}
+
+.search-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  /*
+  display: flex;
+
+  gap: 1rem;
+  align-self: center;*/
+}
+.search-input{
+    border-radius: var(--radius-round);
+    border: 1px solid color-mix(in oklab, oklch(96.3% 0.002 197.1) 20%, transparent);
+    background-color: oklch(14.8% 0.004 228.8);
+    padding: 0.5rem 1rem;
+}
+.compare-search{
+  display: flex;
+  flex-wrap: wrap; 
+  /*
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  */
+}
+
+.autocomplete-dropdown-compare {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    
+    background-color: oklch(21.8% 0.008 223.9);
+    border: 1px solid oklch(35% 0.015 216.9);
+    border-radius: 0.5rem;
+    margin-top: 0.25rem;
+    
+    list-style: none;
+}
+.autocomplete-dropdown-compare li {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: white;
+}
+
+.autocomplete-dropdown-compare li:hover {
+    background-color: oklch(27.5% 0.011 216.9);
+    color: var(--green);
+}
+.input-wrapper{
+  position:relative;
+}
 @media (min-width: 768px) {
   .compare-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 .compare-card {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
@@ -91,7 +162,6 @@ body {
   font-size: var(--text-md);
 }
 
-
 .iconBrand {
   display: inline;
   height: 16px;
@@ -117,6 +187,10 @@ body {
   .leave-compare-link {
     margin-left: 3rem;
     line-height: 2;
+  }
+
+  .search-input{
+    max-width: 10rem;
   }
 
   .iconBrand {
@@ -187,5 +261,45 @@ body {
     -webkit-line-clamp: 1;
     line-clamp: 1;
     -webkit-box-orient: vertical;
+  }
+
+  .compare-wrapper{
+      margin: 0 auto;
+  }
+
+  .title{
+    font-size: var(--text-3xl);
+    line-height: 1.5;
+
+    font-weight: 700;
+    padding: 0 2.4rem;
+  }
+
+  .compare-btn{
+    margin: 0 auto;
+    margin-top: 0.5rem;
+  }
+}
+
+.compare-search{
+  margin: 0 auto;
+}
+
+@media only screen and (min-width:640px){
+  .leave-compare-link {
+    margin-left: 0;
+}
+  .compare-wrapper{
+      margin: 0;
+  }
+  .compare-btn{
+    margin: 0;
+    margin-left: 0.5rem;
+  }
+
+  .title{
+    font-size: var(--text-4xl);
+    padding: 0;
+    text-align: left;
   }
 }

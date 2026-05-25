@@ -32,6 +32,10 @@
     <script defer src="/js/compare-bar.js"></script>
     <% } %>
 
+    <% if (page == "home" || page == "compare") { %>
+     <script src="/js/autocomplete.js" defer></script>
+    <% } %>
+
     <% if (page == "compare" || page == "gamedetails") { %>
     <script defer src="/js/show-more-less.js"></script>
     <% } %>
