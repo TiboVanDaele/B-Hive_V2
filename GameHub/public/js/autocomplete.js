@@ -1,12 +1,12 @@
-const input = document.querySelector(".searchbar input[type='search']");
-const form = document.querySelector(".searchbar form");
+const inputSearchbar = document.querySelector(".searchbar input[type='search']");
+const formSearchbar = document.querySelector(".searchbar form");
 
 const dropdown = document.createElement("ul");
 dropdown.classList.add("autocomplete-dropdown");
-form.appendChild(dropdown);
+formSearchbar.appendChild(dropdown);
 
-input.addEventListener("input", async () => {
-    const query = input.value.trim();
+inputSearchbar.addEventListener("input", async () => {
+    const query = inputSearchbar.value.trim();
 
     if (query.length < 2) {
         dropdown.innerHTML = "";
@@ -36,8 +36,66 @@ input.addEventListener("input", async () => {
     dropdown.style.display = "block";
 });
 
+if (document.title == "Vergelijk games") {
+    const inputsGameCompare = document.querySelectorAll(".search-input");
+    const inputWrappers = document.querySelectorAll(".input-wrapper");
+
+    let counter = 0;
+    inputsGameCompare.forEach(input => {
+        const dropdownCompare = document.createElement("ul");
+        dropdownCompare.id = "dropdownGame" + (counter + 1);
+        dropdownCompare.classList.add("autocomplete-dropdown-compare");
+        inputWrappers[counter].appendChild(dropdownCompare);
+
+        input.addEventListener("input", async () => {
+            const query = input.value.trim();
+
+            if (query.length < 2) {
+                dropdownCompare.innerHTML = "";
+                dropdownCompare.style.display = "none";
+                return;
+            }
+
+            const res = await fetch(`/suggestions?q=${encodeURIComponent(query)}`);
+            const suggestions = await res.json();
+
+            dropdownCompare.innerHTML = "";
+
+            if (suggestions.length === 0) {
+                dropdownCompare.style.display = "none";
+                return;
+            }
+
+            suggestions.forEach(game => {
+                const li = document.createElement("li");
+                li.textContent = game.name;
+                li.addEventListener("click", () => {
+                    input.value = game.slug;
+                });
+
+
+                dropdownCompare.appendChild(li);
+            });
+            
+            dropdownCompare.style.display = "block";
+            counter++;
+        });
+
+        if (!input.contains(e.target)) {
+            dropdownCompare.style.display = "none";
+        }
+
+        document.addEventListener("click", (e) => {
+            if(!document.activeElement !== dropdownCompare || !document.activeElement !== input){
+                dropdownCompare.style.display = "none";
+            }
+        });
+    });
+}
+
+
 document.addEventListener("click", (e) => {
-    if (!form.contains(e.target)) {
+    if (!formSearchbar.contains(e.target)) {
         dropdown.style.display = "none";
     }
 });

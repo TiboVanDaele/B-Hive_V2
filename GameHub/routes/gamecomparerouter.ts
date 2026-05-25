@@ -8,35 +8,80 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
     const game2 = req.query.game2;
     const apiKey = process.env.RAWG_API_KEY;
 
-    var games:Game[] = [];
-
-    try {
-        const response = await fetch(`https://api.rawg.io/api/games/${game1}?key=${apiKey}`);
-        if (!response.ok) {
-        res.status(500).render("compare", { games:null, error: "Error loading game" });
-            return;
+    var games: Game[] | null = [];
+    if (game1 != undefined && game2 != undefined) {
+        try {
+            const response = await fetch(`https://api.rawg.io/api/games/${game1}?key=${apiKey}`);
+            if (!response.ok) {
+                res.status(500).render("compare", { games: null, error: "Error loading game" });
+                return;
+            }
+            games.push(await response.json());
+        } catch (err) {
+            console.error("RAWG API error:", err);
+            res.status(500).render("compare", { games: null, error: "Error loading game" });
         }
-        games.push(await response.json());
-    } catch (err) {
-        console.error("RAWG API error:", err);
-        res.status(500).render("compare", { games:null, error: "Error loading game" });
+
+        try {
+            const response = await fetch(`https://api.rawg.io/api/games/${game2}?key=${apiKey}`);
+
+            if (!response.ok) {
+                res.status(500).render("compare", { games: null, error: "Error loading game" });
+                return;
+            }
+            games.push(await response.json());
+
+        } catch (err) {
+            console.error("RAWG API error:", err);
+            res.status(500).render("compare", { games: null, error: "Error loading game" });
+        }
+    }
+    else {
+        games = null;
     }
 
-    try {
-        const response = await fetch(`https://api.rawg.io/api/games/${game2}?key=${apiKey}`);
+    res.render("compare", { games });
+});
 
-        if (!response.ok) {
-            res.status(500).render("compare", { games:null, error: "Error loading game" });
-            return;
+router.post("/", async (req: Request, res: Response): Promise<void> => {
+    console.log("game1"+req.body.gameSearch1);
+
+    const game1 = req.body.gameSearch1;
+    const game2 = req.body.gameSearch2;
+
+    const apiKey = process.env.RAWG_API_KEY;
+
+    var games: Game[] | null = [];
+    if (game1 != undefined && game2 != undefined) {
+        try {
+            const response = await fetch(`https://api.rawg.io/api/games/${game1}?key=${apiKey}`);
+            if (!response.ok) {
+                res.status(500).render("compare", { games: null, error: "Error loading game" });
+                return;
+            }
+            games.push(await response.json());
+        } catch (err) {
+            console.error("RAWG API error:", err);
+            res.status(500).render("compare", { games: null, error: "Error loading game" });
         }
-        games.push(await response.json());
 
-    } catch (err) {
-        console.error("RAWG API error:", err);
-        res.status(500).render("compare", { games:null, error: "Error loading game" });
+        try {
+            const response = await fetch(`https://api.rawg.io/api/games/${game2}?key=${apiKey}`);
+
+            if (!response.ok) {
+                res.status(500).render("compare", { games: null, error: "Error loading game" });
+                return;
+            }
+            games.push(await response.json());
+        } catch (err) {
+            console.error("RAWG API error:", err);
+            res.status(500).render("compare", { games: null, error: "Error loading game" });
+        }
     }
-
-    res.render("compare", {games});
+    else {
+        games = null;
+    }
+    res.render("compare", { games });
 });
 
 export default router;

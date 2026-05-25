@@ -10,8 +10,12 @@
                         class="fa-solid fa-arrow-right-from-bracket"></i> Game
                     vergelijking verlaten</a>
                 <section class="compare-grid" aria-label="Game vergelijking">
-                    <% let counter = 0; %>
-                    <% games.forEach(game => { %>
+                    <% let counter = 0; 
+                        console.log(games);
+                    
+                    %>
+                    <% if (games != null) { %>
+                        <% games.forEach(game => { %>
                     <article class="compare-card"> <img class="game-img"
                             src="<%= game.background_image %>"
                             alt="<%= game.name %>">
@@ -55,7 +59,20 @@
                         </section>
                     </article>
                     <% counter++; %>
-                    <% }) %>
+                    <% }); %>
+                    <% } else { %>
+                        <form class="compare-search" action="/compare" method="post">
+                            <div class="search-wrapper">
+                                <div class="input-wrapper"><input class="search-input" type="text" name="gameSearch1" id="gameSearch1"></div>
+                            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                            <div class="input-wrapper"><input class="search-input" type="text" name="gameSearch2" id="gameSearch2"></div>
+                        </div>
+                        <%  %>
+                        <button class="compare-btn" type="submit">Vergelijk</button>
+                        </form>
+                    <% } %>
+                     
+                     
                 </section>
             </div>
         </main>
