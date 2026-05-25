@@ -10,7 +10,6 @@
                         class="fa-solid fa-arrow-right-from-bracket"></i> Game
                     vergelijking verlaten</a>
                     <h1 class="title">Vergelijk games</h1>
-                    <% if (games == null) { %>
                         <form class="compare-search" action="/compare" method="post">
                             <div class="search-wrapper">
                                 <div class="input-wrapper"><input class="search-input" type="text" name="gameSearch1" id="gameSearch1"></div>
@@ -20,7 +19,6 @@
                         <%  %>
                         <button class="compare-btn" type="submit">Vergelijk</button>
                         </form>
-                    <% } %>
                 <section class="compare-grid" aria-label="Game vergelijking">
                     <% let counter = 0; %>
                     <% if (games != null) { %>
