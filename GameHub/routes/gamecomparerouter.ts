@@ -44,8 +44,6 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
 });
 
 router.post("/", async (req: Request, res: Response): Promise<void> => {
-    console.log("game1"+req.body.gameSearch1);
-
     const game1 = req.body.gameSearch1;
     const game2 = req.body.gameSearch2;
 

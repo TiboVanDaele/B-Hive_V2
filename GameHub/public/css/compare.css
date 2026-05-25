@@ -13,7 +13,7 @@ body {
 
 .compare-wrapper {
   max-width: 72rem;
-  margin: 0 auto;
+  width: 100%;
   padding: 2.5rem 1rem;
 }
 
@@ -44,6 +44,16 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+.compare-btn{
+  cursor: pointer;
+
+}
+.compare-btn:hover{
+  border: 2px solid var(--green);
+}
+.search-wrapper{
+  align-self: center;
 }
 
 .search-input{
@@ -170,6 +180,10 @@ body {
   display: none;
 }
 
+.title{
+
+}
+
 @media only screen and (min-width: 320px) {
   .leave-compare-link {
     margin-left: 3rem;
@@ -244,5 +258,36 @@ body {
     -webkit-line-clamp: 1;
     line-clamp: 1;
     -webkit-box-orient: vertical;
+  }
+
+  .compare-wrapper{
+      margin: 0 auto;
+  }
+
+  .title{
+    font-size: var(--text-3xl);
+    line-height: 1.5;
+
+    font-weight: 700;
+    padding: 0 2.4rem;
+  }
+}
+
+.compare-search{
+  margin: 0 auto;
+}
+
+@media only screen and (min-width:640px){
+  .leave-compare-link {
+    margin-left: 0;
+}
+  .compare-wrapper{
+      margin: 0;
+  }
+
+  .title{
+    font-size: var(--text-4xl);
+    padding: 0;
+    text-align: left;
   }
 }

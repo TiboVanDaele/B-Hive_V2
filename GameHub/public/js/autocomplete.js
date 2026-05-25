@@ -45,6 +45,7 @@ if (document.title == "Vergelijk games") {
         const dropdownCompare = document.createElement("ul");
         dropdownCompare.id = "dropdownGame" + (counter + 1);
         dropdownCompare.classList.add("autocomplete-dropdown-compare");
+        dropdownCompare.style.display="none";
         inputWrappers[counter].appendChild(dropdownCompare);
 
         input.addEventListener("input", async () => {
@@ -71,6 +72,7 @@ if (document.title == "Vergelijk games") {
                 li.textContent = game.name;
                 li.addEventListener("click", () => {
                     input.value = game.slug;
+                    dropdownCompare.style.display = "none";
                 });
 
 
@@ -78,18 +80,9 @@ if (document.title == "Vergelijk games") {
             });
             
             dropdownCompare.style.display = "block";
-            counter++;
         });
 
-        if (!input.contains(e.target)) {
-            dropdownCompare.style.display = "none";
-        }
-
-        document.addEventListener("click", (e) => {
-            if(!document.activeElement !== dropdownCompare || !document.activeElement !== input){
-                dropdownCompare.style.display = "none";
-            }
-        });
+        counter++;
     });
 }
 
