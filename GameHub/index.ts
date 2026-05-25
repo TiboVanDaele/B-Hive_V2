@@ -5,8 +5,9 @@ import gameDetailsRouter from "./routes/gamedetailsrouter";
 import gameCompareRouter from "./routes/gamecomparerouter";
 import stattracker from "./routes/stattracker"
 import collectionsRouter from "./routes/collectionsrouter";
-import homeRouter from "./routes/homerouter";
-import { connectToDatabase } from "./database";
+import homeRouter from "./routes/homeRouter";
+import { connectToDatabase, updateUser, userCollection } from "./database";
+import bcrypt from "bcrypt";
 
 dotenv.config();
 import session from "./session";
@@ -162,6 +163,43 @@ app.get("/account", secureMiddleware, (req, res) => {
     user: req.session.user
   });
 });
+
+app.post("/account/update", secureMiddleware, async (req, res) => {
+  const { newUsername, currentPassword, newPassword, confirmPassword } = req.body;
+  const user = req.session.user!;
+
+  try {
+    const { ObjectId } = await import("mongodb");
+    const objectId = typeof user._id === "string" ? new ObjectId(user._id) : user._id;
+    const dbUser = await userCollection.findOne({ _id: objectId });
+    if (!dbUser) throw new Error("Gebruiker niet gevonden");
+
+    const passwordValid = await bcrypt.compare(currentPassword, dbUser.password!);
+    if (!passwordValid) throw new Error("Huidig wachtwoord is onjuist");
+
+    if (newPassword) {
+      if (newPassword !== confirmPassword) throw new Error("Wachtwoorden komen niet overeen");
+      if (newPassword.length < 6) throw new Error("Nieuw wachtwoord moet minstens 6 tekens zijn");
+    }
+
+    await updateUser(user._id!, newUsername || undefined, newPassword || undefined);
+
+    if (newUsername) req.session.user!.username = newUsername;
+
+    res.render("account", {
+      title: "Account",
+      user: req.session.user,
+      updateSuccess: "Profiel succesvol bijgewerkt"
+    });
+  } catch (e: any) {
+    res.render("account", {
+      title: "Account",
+      user: req.session.user,
+      updateError: e.message
+    });
+  }
+});
+
 app.use("/game", gameDetailsRouter);
 app.use("/compare", gameCompareRouter);
 app.use("/rg-stat-tracker", stattracker);
@@ -178,5 +216,3 @@ app.listen(PORT, async () => {
     process.exit(1);
   }
 });
-
-
