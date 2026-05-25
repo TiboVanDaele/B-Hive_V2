@@ -264,3 +264,23 @@
     padding: 0;
   }
 }
+
+#addConfirm, #addCancel{
+  padding: 2px 5px;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: darkslategray;
+}
+
+#collectionSelect {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #444;
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.25rem;
+}
+
+#collectionSelect option {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
