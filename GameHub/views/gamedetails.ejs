@@ -32,7 +32,7 @@
 										<div class="game-main">
 											<div class="game-section">
 												<h2 class="section-heading">Description</h2>
-												<p class="game-description description showless">
+												<p class="game-description description showless" data-desc>
 													<%= game.description_raw %>
 												</p>
 												<button class="show-more-less">Toon meer</button>
@@ -48,10 +48,10 @@
 														<% }); %>
 												</div>
 											</div>
-
 										</div>
 
-		<div id="addModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#1a1a1a; border:2px solid #333; padding:2rem; border-radius:0.75rem; z-index:999;">
+										<div id="addModal"
+											style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#1a1a1a; border:2px solid #333; padding:2rem; border-radius:0.75rem; z-index:999;">
 											<h2>Voeg toe aan collectie</h2>
 											<select id="collectionSelect">
 												<option value="nieuw">+ Nieuwe collectie</option>
@@ -94,7 +94,6 @@
 														<% }); %>
 												</div>
 											</div>
-
 											<div class="info-card">
 												<h3 class="info-card-title">Platforms</h3>
 												<%- include("partials/platforms", {platforms: game.platforms}) %>
@@ -114,7 +113,6 @@
 								<% } %>
 					</div>
 			</main>
-
 
 			<%- include("partials/footer") %>
 	</body>
