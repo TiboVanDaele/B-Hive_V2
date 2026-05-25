@@ -1,4 +1,4 @@
-import { MongoClient, Db } from "mongodb";
+import { MongoClient, Db, ObjectId } from "mongodb";
 import dotenv from "dotenv";
 import { User } from "./types/user";
 dotenv.config();
@@ -95,6 +95,18 @@ export async function register(username: string, email: string, password: string
         email,
         password: hashedPassword,
     });
+}
+
+export async function updateUser(userId: import("mongodb").ObjectId | string, newUsername?: string, newPassword?: string) {
+    const update: any = {};
+    if (newUsername) update.username = newUsername;
+    if (newPassword) {
+        const saltRounds = 10;
+        update.password = await bcrypt.hash(newPassword, saltRounds);
+    }
+    if (Object.keys(update).length === 0) return;
+    const objectId = typeof userId === "string" ? new ObjectId(userId) : userId;
+    await userCollection.updateOne({ _id: objectId }, { $set: update });
 }
 
 export { db, connectToDatabase };
