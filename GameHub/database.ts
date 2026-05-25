@@ -55,6 +55,7 @@ async function createInitialUser() {
         email: email,
         username: username,
         password: await bcrypt.hash(password, saltRounds),
+        xp:0
     });
     console.log("user initialised");
 }
@@ -94,6 +95,7 @@ export async function register(username: string, email: string, password: string
         username,
         email,
         password: hashedPassword,
+        xp:0
     });
 }
 

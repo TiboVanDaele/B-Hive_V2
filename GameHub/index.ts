@@ -11,9 +11,9 @@ import bcrypt from "bcrypt";
 
 dotenv.config();
 import session from "./session";
-import { User } from "./types/user";
 import { secureMiddleware } from "./middleware/secureMiddleware";
 import { loginRouter } from "./routes/loginRouter";
+import { Db, MongoClient } from "mongodb";
 
 const app : Express = express();
 getGame();
@@ -122,6 +122,35 @@ app.post("/guessing-game", async(req, res) => {
   else{
     attempts -= 1;
     correct = false;
+  }
+  if(correctGuess){
+    const uri = process.env.MONGO_URI;
+    
+    if(uri === undefined)
+        {
+            console.error("MONGO_URI moet ingevuld zijn in de env");
+            process.exit();
+        }
+    
+    const client = new MongoClient(uri);
+    let db: Db;
+      try {
+          await client.connect();
+          db = client.db("login-B-Hive");
+          const collection = db.collection("users");          
+          const user = req.session.user
+
+          if(user){
+
+          await collection.updateOne({username:user.username},{$inc:{xp:attempts}})
+
+
+          }
+      } catch (e) {
+          console.error(e);
+      }finally{
+          await client.close();
+      }
   }
 if(guess != "Next-Game-To-Show"){ 
   previousGuesses.push({guess,correct});
