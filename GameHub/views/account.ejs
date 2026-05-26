@@ -117,15 +117,88 @@
                         </div>
                     </main>
             </div>
-            <%- include("partials/footer") %>
+            <div class="profile-actions">
+                <button type="button" id="editProfileBtn">Profiel bewerken</button>
+                <form action="/logout" method="POST">
+                    <button type="submit" class="logout-btn">Uitloggen</button>
+                </form>
+            </div>
+        </section>
 
-                <script src="/js/account.js"></script>
-                <% if (typeof updateError !=='undefined' && updateError || typeof updateSuccess !=='undefined' &&
-                    updateSuccess) { %>
-                    <script>
-                        showEditForm();
-                    </script>
-                    <% } %>
-    </body>
+        <section class="edit-profile-card" id="editProfileCard">
+            <h2>Profiel bewerken</h2>
+            <% if (typeof updateError !== 'undefined' && updateError) { %>
+                <p class="error-msg"><%= updateError %></p>
+            <% } %>
+            <% if (typeof updateSuccess !== 'undefined' && updateSuccess) { %>
+                <p class="success-msg"><%= updateSuccess %></p>
+            <% } %>
+            <form action="/account/update" method="POST" class="edit-form">
+                <div class="form-group">
+                    <label for="newUsername">Nieuwe gebruikersnaam</label>
+                    <input type="text" id="newUsername" name="newUsername" placeholder="<%= user.username %>">
+                </div>
+                <div class="form-group">
+                    <label for="currentPassword">Huidig wachtwoord</label>
+                    <input type="password" id="currentPassword" name="currentPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Nieuw wachtwoord (optioneel)</label>
+                    <input type="password" id="newPassword" name="newPassword">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Bevestig nieuw wachtwoord</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword">
+                </div>
+                <div class="button-group">
+                    <button type="submit">Opslaan</button>
+                    <button type="button" id="cancelEditBtn">Annuleren</button>
+                </div>
+            </form>
+        </section>
 
+        <section class="stats-card">
+            <h2>Statistieken</h2>
+            <div class="stats-grid">
+                <div>
+                    <h3></h3>
+                    <p>Collecties</p>
+                </div>
+                <div>
+                    <h3></h3>
+                    <p>Games</p>
+                </div>
+                <div>
+                    <h3></h3>
+                    <p>Vergelijkingen</p>
+                </div>
+                <div>
+                    <h3></h3>
+                    <p>Correct geraden</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <% if (user && user.current_game) { %>
+    <div class="current-game-card">
+    <button class="remove-current-btn" id="removeCurrentBtn">x</button>
+    <span class="current-game-label">Huidige game</span>
+    <a href="/game/<%= user.current_game.slug %>" class="current-game-preview">
+        <img src="<%= user.current_game.image %>" alt="<%= user.current_game.name %>">
+        <span class="current-game-title"><%= user.current_game.name %></span>
+    </a>
+</div>
+    <% } %>
+
+</main>
+        </div>
+    <%- include("partials/footer") %>
+
+    <script src="/js/account.js"></script>
+    <% if (typeof updateError !== 'undefined' && updateError || typeof updateSuccess !== 'undefined' && updateSuccess) { %>
+    <script>showEditForm();</script>
+    <% } %>
+
+</body>
 </html>

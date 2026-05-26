@@ -210,4 +210,81 @@
 
 #avatarUpload{
   width: fit-content;
+.current-game-card {
+    position: fixed;
+    top: 5rem;
+    right: 1rem;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: color-mix(in oklab, oklch(21.8% 0.008 223.9) 70%, transparent);
+    backdrop-filter: blur(8px);
+    border: 1px solid oklch(35% 0.015 216.9);
+    border-radius: var(--radius-75);
+    padding: 0.6rem 0.8rem;
+    width: 160px;
+    position: fixed;
+}
+
+.current-game-card-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.remove-current-btn {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: none;
+    border-radius: var(--radius-round);
+    background-color: oklch(50% 0.2 30);
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    transition:
+        filter 0.2s ease,
+        transform 0.2s ease;
+}
+
+.remove-current-btn:hover {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+}
+
+.current-game-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    text-decoration: none;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.current-game-preview img {
+    width: 100%;
+    height: 70px;
+    object-fit: cover;
+    border-radius: var(--radius-50);
+}
+
+.current-game-title {
+    text-align: center;
+    font-size: 0.8rem;
+    color: oklch(72.3% 0.014 214.4);
+    padding: 0 0.25rem;
+}
+.current-game-label {
+    font-size: 0.7rem;
+    color: oklch(72.3% 0.014 214.4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: center;
+    padding-right: 1.2rem;
 }

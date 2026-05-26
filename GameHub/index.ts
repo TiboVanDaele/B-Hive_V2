@@ -132,7 +132,7 @@ app.post("/guessing-game", async(req, res) => {
   }
   if(correctGuess){
     const uri = process.env.MONGO_URI;
-    
+    attempts = 6;
     if(uri === undefined)
         {
             console.error("MONGO_URI moet ingevuld zijn in de env");
