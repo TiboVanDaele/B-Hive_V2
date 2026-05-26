@@ -2,7 +2,7 @@
 <html lang="nl-BE">
 <%- include("partials/head", {page:"gamedetails", title:"Game details"}) %>
 	<body>
-		<%- include("partials/header", {searchbar:false} ) %>
+		<%- include("partials/header", {searchbar:false, user: user} ) %>
 			<div class="layout">
 				<%- include("partials/aside", {showFilters: false}) %>
 					<main class="game-detail-main">
@@ -51,16 +51,17 @@
 											</div>
 
 											<div id="addModal">
-  <h2>Voeg toe aan collectie</h2>
-  <select id="collectionSelect">
-    <option value="nieuw">+ Nieuwe collectie</option>
-  </select>
-  <input type="text" id="newCollectionName" placeholder="Naam nieuwe collectie...">
-  <div style="display: flex; gap: 0.5rem;">
-    <button id="addConfirm">Toevoegen</button>
-    <button id="addCancel">Annuleren</button>
-  </div>
-</div>
+												<h2>Voeg toe aan collectie</h2>
+												<select id="collectionSelect">
+													<option value="nieuw">+ Nieuwe collectie</option>
+												</select>
+												<input type="text" id="newCollectionName"
+													placeholder="Naam nieuwe collectie...">
+												<div style="display: flex; gap: 0.5rem;">
+													<button id="addConfirm">Toevoegen</button>
+													<button id="addCancel">Annuleren</button>
+												</div>
+											</div>
 
 											<div class="game-sidebar">
 												<div class="info-card">
@@ -103,20 +104,20 @@
 														<%= game.website %>
 													</a>
 												</div>
-                      <div class="info-card">
-                          <h3 class="info-card-title">Huidige game</h3>
-                          <button 
-                              class="set-current-btn <% if (user && user.current_game && user.current_game.slug === game.slug) { %>is-current<% } %>"
-                              data-slug="<%= game.slug %>"
-                              data-name="<%= game.name %>"
-                              data-image="<%= game.background_image %>">
-                              <% if (user && user.current_game && user.current_game.slug === game.slug) { %>
-                                  Verwijder huidige game
-                              <% } else { %>
-                                  Markeer als huidige game
-                              <% } %>
-                          </button>
-                      </div>
+												<div class="info-card">
+													<h3 class="info-card-title">Huidige game</h3>
+													<button
+														class="set-current-btn <% if (user && user.current_game && user.current_game.slug === game.slug) { %>is-current<% } %>"
+														data-slug="<%= game.slug %>" data-name="<%= game.name %>"
+														data-image="<%= game.background_image %>">
+														<% if (user && user.current_game &&
+															user.current_game.slug===game.slug) { %>
+															Verwijder huidige game
+															<% } else { %>
+																Markeer als huidige game
+																<% } %>
+													</button>
+												</div>
 											</div>
 
 										</div>
@@ -127,5 +128,4 @@
 			</div>
 			<%- include("partials/footer") %>
 	</body>
-
 </html>

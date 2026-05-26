@@ -14,7 +14,7 @@ router.get("/:slug", async (req: Request, res: Response): Promise<void> => {
         const response = await fetch(`https://api.rawg.io/api/games/${slug}?key=${apiKey}`);
 
         if (!response.ok) {
-            res.status(response.status).render("gamedetails", { game: null, platforms: "", tags: [], error: "Game not found" });
+            res.status(response.status).render("gamedetails", { game: null, platforms: "", tags: [], error: "Game not found", user: req.session.user  });
             return;
         }
 
@@ -28,10 +28,10 @@ router.get("/:slug", async (req: Request, res: Response): Promise<void> => {
         const isInCollection: boolean = collections.some(collection => collection.games?.some((game) => game === slug));
 
 
-        res.render("gamedetails", { game, platforms, tags, error: null, isInCollection });
+        res.render("gamedetails", { game, platforms, tags, error: null, isInCollection, user: req.session.user  });
     } catch (err) {
         console.error("RAWG API error:", err);
-        res.status(500).render("gamedetails", { game: null, platforms: "", tags: [], error: "Error loading game" });
+        res.status(500).render("gamedetails", { game: null, platforms: "", tags: [], error: "Error loading game", user: req.session.user  });
     }
 });
 

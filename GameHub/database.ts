@@ -106,6 +106,22 @@ export async function updateUser(userId: import("mongodb").ObjectId | string, ne
         const saltRounds = 10;
         update.password = await bcrypt.hash(newPassword, saltRounds);
     }
+
+    if (Object.keys(update).length === 0) return;
+    const objectId = typeof userId === "string" ? new ObjectId(userId) : userId;
+    await userCollection.updateOne({ _id: objectId }, { $set: update });
+}
+
+export async function updateAvatar(userId: import("mongodb").ObjectId | string, avatar?:Buffer, contentType?:string) {
+    const update: any = {};
+
+    const avatarObject = {
+        data: avatar,
+        contentType
+    }
+
+    update.avatar = avatarObject;
+
     if (Object.keys(update).length === 0) return;
     const objectId = typeof userId === "string" ? new ObjectId(userId) : userId;
     await userCollection.updateOne({ _id: objectId }, { $set: update });
