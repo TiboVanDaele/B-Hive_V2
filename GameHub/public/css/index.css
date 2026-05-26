@@ -1,6 +1,5 @@
 body {
   background-color: oklch(8% 0.008 223.9);
-
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -8,6 +7,9 @@ body {
 
 main {
   display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 .index-header {
@@ -15,8 +17,7 @@ main {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-top: 2rem;
-
+  padding: 3rem 0 2rem 0;
 }
 
 .index-header h1 {
@@ -34,6 +35,8 @@ main {
   justify-content: center;
   align-items: center;
   gap: 3rem;
+  flex-wrap: wrap;
+  padding: 2rem;
 }
 
 .project-card {
@@ -41,7 +44,6 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-
   transition: transform 0.3s ease;
 }
 
@@ -71,7 +73,6 @@ main {
   transform: scale(1.1);
 }
 
-
 .unavailable img {
   opacity: 0.5;
   width: 12rem;
@@ -91,4 +92,5 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
 }
