@@ -41,6 +41,11 @@ app.set("port", process.env.PORT);
 
 app.use(session);
 
+app.use((req, res, next) => {
+    res.locals.user = req.session?.user ?? null;
+    next();
+});
+
 app.get("/", (req, res) => {
   res.render("index", { title: "index" });
 });
@@ -198,6 +203,45 @@ app.post("/account/update", secureMiddleware, async (req, res) => {
       updateError: e.message
     });
   }
+});
+
+app.put("/api/users/current-game", secureMiddleware, async (req, res) => {
+    try {
+        const { slug, name, image } = req.body;
+        const { ObjectId } = await import("mongodb");
+        const objectId = typeof req.session.user!._id === "string"
+            ? new ObjectId(req.session.user!._id)
+            : req.session.user!._id;
+
+        await userCollection.updateOne(
+            { _id: objectId },
+            { $set: { current_game: { slug, name, image } } }
+        );
+
+        req.session.user!.current_game = { slug, name, image };
+        res.json({ success: true });
+    } catch (e) {
+        res.status(500).json({ success: false });
+    }
+});
+
+app.delete("/api/users/current-game", secureMiddleware, async (req, res) => {
+    try {
+        const { ObjectId } = await import("mongodb");
+        const objectId = typeof req.session.user!._id === "string"
+            ? new ObjectId(req.session.user!._id)
+            : req.session.user!._id;
+
+        await userCollection.updateOne(
+            { _id: objectId },
+            { $unset: { current_game: "" } }
+        );
+
+        req.session.user!.current_game = undefined;
+        res.json({ success: true });
+    } catch (e) {
+        res.status(500).json({ success: false });
+    }
 });
 
 app.use("/game", gameDetailsRouter);

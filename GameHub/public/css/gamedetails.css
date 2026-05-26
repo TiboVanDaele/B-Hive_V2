@@ -227,3 +227,70 @@ body {
     height: 450px;
   }
 }
+
+.show-more-less {
+    display: none;
+}
+
+.set-current-btn {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border: 1px solid #4caf50;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: #4caf50;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.set-current-btn:hover {
+    background: #001a00;
+}
+
+.set-current-btn.is-current {
+    border-color: #e53935;
+    color: #e53935;
+}
+
+.set-current-btn.is-current:hover {
+    background: #1a0000;
+}
+/* Mobile */
+@media only screen and (min-width: 320px) {
+    .game-detail-wrapper {
+        padding: 1.5rem 1rem;
+    }
+
+    .leave-details-link {
+        line-height: 2;
+        font-size: var(--text-lg);
+    }
+
+    .show-more-less {
+        display: inline;
+        text-decoration: underline;
+        font-size: var(--text-sm);
+    }
+
+    .description {
+        font-size: var(--text-sm);
+        overflow: hidden;
+        transition: all 1s ease-in-out;
+    }
+
+    .showless {
+        max-height: calc(1.5em * 10);
+        transition: max-height 1s ease-in-out;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 8;
+        line-clamp: 8;
+        -webkit-box-orient: vertical;
+    }
+
+    .showmore {
+        max-height: 100rem;
+        transition: all 1s ease-in-out;
+    }
+}

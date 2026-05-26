@@ -22,6 +22,7 @@ router.get("/:slug", async (req: Request, res: Response): Promise<void> => {
         const platforms = game.platforms.map(p => p.platform.name).join(", ");
         const tags = game.tags.slice(0, 8);
 
+        res.render("gamedetails", { game, platforms, tags, error: null, user: req.session?.user ?? null });
         const userId = new ObjectId(req.session.user!._id);
         const collections: Collection[] = await collectionCollection.find({ userId }).toArray();
         const isInCollection: boolean = collections.some(collection => collection.games?.some((game) => game === slug));
