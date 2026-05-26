@@ -27,9 +27,7 @@ let guessingGame = {
 interface guess{guess:string,
   correct:boolean;
 }
-let previousGuesses : guess[] = [
-  {guess:"Quake",correct:false},
-];
+let previousGuesses : guess[] = [];
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -71,6 +69,7 @@ app.get("/suggestions", async (req, res) => {
 });
 async function getGame() {
   try {
+    attempts = 6;
         const randomPage = Math.floor(Math.random() * 5) + 1;
         const url = `https://api.rawg.io/api/games?key=${process.env.RAWG_API_KEY}&page=${randomPage}&page_size=20`;
 
@@ -109,17 +108,16 @@ app.get("/guessing-game", secureMiddleware, async(req, res) => {
 app.post("/guessing-game", async(req, res) => {
   let guess = req.body.guess;
   if(guess == "Next-Game-To-Show"){
+    await getGame();
     correctGuess = false;
     attempts = 7;
   }
   let correct
   if(guess.toUpperCase() == guessingGame.name.toUpperCase()){
-    getGame();
     correctGuess = true;
     correct = true;
     guess = guessingGame.name;
   }else if(guessingGame.name.toUpperCase().includes(guess.toUpperCase()) && guess.length >= 5){
-    getGame();
     correctGuess = true;
     correct = true;
     guess = guessingGame.name;
@@ -130,7 +128,6 @@ app.post("/guessing-game", async(req, res) => {
   }
   if(correctGuess){
     const uri = process.env.MONGO_URI;
-    attempts = 6;
     if(uri === undefined)
         {
             console.error("MONGO_URI moet ingevuld zijn in de env");
@@ -254,6 +251,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {
   try {
     await connectToDatabase();
+    await getGame();
     console.log(`Server running at http://localhost:${PORT}`);
   } catch (e) {
     console.log(e);

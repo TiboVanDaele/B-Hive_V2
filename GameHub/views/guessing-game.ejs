@@ -4,13 +4,30 @@
 
 <body>
   <%- include("partials/header", { searchbar: false }) %>
-  <div class="layout">
+
+  <div class="page-layout">
     <%- include("partials/aside", { showFilters: false }) %>
+
     <main class="guessing-main">
       <div class="guessing-wrapper">
+
         <section class="guessing-card">
-          <div class="guessing-image-wrapper">
-            <img class="guessing-image" src="<%= game.image %>" alt="Te raden game cover">
+          <div class="guessing-image-wrapper" style="overflow: hidden; border-radius: 8px;">
+            <% 
+              // Logica voor de afnemende blur:
+              // Als het spel nog bezig is (!correctGuess) en er zijn nog pogingen over (> 0):
+              // Poging 6 (vol over): 6 * 4 = 24px blur (heel vaag)
+              // Poging 3 (halverwege): 3 * 4 = 12px blur
+              // Poging 1 (laatste kans): 1 * 4 = 4px blur (bijna scherp)
+              let blurAmount = 0;
+              if (!correctGuess && attempts > 0) {
+                blurAmount = attempts * 2;
+              }
+            %>
+            <img class="guessing-image" 
+                 src="<%= game.image %>" 
+                 alt="Te raden game cover"
+                 style="filter: blur(<%= blurAmount %>px); transform: scale(<%= blurAmount > 0 ? 1.08 : 1 %>); transition: filter 0.4s ease, transform 0.4s ease; width: 100%; height: auto; display: block;">
           </div>
 
           <div class="guessing-content">
@@ -21,54 +38,64 @@
             </div>
 
             <div class="lives" aria-label="Aantal pogingen">
-              <% for (let i = 0; i < 6; i++) { %>
-                <% if (attempts > i) { %>
+              <%for(let i = 0; i < 6; i++){
+                if(attempts > i){%>
                   <span>♥</span>
-                <% } else { %>
+                <%}else{%>
                   <span class="lost-life">♥</span>
-                <% } %>
-              <% } %>
+                <%}
+              }%>
             </div>
 
             <form class="guessing-form" action="/guessing-game" method="POST">
-              <% if (!correctGuess) { %>
+              <%if (!correctGuess) {%>
                 <label for="guess">Jouw gok</label>
-                <input id="guess" name="guess" type="text" placeholder="Typ hier je gok..."
-                  autocomplete="off" required>
-                <div class="guessing-buttons">
-                  <button type="submit" class="primary-button">Raden!</button>
+                <input id="guess" name="guess" type="text" placeholder="Typ hier je gok..." autocomplete="off" required>
+
+                <div class="guessing-buttons">                
+                  <button type="submit" class="primary-button">
+                    Raden!
+                  </button>
                 </div>
-              <% } else { %>
-                <input id="Next-Game-To-Show" name="guess" type="text" value="Next-Game-To-Show">
+              <%}else{%>
+                <input id="Next-Game-To-Show" name="guess" type="text" value="Next-Game-To-Show" style="display: none;">
                 <label for="guess">Dat is Correct!</label>
+                
                 <div class="guessing-buttons">
-                  <button type="submit" class="primary-button">Volgende!</button>
+                  <button type="submit" class="primary-button">
+                    Volgende!
+                  </button>
                 </div>
-              <% } %>
+              <%}%>
             </form>
 
             <section class="previous-guesses">
               <h2>Vorige pogingen</h2>
+
               <ul>
-                <% if (attempts <= 0) { %>
-                  <li class="guess-answer">Antwoord: <%= game.name %></li>
-                <% } %>
-                <% for (let i = previousGuesses.length; i > previousGuesses.length - 5; i--) { %>
-                  <% if (i != 0 && previousGuesses[i] != null) { %>
-                    <% if (previousGuesses[i].correct == true) { %>
-                      <li class="guess-success"><%= previousGuesses[i].guess %></li>
-                    <% } else { %>
-                      <li class="guess-fail"><%= previousGuesses[i].guess %></li>
-                    <% } %>
-                  <% } %>
-                <% } %>
+                <%if(attempts <= 0 && !correctGuess){%>
+                  <li id="answer">antwoord: <%= game.name %></li>
+                <%}%>
+                <% for(let i = previousGuesses.length - 1; i >= previousGuesses.length - 5; i--){ 
+                  if (i >= 0) {
+                    if(previousGuesses[i] != null){
+                      if(previousGuesses[i].correct == true){%>
+                        <li id="succes"><%= previousGuesses[i].guess %></li>
+                      <%}else{%>
+                        <li id="fail"><%= previousGuesses[i].guess %></li>
+                      <%}
+                    }
+                  }
+                }%>
               </ul>
             </section>
           </div>
         </section>
+
       </div>
     </main>
   </div>
+
   <%- include("partials/footer") %>
 </body>
 </html>
