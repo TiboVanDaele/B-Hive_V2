@@ -15,25 +15,12 @@
                     <p class="subtitle">Level <%= user.xp %></p>
                 </div>
             </div>
-          <div class="profile-actions">
-    <button type="button" id="editProfileBtn">Profiel bewerken</button>
-    <form action="/logout" method="POST">
-        <button type="submit" class="logout-btn">Uitloggen</button>
-    </form>
-</div>
-
-<% if (user && user.current_game) { %>
-<div class="current-game-card">
-    <div class="current-game-card-header">
-        <span class="current-game-label">Huidige game</span>
-        <button class="remove-current-btn" id="removeCurrentBtn">x</button>
-    </div>
-    <a href="/game/<%= user.current_game.slug %>" class="current-game-preview">
-        <img src="<%= user.current_game.image %>" alt="<%= user.current_game.name %>">
-        <span><%= user.current_game.name %></span>
-    </a>
-</div>
-<% } %>
+            <div class="profile-actions">
+                <button type="button" id="editProfileBtn">Profiel bewerken</button>
+                <form action="/logout" method="POST">
+                    <button type="submit" class="logout-btn">Uitloggen</button>
+                </form>
+            </div>
         </section>
 
         <section class="edit-profile-card" id="editProfileCard">
@@ -90,6 +77,18 @@
             </div>
         </section>
     </div>
+
+    <% if (user && user.current_game) { %>
+    <div class="current-game-card">
+    <button class="remove-current-btn" id="removeCurrentBtn">x</button>
+    <span class="current-game-label">Huidige game</span>
+    <a href="/game/<%= user.current_game.slug %>" class="current-game-preview">
+        <img src="<%= user.current_game.image %>" alt="<%= user.current_game.name %>">
+        <span class="current-game-title"><%= user.current_game.name %></span>
+    </a>
+</div>
+    <% } %>
+
 </main>
         </div>
     <%- include("partials/footer") %>
@@ -98,8 +97,6 @@
     <% if (typeof updateError !== 'undefined' && updateError || typeof updateSuccess !== 'undefined' && updateSuccess) { %>
     <script>showEditForm();</script>
     <% } %>
-
-                    
 
 </body>
 </html>
