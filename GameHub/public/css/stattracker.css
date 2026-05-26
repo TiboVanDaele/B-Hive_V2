@@ -49,10 +49,6 @@ border-color: black;
     grid-template-columns: 5fr 20fr 5fr;
 }
 
-aside{
-    grid-column: span 1 / span 2;
-}
-
 .search-by-name{
     height: max-content;
     width: max-content;
@@ -83,9 +79,6 @@ aside{
 }
 
 @media (max-width: 1024px) {
-    aside{
-        display: none;
-    }
     .stat-tracker{
     min-height: 50vh;
     display:grid;
