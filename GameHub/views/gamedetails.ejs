@@ -1,97 +1,118 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
 <%- include("partials/head", {page:"gamedetails", title:"Game details"}) %>
+	<body>
+		<%- include("partials/header", {searchbar:false} ) %>
+			<div class="layout">
+				<%- include("partials/aside", {showFilters: false}) %>
+					<main class="game-detail-main">
+						<div id="game-detail">
+							<% if (error) { %>
+								<p class="error-msg">
+									<%= error %>
+								</p>
+								<% } else if (game) { %>
+									<div class="game-detail-wrapper">
+										<a href="/home" class="leave-details-link">
+											<i class="fa-solid fa-arrow-right-from-bracket"></i>
+											Terug naar homepage</a>
+										<div class="game-hero">
+											<img src="<%= game.background_image %>" alt="<%= game.name %>"
+												class="game-hero-img">
+											<div class="game-hero-info">
+												<h1 class="game-title">
+													<%= game.name %>
+												</h1>
+												<p class="game-released">Released: <%= game.released %>
+												</p>
+											</div>
+										</div>
 
-<body>
-	<%- include("partials/header", {searchbar:false} ) %>
-	<main class="game-detail-main">
-		<%- include("partials/aside", {showFilters: false}) %>
-		<div id="game-detail">
-			<% if (error) { %>
-			<p class="error-msg">
-				<%= error %>
-			</p>
-			<% } else if (game) { %>
-			<div class="game-detail-wrapper">
-				<a href="/home" class="leave-details-link">
-					<i class="fa-solid fa-arrow-right-from-bracket"></i>
-					Terug naar homepage</a>
-				<div class="game-hero">
-					<img src="<%= game.background_image %>" alt="<%= game.name %>" class="game-hero-img">
-					<div class="game-hero-info">
-						<h1 class="game-title">
-							<%= game.name %>
-						</h1>
-						<p class="game-released">Released: <%= game.released %>
-						</p>
-					</div>
-				</div>
+										<div class="game-content">
+											<div class="game-main">
+												<div class="game-section">
+													<h2 class="section-heading">Description</h2>
+													<p class="game-description description showless" data-desc>
+														<%= game.description_raw %>
+													</p>
+													<button class="show-more-less">Toon meer</button>
+												</div>
 
-				<div class="game-content">
+												<div class="game-section">
+													<h2 class="section-heading">Tags</h2>
+													<div class="tag-list">
+														<% tags.forEach(function(tag) { %>
+															<span class="tag">
+																<%= tag.name %>
+															</span>
+															<% }); %>
+													</div>
+												</div>
+											</div>
 
-					<div class="game-main">
+											<div id="addModal">
+  <h2>Voeg toe aan collectie</h2>
+  <select id="collectionSelect">
+    <option value="nieuw">+ Nieuwe collectie</option>
+  </select>
+  <input type="text" id="newCollectionName" placeholder="Naam nieuwe collectie...">
+  <div style="display: flex; gap: 0.5rem;">
+    <button id="addConfirm">Toevoegen</button>
+    <button id="addCancel">Annuleren</button>
+  </div>
+</div>
 
-						<div class="game-section">
-							<h2 class="section-heading">Description</h2>
-							<p class="game-description description showless">
-								<%= game.description_raw %>
-							</p>
-							<button class="show-more-less">Toon meer</button>
+											<div class="game-sidebar">
+												<div class="info-card">
+													<h3 class="info-card-title">Collecties</h3>
+													<button
+														class="collection-btn <%= isInCollection ? 'in-collection' : 'not-in-collection' %>"
+														data-name="<%= game.slug %>">
+														<% if (isInCollection) { %>
+															<i class="fa-solid fa-check"></i>
+															In collectie (verwijderen)
+															<% } else { %>
+																<i class="fa-solid fa-plus"></i>
+																Toevoegen aan collectie
+																<% } %>
+													</button>
+												</div>
+												<div class="info-card">
+													<h3 class="info-card-title">Rating</h3>
+													<p class="game-rating">&#11088; <%= game.rating %> / 5</p>
+												</div>
+
+												<div class="info-card">
+													<h3 class="info-card-title">Genres</h3>
+													<div class="genre-list">
+														<% game.genres.forEach(function(genre) { %>
+															<span class="genre-tag">
+																<%= genre.name %>
+															</span>
+															<% }); %>
+													</div>
+												</div>
+												<div class="info-card">
+													<h3 class="info-card-title">Platforms</h3>
+													<%- include("partials/platforms", {platforms: game.platforms}) %>
+												</div>
+
+												<div class="info-card">
+													<h3 class="info-card-title">Website</h3>
+													<a href="<%= game.website %>" target="_blank" class="game-website">
+														<%= game.website %>
+													</a>
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+									<% } %>
 						</div>
-
-						<div class="game-section">
-							<h2 class="section-heading">Tags</h2>
-							<div class="tag-list">
-								<% tags.forEach(function(tag) { %>
-								<span class="tag">
-									<%= tag.name %>
-								</span>
-								<% }); %>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="game-sidebar">
-
-						<div class="info-card">
-							<h3 class="info-card-title">Rating</h3>
-							<p class="game-rating">&#11088; <%= game.rating %> / 5</p>
-						</div>
-
-						<div class="info-card">
-							<h3 class="info-card-title">Genres</h3>
-							<div class="genre-list">
-								<% game.genres.forEach(function(genre) { %>
-								<span class="genre-tag">
-									<%= genre.name %>
-								</span>
-								<% }); %>
-							</div>
-						</div>
-
-						<div class="info-card">
-							<h3 class="info-card-title">Platforms</h3>
-								<%- include("partials/platforms", {platforms: game.platforms}) %>
-						</div>
-
-						<div class="info-card">
-							<h3 class="info-card-title">Website</h3>
-							<a href="<%= game.website %>" target="_blank" class="game-website">
-								<%= game.website %>
-							</a>
-						</div>
-
-					</div>
-
-				</div>
+					</main>
 			</div>
-			<% } %>
-		</div>
-	</main>
-
-
-	<%- include("partials/footer") %>
-</body>
+			<%- include("partials/footer") %>
+	</body>
 
 </html>

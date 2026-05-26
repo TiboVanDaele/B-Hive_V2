@@ -1,38 +1,30 @@
-body {
-  background-color: oklch(8% 0.008 223.9);
-
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
 .account-main {
   display: flex;
-  flex: 1;
-  background-color: oklch(8% 0.008 223.9);
 }
 
 .account-wrapper {
+  width: 100%;
   max-width: 60rem;
   margin: 0 auto;
-  padding: 2.5rem 1rem;
-
+  padding: 1rem 1rem 2.5rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  height: 100%;
 }
 
-.profile-card {
+.profile-card,
+.stats-card,
+.edit-profile-card {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
   border-radius: var(--radius-75);
-
   padding: 1.5rem;
+}
 
+.profile-card {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .profile-header {
@@ -44,11 +36,10 @@ body {
 .profile-pic {
   width: 6rem;
   height: 6rem;
-
   border-radius: var(--radius-round);
   overflow: hidden;
-
   border: 2px solid oklch(27.5% 0.011 216.9);
+  flex-shrink: 0;
 }
 
 .profile-pic img {
@@ -63,7 +54,9 @@ body {
 }
 
 .subtitle {
+  font-size: var(--text-sm);
   color: oklch(72.3% 0.014 214.4);
+  margin-top: 0.25rem;
 }
 
 .profile-actions {
@@ -75,13 +68,11 @@ body {
 .profile-actions button,
 .logout-btn {
   padding: 0.5rem 1rem;
-
   border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
-
   background-color: oklch(27.5% 0.011 216.9);
-
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .profile-actions button:hover,
@@ -90,14 +81,18 @@ body {
   filter: brightness(1.1);
 }
 
-.stats-card {
-  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
-  border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: var(--radius-75);
-  padding: 1.5rem;
+.logout-btn {
+  border-color: oklch(50% 0.18 25);
 }
 
-.stats-card h2 {
+.logout-btn:hover {
+  border-color: oklch(65% 0.2 25);
+}
+
+.stats-card h2,
+.edit-profile-card h2 {
+  font-size: var(--text-lg);
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
@@ -107,19 +102,103 @@ body {
   gap: 1rem;
 }
 
+@media (min-width: 769px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 .stats-grid div {
   background-color: oklch(14.8% 0.004 228.8);
   border-radius: var(--radius-50);
-
   padding: 1rem;
   text-align: center;
 }
 
 .stats-grid h3 {
   font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--green);
 }
 
 .stats-grid p {
   color: oklch(72.3% 0.014 214.4);
   font-size: var(--text-sm);
+  margin-top: 0.25rem;
+}
+
+.edit-profile-card {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.edit-profile-card.active {
+  display: flex;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: var(--text-sm);
+  color: oklch(72.3% 0.014 214.4);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-50);
+  border: 1px solid oklch(35% 0.015 216.9);
+  background-color: oklch(14.8% 0.004 228.8);
+  color: white;
+  transition: 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.button-group {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.button-group button {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-50);
+  border: 1px solid oklch(35% 0.015 216.9);
+  background-color: oklch(27.5% 0.011 216.9);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.button-group button[type="submit"] {
+  border-color: var(--green);
+}
+
+.button-group button:hover {
+  filter: brightness(1.1);
+}
+
+.error-msg {
+  font-size: var(--text-sm);
+  color: oklch(65% 0.2 25);
+}
+
+.success-msg {
+  font-size: var(--text-sm);
+  color: var(--green);
 }

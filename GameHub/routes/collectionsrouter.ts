@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import { Game } from "../types/game";
+import { Collection } from "../types/collection";
 import { collectionCollection } from "../database";
 import { ObjectId } from "mongodb";
 
@@ -124,6 +125,31 @@ router.post("/:id/remove", async (req: Request, res: Response): Promise<void> =>
             { _id: new ObjectId(req.params.id as string) },
             { $pull: { games: slug } }
         );
+        res.json({ success: true });
+    } catch (err) {
+        res.json({ success: false });
+    }
+});
+
+router.post("/:id/removeFromAll", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { slug } = req.body;
+        const userId = new ObjectId(req.session.user!._id);
+
+        const collections = await collectionCollection.find({ userId }).toArray();
+        const collectionsWithGame: ObjectId[] = [];
+
+        collections.forEach(collection => {
+            if (collection.games.includes(slug)) {
+                collectionsWithGame.push(collection._id);
+            }
+        });
+
+        await collectionCollection.updateMany(
+            {   _id: {$in: collectionsWithGame} },
+            {   $pull: {games: slug}    }
+        );
+
         res.json({ success: true });
     } catch (err) {
         res.json({ success: false });

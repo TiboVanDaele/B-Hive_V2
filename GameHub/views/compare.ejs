@@ -1,76 +1,81 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
-<%- include("partials/head", {page: "compare",title: "Vergelijk games"}) %>
-<body>
-    <%- include("partials/header", {searchbar: true}) %>
-        <main class="compare-main">
-            <%- include("partials/aside", {showFilters: false}) %>
-            <div class="compare-wrapper"> <a href="/home"
-                    class="leave-compare-link"><i
-                        class="fa-solid fa-arrow-right-from-bracket"></i> Game
-                    vergelijking verlaten</a>
-                    <h1 class="title">Vergelijk games</h1>
-                        <form class="compare-search" action="/compare" method="post">
-                            <div class="search-wrapper">
-                                <div class="input-wrapper"><input class="search-input" type="text" name="gameSearch1" id="gameSearch1" placeholder="Kies een game..."></div>
-                            <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                            <div class="input-wrapper"><input class="search-input" type="text" name="gameSearch2" id="gameSearch2" placeholder="Kies een game..."></div>
+<%- include("partials/head", {page: "compare" ,title: "Vergelijk games" }) %>
+
+    <body>
+        <%- include("partials/header", {searchbar: true}) %>
+            <div class="layout">
+                <%- include("partials/aside", {showFilters: false}) %>
+                    <main class="compare-main">
+                        <div class="compare-wrapper"> <a href="/home" class="leave-compare-link"><i
+                                    class="fa-solid fa-arrow-right-from-bracket"></i> Game
+                                vergelijking verlaten</a>
+                            <h1 class="title">Vergelijk games</h1>
+                            <form class="compare-search" action="/compare" method="post">
+                                <div class="search-wrapper">
+                                    <div class="input-wrapper"><input class="search-input" type="text"
+                                            name="gameSearch1" id="gameSearch1" placeholder="Kies een game..."></div>
+                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                                    <div class="input-wrapper"><input class="search-input" type="text"
+                                            name="gameSearch2" id="gameSearch2" placeholder="Kies een game..."></div>
+                                </div>
+                                <button class="compare-btn" type="submit">Vergelijk</button>
+
+                            </form>
+                            <section class="compare-grid" aria-label="Game vergelijking">
+                                <% let counter=0; %>
+                                    <% if (games !=null) { %>
+                                        <% games.forEach(game=> { %>
+                                            <article class="compare-card"> <img class="game-img"
+                                                    src="<%= game.background_image %>" alt="<%= game.name %>">
+                                                <h1>
+                                                    <%= game.name %>
+                                                </h1>
+                                                <section>
+                                                    <h2>Genre</h2>
+                                                    <p>
+                                                        <%= game.genres.map(g=> g.name).join(", ") %>
+                                                    </p>
+                                                </section>
+                                                <section>
+                                                    <h2>Platform(s)</h2>
+                                                    <%- include("partials/platforms", {platforms: game.platforms}) %>
+                                                </section>
+                                                <section>
+                                                    <h2>Rating</h2>
+                                                    <p class="game-rating">&#11088; <%= game.rating %> / 5</p>
+                                                </section>
+                                                <section>
+                                                    <h2>Beschrijving</h2>
+                                                    <div class="description-wrapper">
+                                                        <p class="description showless descGame<%= counter+1 %>">
+                                                            <%= game.description_raw %>
+                                                        </p>
+                                                        <button class="show-more-less showBtnGame<%= counter+1 %>">Toon
+                                                            meer</button>
+                                                    </div>
+
+                                                </section>
+                                                <section>
+                                                    <h2>Gemiddelde speeltijd</h2>
+                                                    <p>
+                                                        <%= game.playtime %>
+                                                            <% if (game.playtime> 1) { %>
+                                                                uren
+                                                                <% } else { %>
+                                                                    uur
+                                                                    <% } %>
+                                                    </p>
+                                                </section>
+                                            </article>
+                                            <% counter++; %>
+                                                <% }); %>
+                                                    <% } %>
+                            </section>
                         </div>
-                                                    <button class="compare-btn" type="submit">Vergelijk</button>
-
-                        </form>
-                <section class="compare-grid" aria-label="Game vergelijking">
-                    <% let counter = 0; %>
-                    <% if (games != null) { %>
-                        <% games.forEach(game => { %>
-                    <article class="compare-card"> <img class="game-img"
-                            src="<%= game.background_image %>"
-                            alt="<%= game.name %>">
-                        <h1>
-                            <%= game.name %>
-                        </h1>
-                        <section>
-                            <h2>Genre</h2>
-                            <p>
-                                <%= game.genres.map(g => g.name).join(", ") %>
-                            </p>
-                        </section>
-                        <section>
-                            <h2>Platform(s)</h2>
-                            <%- include("partials/platforms", {platforms: game.platforms}) %>
-                        </section>
-                        <section>
-                            <h2>Rating</h2>
-                            <p class="game-rating">&#11088; <%= game.rating %> / 5</p>
-                        </section>
-                        <section>
-                            <h2>Beschrijving</h2>
-                            <div class="description-wrapper">
-                            <p class="description showless descGame<%= counter+1 %>">
-                                <%= game.description_raw %>
-                            </p> 
-                            <button class="show-more-less showBtnGame<%= counter+1 %>">Toon meer</button>
-                            </div>
-
-                        </section>
-                        <section>
-                            <h2>Gemiddelde speeltijd</h2>
-                            <p>
-                                <%= game.playtime %>
-                                <% if (game.playtime > 1) { %>
-                                 uren
-                                <% } else { %>
-                                    uur
-                                 <% } %>
-                            </p>
-                        </section>
-                    </article>
-                    <% counter++; %>
-                    <% }); %>
-                    <% } %>       
-                </section>
+                    </main>
             </div>
-        </main>
-    <%- include("partials/footer") %>
-</body>
+            <%- include("partials/footer") %>
+    </body>
+
 </html>
