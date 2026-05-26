@@ -1,5 +1,6 @@
 .guessing-main {
   display: flex;
+  margin: 0 auto;
 }
 
 .guessing-wrapper {

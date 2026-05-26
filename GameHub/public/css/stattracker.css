@@ -1,21 +1,123 @@
-.stat-tracker{
+.layout{
+    display: grid;
+    grid-template-columns: 5fr 20fr 5fr;
+    flex: 1;
+}
+
+.stat-tracker {
     min-height: 80vh;
-    display:grid;
+    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 1fr;
     width: 100%;
     margin-bottom: 30px;
+    padding: 0 1rem 2rem 1rem;
 }
 
-.champ-listing{
-    margin: auto;
-    padding: 5px;
+.search-by-name {
+    background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+    border: 2px solid oklch(27.5% 0.011 216.9);
+    border-radius: var(--radius-75);
+    padding: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    width: 100%;
+    max-width: 32rem;
+    margin: 0 auto;
+    grid-column: 1 / 3;
+    height: max-content;
+}
+
+.search-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-bar {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-round);
+    border: 1px solid oklch(35% 0.015 216.9);
+    background-color: oklch(14.8% 0.004 228.8);
+    color: white;
+    font-size: var(--text-md);
+    &::placeholder {
+        color: oklch(72.3% 0.014 214.4);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--green);
+    }
+}
+
+.search-button {
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius-round);
+    border: 1px solid oklch(35% 0.015 216.9);
+    background-color: oklch(27.5% 0.011 216.9);
+    color: white;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+
+    &:hover {
+        border-color: var(--green);
+        filter: brightness(1.1);
+    }
+}
+
+.error {
+    grid-column: 1 / 3;
+    margin: 0 auto;
+    max-width: 32rem;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+    border: 2px solid oklch(50% 0.2 30);
+    border-radius: var(--radius-75);
+    padding: 1rem 1.25rem;
+
+    color: oklch(75% 0.15 30);
+    font-size: var(--text-md);
+}
+
+.no-user-loaded {
+    grid-column: 1 / 3;
+    margin: 0 auto;
+    max-width: 32rem;
+    width: 100%;
+
+    background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+    border: 2px solid oklch(27.5% 0.011 216.9);
+    border-radius: var(--radius-75);
+    padding: 1.25rem;
+
+    color: oklch(72.3% 0.014 214.4);
+    font-size: var(--text-md);
+    text-align: center;
+    line-height: 1.6;
+    margin-top: 2rem;
+}
+
+.champ-listing {
     margin: 3px auto;
+    padding: 5px;
     border-radius: 10rem;
     background-color: gainsboro;
     display: flex;
     width: 90%;
-    > img{
+
+    > img {
         width: 6rem;
         height: 6rem;
         border-radius: 100%;
@@ -24,7 +126,7 @@
     }
 }
 
-.champ-info{
+.champ-info {
     width: 100%;
     padding: 8px;
     margin-left: 8px;
@@ -32,67 +134,46 @@
     background-color: gray;
 }
 
-.search-bar{
-        padding: 3px 10px;
-    margin: auto;
-    background-color: rgb(32, 39, 42)  ;
+.title{
+    margin-top: 1rem;
 }
 
-.outline-black{
-border-color: black;
-    border-width: 1px;
-    border-radius: 5px;
+@media(min-width: 320px){
+    .title{
+    font-size: var(--text-3xl);
+    line-height: 1.5;
+
+    font-weight: 700;
+    padding: 0 2.5rem;
+  }
 }
 
-.page-layout{
-    display: grid;
-    grid-template-columns: 5fr 20fr 5fr;
-}
-
-.search-by-name{
-    height: max-content;
-    width: max-content;
-    margin: auto;
-    padding: 20px;
-    grid-column: 1/3;
-}
-
-.search-button{
-    padding: 3px 10px;
-    background-color: rgb(32, 39, 42)  ;
-}
-
-.no-user-loaded, .error{
-    grid-column: 1/3;
-    margin: auto;
-    text-align: center;
-    width: 50%;
-    font-size: 20px;
-}
-.error{
-    color: red;
-    border-color: brown;
-    border-width: 4px;
-    border-radius: 3px;
-    background-color: black;
-    padding: 20px 3px;
+@media(min-width: 768px){
+  .title{
+    font-size: var(--text-4xl);
+    padding: 0;
+    text-align: left;
+  }
 }
 
 @media (max-width: 1024px) {
-    .stat-tracker{
-    min-height: 50vh;
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column: 1/4;
-    margin: auto;
-    grid-template-rows: 0.2fr 0.2fr 1fr 1fr ;
-    width: 100%;
-    margin-bottom: 30px;
+    .stat-tracker {
+        min-height: 50vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column: 1 / 4;
+        margin: 0 auto;
+        grid-template-rows: 0.2fr 0.2fr 1fr 1fr;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .champ-listing {
+        grid-column: 1 / 3;
+    }
+
+    .devided {
+        display: none;
+    }
 }
-.champ-listing{
-    grid-column: 1/3;
-}
-.devided{
-    display: none;
-}
-}
+
