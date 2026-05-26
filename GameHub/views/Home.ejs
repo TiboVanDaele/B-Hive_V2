@@ -2,74 +2,73 @@
 <html lang="nl-BE">
 <%- include("partials/head", {page:"home", title:"GameHub"}) %>
 <body>
-	<%- include("partials/header", { searchbar: true }) %>
-	<div class="layout">
-	<%- include("partials/aside", { showFilters: true }) %>
-	<main class="home-main">
-		<div class="home-wrapper">
-			<h1 class="title">Games ontdekken</h1>
-			<section class="home-grid">
-				<% games.forEach(game=> { %>
-					<article class="game-card">
-						<div class="card-actions">
-							<button class="add-btn" type="button">Add</button>
+  <%- include("partials/header", { searchbar: true }) %>
+  <div class="layout">
+    <%- include("partials/aside", { showFilters: true }) %>
+    <main class="home-main">
+      <div class="home-wrapper">
+        <h1 class="title">Games ontdekken</h1>
+        <section class="home-grid">
+          <% games.forEach(game => { %>
+            <article class="game-card">
+              <div class="card-actions">
+                <button class="add-btn" type="button">Add</button>
+                <button class="compare-btn" type="button"
+                  data-name="<%= game.name %>"
+                  data-image="<%= game.image %>"
+                  data-slug="<%= game.slug %>">
+                  Compare
+                </button>
+              </div>
+              <a href="/game/<%= game.slug %>">
+                <div class="game-card-img-wrap">
+                  <img src="<%= game.image %>" alt="<%= game.name %>">
+                </div>
+                <div class="game-card-content">
+                  <div class="game-card-header">
+                    <h2><%= game.name %></h2>
+                    <span class="game-card-rating">⭐ <%= game.rating %></span>
+                  </div>
+                  <p class="game-card-date"><%= game.released %></p>
+                </div>
+              </a>
+            </article>
+          <% }) %>
+        </section>
 
-							<button class="compare-btn" type="button" data-name="<%= game.name %>"
-								data-image="<%= game.image %>" data-slug="<%= game.slug %>">
-								Compare
-							</button>
-						</div>
-
-						<a href="/game/<%= game.slug %>">
-							<img src="<%= game.image %>" alt="<%= game.name %>">
-							<div class="game-card-content">
-								<h2><%= game.name %></h2>
-								<p>⭐ <%= game.rating %></p>
-								<p><%= game.released %></p>
-							</div>
-						</a>
-					</article>
-				<% }) %>
-			</section>
-
-			<nav class="pagination" aria-label="Paginering">
-				<% if (hasPrev) { %>
-					<a href="/home?page=<%= currentPage - 1 %><%= search ? '&q=' + search : '' %><%= activeGenres.length ? '&genres=' + activeGenres.join(',') : '' %>" aria-label="Vorige pagina">← Vorige</a>
-				<% } %>
-				<p aria-current="page">Pagina <%= currentPage %></p>
-				<% if (hasNext) { %>
-					<a href="/home?page=<%= currentPage + 1 %><%= search ? '&q=' + search : '' %><%= activeGenres.length ? '&genres=' + activeGenres.join(',') : '' %>" aria-label="Volgende pagina">Volgende →</a>
-				<% } %>
-			</nav>
-		</div>
-	</main>
-	</div>
-
-	<div class="compare-bar" id="compareBar">
-		<div class="compare-slot" data-slot="0">
-			<p>Game 1</p>
-		</div>
-
-		<div class="compare-slot" data-slot="1">
-			<p>Game 2</p>
-		</div>
-
-		<a href="/compare" class="compare-page-btn" id="comparePageBtn">
-			Vergelijk
-		</a>
-	</div>
-<div id="addModal">
-  <h2>Voeg toe aan collectie</h2>
-  <select id="collectionSelect">
-    <option value="nieuw">+ Nieuwe collectie</option>
-  </select>
-  <input type="text" id="newCollectionName" placeholder="Naam nieuwe collectie...">
-  <div style="display: flex; gap: 0.5rem;">
-    <button id="addConfirm">Toevoegen</button>
-    <button id="addCancel">Annuleren</button>
+        <nav class="pagination" aria-label="Paginering">
+          <% if (hasPrev) { %>
+            <a href="/home?page=<%= currentPage - 1 %><%= search ? '&q=' + search : '' %><%= activeGenres.length ? '&genres=' + activeGenres.join(',') : '' %>"
+              aria-label="Vorige pagina">← Vorige</a>
+          <% } %>
+          <p aria-current="page">Pagina <%= currentPage %></p>
+          <% if (hasNext) { %>
+            <a href="/home?page=<%= currentPage + 1 %><%= search ? '&q=' + search : '' %><%= activeGenres.length ? '&genres=' + activeGenres.join(',') : '' %>"
+              aria-label="Volgende pagina">Volgende →</a>
+          <% } %>
+        </nav>
+      </div>
+    </main>
   </div>
-</div>    
-	<%- include("partials/footer") %>
-</body>
 
+  <div class="compare-bar" id="compareBar">
+    <div class="compare-slot" data-slot="0"><p>Game 1</p></div>
+    <div class="compare-slot" data-slot="1"><p>Game 2</p></div>
+    <a href="/compare" class="compare-page-btn" id="comparePageBtn">Vergelijk</a>
+  </div>
+
+  <div id="addModal">
+    <h2>Voeg toe aan collectie</h2>
+    <select id="collectionSelect">
+      <option value="nieuw">+ Nieuwe collectie</option>
+    </select>
+    <input type="text" id="newCollectionName" placeholder="Naam nieuwe collectie...">
+    <div style="display: flex; gap: 0.5rem;">
+      <button id="addConfirm">Toevoegen</button>
+      <button id="addCancel">Annuleren</button>
+    </div>
+  </div>
+
+  <%- include("partials/footer") %>
+</body>
 </html>

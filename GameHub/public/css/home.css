@@ -1,6 +1,5 @@
 .home-main {
   display: flex;
-  flex: 1;
 }
 
 .home-wrapper {
@@ -34,7 +33,7 @@
 
 .game-card {
   position: relative;
-  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
+  background-color: oklch(21.8% 0.008 223.9);
   border: 2px solid oklch(27.5% 0.011 216.9);
   border-radius: var(--radius-75);
   overflow: hidden;
@@ -82,6 +81,7 @@
 
 .game-card-content {
   padding: 0.6rem 0.75rem 0.75rem;
+  background-color: oklch(21.8% 0.008 223.9);
 }
 
 .game-card-header {
