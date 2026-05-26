@@ -3,7 +3,7 @@
 <%- include("partials/head", {page:"guessing-game", title:"Guessing game"}) %>
 
 <body>
-  <%- include("partials/header", { searchbar: false }) %>
+  <%- include("partials/header", { searchbar: false, user: user }) %>
   <div class="layout">
     <%- include("partials/aside", { showFilters: false }) %>
     <main class="guessing-main">

@@ -152,7 +152,6 @@
   background-color: oklch(27.5% 0.011 216.9);
   border-radius: var(--radius-50);
   padding: 0.5rem 0.75rem;
-  color: oklch(72.3% 0.014 214.4);
 }
 
 .guess-success {
