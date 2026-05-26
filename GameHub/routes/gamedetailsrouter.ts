@@ -19,7 +19,7 @@ router.get("/:slug", async (req: Request, res: Response): Promise<void> => {
         const platforms = game.platforms.map(p => p.platform.name).join(", ");
         const tags = game.tags.slice(0, 8);
 
-        res.render("gamedetails", { game, platforms, tags, error: null });
+        res.render("gamedetails", { game, platforms, tags, error: null, user: req.session?.user ?? null });
     } catch (err) {
         console.error("RAWG API error:", err);
         res.status(500).render("gamedetails", { game: null, platforms: "", tags: [], error: "Error loading game" });

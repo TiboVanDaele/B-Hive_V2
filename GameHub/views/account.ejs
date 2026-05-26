@@ -21,6 +21,15 @@
                             <button type="submit" class="logout-btn">Uitloggen</button>
                         </form>
                     </div>
+                    <% if (user && user.current_game) { %>
+                    <div class="current-game-card">
+                        <h2>Huidige game</h2>
+                        <a href="/game/<%= user.current_game.slug %>" class="current-game-preview">
+                            <img src="<%= user.current_game.image %>" alt="<%= user.current_game.name %>">
+                            <p><%= user.current_game.name %></p>
+                        </a>
+                    </div>
+                    <% } %>
                 </section>
 
                 <!-- Edit Profile Form (hidden by default) -->

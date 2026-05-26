@@ -6,4 +6,9 @@ export interface User {
     password?: string;
     username: string;
     xp: number;
+    current_game?: {
+        slug: string;
+        name: string;
+        image: string;
+    };
 }

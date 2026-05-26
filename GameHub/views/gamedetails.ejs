@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
 <%- include("partials/head", {page:"gamedetails", title:"Game details"}) %>
-
 <body>
 	<%- include("partials/header", {searchbar:false} ) %>
 	<main class="game-detail-main">
@@ -26,11 +25,8 @@
 						</p>
 					</div>
 				</div>
-
 				<div class="game-content">
-
 					<div class="game-main">
-
 						<div class="game-section">
 							<h2 class="section-heading">Description</h2>
 							<p class="game-description description showless">
@@ -38,7 +34,6 @@
 							</p>
 							<button class="show-more-less">Toon meer</button>
 						</div>
-
 						<div class="game-section">
 							<h2 class="section-heading">Tags</h2>
 							<div class="tag-list">
@@ -49,16 +44,12 @@
 								<% }); %>
 							</div>
 						</div>
-
-					</div>
-
+					</div>				
 					<div class="game-sidebar">
-
 						<div class="info-card">
 							<h3 class="info-card-title">Rating</h3>
 							<p class="game-rating">&#11088; <%= game.rating %> / 5</p>
 						</div>
-
 						<div class="info-card">
 							<h3 class="info-card-title">Genres</h3>
 							<div class="genre-list">
@@ -69,29 +60,36 @@
 								<% }); %>
 							</div>
 						</div>
-
 						<div class="info-card">
 							<h3 class="info-card-title">Platforms</h3>
 								<%- include("partials/platforms", {platforms: game.platforms}) %>
 						</div>
-
 						<div class="info-card">
 							<h3 class="info-card-title">Website</h3>
 							<a href="<%= game.website %>" target="_blank" class="game-website">
 								<%= game.website %>
 							</a>
 						</div>
-
+						<div class="info-card">
+                        <h3 class="info-card-title">Huidige game</h3>
+                        <button 
+                            class="set-current-btn <% if (user && user.current_game && user.current_game.slug === game.slug) { %>is-current<% } %>"
+                            data-slug="<%= game.slug %>"
+                            data-name="<%= game.name %>"
+                            data-image="<%= game.background_image %>">
+                            <% if (user && user.current_game && user.current_game.slug === game.slug) { %>
+                                Verwijder huidige game
+                            <% } else { %>
+                                Markeer als huidige game
+                            <% } %>
+                        </button>
+                    </div>
 					</div>
-
 				</div>
 			</div>
 			<% } %>
 		</div>
 	</main>
-
-
 	<%- include("partials/footer") %>
 </body>
-
 </html>
