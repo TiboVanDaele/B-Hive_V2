@@ -1,7 +1,6 @@
 .collections-main {
   display: flex;
   flex: 1;
-  background-color: oklch(8% 0.008 223.9);
 }
 
 .collections-wrapper {
@@ -11,60 +10,29 @@
   padding: 1rem;
 }
 
-.title {
-  font-size: var(--text-3xl);
-  font-weight: 700;
-  line-height: 1.4;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-@media (min-width: 640px) {
-  .title {
-    text-align: left;
-  }
-}
-
-@media (min-width: 1024px) {
-  .title {
-    font-size: var(--text-5xl);
-  }
-}
-
 .collections-actions {
   position: relative;
-
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
-
   margin-bottom: 2rem;
 }
 
 .view-toggle {
   display: flex;
   overflow: hidden;
-
   border: 2px solid oklch(27.5% 0.011 216.9);
   border-radius: var(--radius-75);
-
-  background-color: color-mix(
-    in oklab,
-    oklch(21.8% 0.008 223.9) 80%,
-    transparent
-  );
+  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
 }
 
 .view-toggle button {
   width: 2.75rem;
   height: 2.75rem;
-
   border: none;
   background: transparent;
-
   cursor: pointer;
-
   font-size: var(--text-md);
   color: oklch(72.3% 0.014 214.4);
 }
@@ -78,22 +46,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   height: 2.75rem;
-
   padding: 0 1.25rem;
-
   border-radius: var(--radius-75);
   border: 1px solid oklch(35% 0.015 216.9);
-
   background-color: oklch(27.5% 0.011 216.9);
   color: oklch(72.3% 0.014 214.4);
-
   font-weight: 600;
   font-size: var(--text-md);
-
   cursor: pointer;
-
   transition:
     transform 0.15s ease,
     border-color 0.2s ease,
@@ -119,19 +80,24 @@
   gap: 1.5rem;
 }
 
+@media (min-width: 768px) {
+  .collections-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .collections-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 .collection-card {
   position: relative;
-
-  background-color: color-mix(
-    in oklab,
-    oklch(21.8% 0.008 223.9) 80%,
-    transparent
-  );
+  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
   border-radius: var(--radius-75);
-
   overflow: hidden;
-
   transition:
     transform 0.25s ease,
     border-color 0.25s ease,
@@ -152,10 +118,8 @@
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-
   padding: 0.5rem;
   border-radius: var(--radius-75);
-
   transition: transform 0.25s ease;
 }
 
@@ -165,14 +129,10 @@
 
 .collection-card h2 {
   min-height: 4rem;
-
   padding: 1rem;
-
   border-top: 2px solid oklch(27.5% 0.011 216.9);
-
   font-size: var(--text-md);
   font-weight: 600;
-
   color: oklch(72.3% 0.014 214.4);
 }
 
@@ -186,21 +146,15 @@
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-
   flex-direction: column;
   gap: 0.75rem;
-
   margin-top: 0.5rem;
   padding: 1rem;
-
   min-width: 15rem;
-
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 85%, black);
   border: 2px solid oklch(27.5% 0.011 216.9);
   border-radius: var(--radius-75);
-
   backdrop-filter: blur(12px);
-
   z-index: 10;
 }
 
@@ -208,19 +162,24 @@
   display: flex;
 }
 
-.modal button {
-  padding: 0.5rem 0.75rem;
-
+.modal input {
+  width: 100%;
+  padding: 0.5rem;
   border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
+  background-color: oklch(14.8% 0.004 228.8);
+  color: white;
+  text-align: center;
+}
 
+.modal button {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-50);
+  border: 1px solid oklch(35% 0.015 216.9);
   background-color: oklch(27.5% 0.011 216.9);
   color: oklch(72.3% 0.014 214.4);
-
   font-weight: 600;
-
   cursor: pointer;
-
   transition:
     transform 0.15s ease,
     border-color 0.2s ease,
@@ -237,18 +196,13 @@
   position: absolute;
   top: 0.4rem;
   right: 0.4rem;
-
   width: 1.6rem;
   height: 1.6rem;
-
   border: none;
   border-radius: var(--radius-round);
-
   background-color: oklch(50% 0.2 30);
   color: white;
-
   cursor: pointer;
-
   transition:
     transform 0.15s ease,
     filter 0.2s ease;
@@ -257,20 +211,4 @@
 .delete-collection-btn:hover {
   transform: scale(1.1);
   filter: brightness(1.1);
-}
-
-#newCollectionName {
-  text-align: center;
-}
-
-@media (min-width: 640px) {
-  .collections-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .collections-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }

@@ -10,27 +10,15 @@
   padding: 1rem;
 }
 
-.title {
-  font-size: var(--text-3xl);
-  font-weight: 700;
-  line-height: 1.4;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
 .home-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .home-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .title {
-    text-align: left;
   }
 }
 
@@ -62,24 +50,70 @@
   box-shadow: 0 0 25px oklch(65% 0.15 240 / 0.25);
 }
 
-.game-card img {
-  width: 100%;
+.game-card-img-wrap {
+  position: relative;
   height: 200px;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.game-card-img-wrap img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   opacity: 0.9;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.game-card-img-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, oklch(21.8% 0.008 223.9));
+  pointer-events: none;
+}
+
+.game-card:hover .game-card-img-wrap img {
+  opacity: 1;
 }
 
 .game-card-content {
-  padding: 0.75rem;
+  padding: 0.6rem 0.75rem 0.75rem;
+}
+
+.game-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .game-card h2 {
   font-size: var(--text-md);
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1;
 }
 
-.game-card p {
-  font-size: var(--text-sm);
+.game-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--green);
+  white-space: nowrap;
+}
+
+.game-card-date {
+  font-size: var(--text-xs);
   color: oklch(72.3% 0.014 214.4);
 }
 
@@ -201,64 +235,6 @@
 .compare-page-btn:hover {
   filter: brightness(1.2);
   box-shadow: 0 0 12px oklch(72.3% 0.219 149.579 / 0.3);
-}
-
-#addModal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(420px, 92vw);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem;
-  background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 85%, black);
-  border: 2px solid oklch(27.5% 0.011 216.9);
-  border-radius: var(--radius-75);
-  box-shadow: 0 0 30px oklch(65% 0.15 240 / 0.2);
-  backdrop-filter: blur(12px);
-  z-index: 999;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-#addModal.active {
-  visibility: visible;
-  opacity: 1;
-}
-#addModal h2 {
-  font-size: var(--text-lg);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-#addModal select,
-#addModal input {
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: var(--radius-50);
-  border: 1px solid oklch(35% 0.015 216.9);
-  background-color: oklch(14.8% 0.004 228.8);
-  color: white;
-}
-
-#addConfirm,
-#addCancel {
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--radius-50);
-  border: 1px solid oklch(35% 0.015 216.9);
-  background-color: oklch(27.5% 0.011 216.9);
-  color: white;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-#addConfirm:hover,
-#addCancel:hover {
-  border-color: var(--green);
-  filter: brightness(1.1);
 }
 
 .iconBrand {

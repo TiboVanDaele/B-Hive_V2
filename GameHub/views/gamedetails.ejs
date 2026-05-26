@@ -50,19 +50,17 @@
 												</div>
 											</div>
 
-											<div id="addModal"
-												style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#1a1a1a; border:2px solid #333; padding:2rem; border-radius:0.75rem; z-index:999;">
-												<h2>Voeg toe aan collectie</h2>
-												<select id="collectionSelect">
-													<option value="nieuw">+ Nieuwe collectie</option>
-												</select>
-												<input type="text" id="newCollectionName"
-													placeholder="Naam nieuwe collectie..."
-													style="display:none; margin-top:0.5rem;">
-												<br><br>
-												<button id="addConfirm">Toevoegen</button>
-												<button id="addCancel">Annuleren</button>
-											</div>
+											<div id="addModal">
+  <h2>Voeg toe aan collectie</h2>
+  <select id="collectionSelect">
+    <option value="nieuw">+ Nieuwe collectie</option>
+  </select>
+  <input type="text" id="newCollectionName" placeholder="Naam nieuwe collectie...">
+  <div style="display: flex; gap: 0.5rem;">
+    <button id="addConfirm">Toevoegen</button>
+    <button id="addCancel">Annuleren</button>
+  </div>
+</div>
 
 											<div class="game-sidebar">
 												<div class="info-card">
