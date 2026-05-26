@@ -84,6 +84,17 @@ if (document.title == "Vergelijk games") {
 
         counter++;
     });
+
+     document.addEventListener("click", (e) => {
+        inputWrappers.forEach(wrapper => {
+            if (!wrapper.contains(e.target)) {
+                const dropdown = wrapper.querySelector(".autocomplete-dropdown-compare");
+                if (dropdown) {
+                    dropdown.style.display = "none";
+                }
+            }
+        });
+    });
 }
 
 

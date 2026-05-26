@@ -30,7 +30,6 @@ aside {
         color: white;
       }
 
-
       color: oklch(72.3% 0.014 214.4);
 
       &:hover {
@@ -56,7 +55,7 @@ aside {
     }
   }
 
-  .aside-nav li a{
+  .aside-nav li a {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -76,7 +75,6 @@ aside {
       flex-direction: column;
       gap: 0.5rem;
     }
-
   }
 
   label {
@@ -111,16 +109,13 @@ i {
   display: none;
 }
 
-
-
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .inner-wrapper:not(.hidden) {
     margin: 1.5rem 0;
   }
 
   aside {
     position: absolute;
-
     align-items: flex-start;
     z-index: 40;
     border-radius: 0 0 var(--radius-75) var(--radius-75);
@@ -132,8 +127,7 @@ i {
 
     &.open {
       width: 18rem;
-        background-color: oklch(8% 0.008 223.9);
-
+      background-color: oklch(8% 0.008 223.9);
     }
 
     i {
@@ -157,7 +151,6 @@ i {
           transition: opacity 0.3s ease-in-out;
           text-wrap: nowrap;
         }
-
       }
     }
 
@@ -175,14 +168,9 @@ i {
       * {
         display: none;
         opacity: 0;
-
-        transition: opacity 0.3s ease-in-out, display 0.3s ease-in-outallow-discrete;
+        transition: opacity 0.3s ease-in-out, display 0.3s ease-in-out allow-discrete;
       }
-
-
     }
-
-
   }
 
   .menu-button {
@@ -190,4 +178,3 @@ i {
     margin: 1.5rem 0 0 0;
   }
 }
-

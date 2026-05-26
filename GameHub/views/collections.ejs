@@ -2,59 +2,54 @@
 <html lang="nl-BE">
 <%- include("partials/head", {page:"collections", title:"Mijn collecties"}) %>
 
-<body>
-	<%- include("partials/header", { searchbar: true }) %>
-		<main class="collections-main">
-					<%- include("partials/aside", { showFilters: false }) %>
-			<div class="collections-wrapper">
-				<h1 class="title">Mijn collecties</h1>
+  <body>
+    <%- include("partials/header", { searchbar: true }) %>
+      <div class="layout">
+        <%- include("partials/aside", { showFilters: false }) %>
+          <main class="collections-main">
+            <div class="collections-wrapper">
+              <h1 class="title">Mijn collecties</h1>
 
-				<section class="collections-actions" aria-label="Weergave en acties">
-					<div class="view-toggle">
-						<button type="button" aria-label="Rasterweergave">▦</button>
-						<button type="button" aria-label="Lijstweergave">☰</button>
-					</div>
+              <section class="collections-actions" aria-label="Weergave en acties">
+                <div class="view-toggle">
+                  <button type="button" aria-label="Rasterweergave">▦</button>
+                  <button type="button" aria-label="Lijstweergave">☰</button>
+                </div>
 
-					<div class="create-collection-wrapper">
-					<button type="button" class="create-collection-btn">
-						Collectie aanmaken
-					</button>
+                <div class="create-collection-wrapper">
+                  <button type="button" class="create-collection-btn">Collectie aanmaken</button>
+                  <div id="createModal" class="modal">
+                    <input type="text" id="newCollectionName" placeholder="Naam van de collectie...">
+                    <button id="createConfirm">Aanmaken</button>
+                    <button id="createCancel">Annuleren</button>
+                  </div>
+                </div>
 
-					<div id="createModal" class="modal">
-						<input type="text" id="newCollectionName" placeholder="Naam van de collectie...">
-						<button id="createConfirm">Aanmaken</button>
-						<button id="createCancel">Annuleren</button>
-					</div>
-				</div>
+                <button type="button" class="edit-btn" aria-label="Collecties bewerken">✎</button>
+              </section>
 
-					<div id="createModal" class="modal">
-						<input type="text" id="newCollectionName" placeholder="Naam van de collectie...">
-						<button id="createConfirm">Aanmaken</button>
-						<button id="createCancel">Annuleren</button>
-					</div>
+              <section class="collections-grid" aria-label="Overzicht van collecties">
+                <% collections.forEach(collection=> { %>
+                  <article class="collection-card">
+                    <a href="/collections/<%= collection._id %>">
+                      <div class="collection-card-img-wrap">
+                        <img src="<%= collection.coverImage %>" alt="<%= collection.name %>">
+                      </div>
+                      <div class="collection-card-content">
+                        <h2>
+                          <%= collection.name %>
+                        </h2>
+                      </div>
+                    </a>
+                  </article>
+                  <% }) %>
+              </section>
+            </div>
+          </main>
+      </div>
 
-					<button type="button" class="edit-btn" aria-label="Collecties bewerken">
-						✎
-					</button>
-				</section>
-
-				<section class="collections-grid" aria-label="Overzicht van collecties">
-
-					<% collections.forEach(collection => { %>
-					<article class="collection-card">
-						<a href="/collections/<%= collection._id %>">
-							<img src="<%= collection.coverImage %>" alt="<%= collection.name %>">
-							<h2><%= collection.name %></h2>
-						</a>
-					</article>
-					<% }) %>
-
-				</section>
-			</div>
-		</main>
-	<script src="/js/collections.js"></script>	
-
-	<%- include("partials/footer") %>
-</body>
+      <script src="/js/collections.js"></script>
+      <%- include("partials/footer") %>
+  </body>
 
 </html>

@@ -1,17 +1,10 @@
-body {
-  background-color: oklch(8% 0.008 223.9);
-
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
 .guessing-main {
   display: flex;
-  flex: 1;
+  margin: 0 auto;
 }
 
 .guessing-wrapper {
+  width: 100%;
   max-width: 72rem;
   margin: 0 auto;
   padding: 2.5rem 1rem;
@@ -21,11 +14,10 @@ body {
   background-color: color-mix(in oklab, oklch(21.8% 0.008 223.9) 80%, transparent);
   border: 2px solid oklch(27.5% 0.011 216.9);
   border-radius: var(--radius-75);
-
   padding: 2rem;
-
   display: grid;
   grid-template-columns: 1fr;
+  margin-top: 2.5rem;
   gap: 2rem;
 }
 
@@ -45,18 +37,14 @@ body {
   width: 100%;
   max-width: 20rem;
   aspect-ratio: 1 / 1;
-
   object-fit: cover;
-
   border-radius: var(--radius-75);
   border: 2px solid oklch(27.5% 0.011 216.9);
-
-  filter: blur(10px);
+  filter: blur(5px);
   transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .guessing-image:hover {
-  filter: blur(6px);
   transform: scale(1.02);
 }
 
@@ -99,11 +87,10 @@ body {
 
 .guessing-form input {
   padding: 0.75rem 1rem;
-
   border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
-
   background-color: oklch(14.8% 0.004 228.8);
+  color: white;
 }
 
 .guessing-form input::placeholder {
@@ -123,13 +110,10 @@ body {
 
 .guessing-buttons button {
   padding: 0.6rem 1.25rem;
-
   border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
-
   cursor: pointer;
-
-  transition: all 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .primary-button {
@@ -149,7 +133,6 @@ body {
   background-color: oklch(14.8% 0.004 228.8);
   border: 2px solid oklch(27.5% 0.011 216.9);
   border-radius: var(--radius-75);
-
   padding: 1rem;
 }
 
@@ -169,22 +152,27 @@ body {
   background-color: oklch(27.5% 0.011 216.9);
   border-radius: var(--radius-50);
   padding: 0.5rem 0.75rem;
-
   color: oklch(72.3% 0.014 214.4);
 }
 
-#succes{
-  color: green;
+.guess-success {
+  color: var(--green);
 }
 
-#fail{
-  color: red;
+.guess-fail {
+  color: oklch(60% 0.2 25);
 }
 
-#answer{
-  color: blue;
+.guess-answer {
+  color: oklch(70% 0.15 240);
 }
 
-#Next-Game-To-Show{
+#Next-Game-To-Show {
   display: none;
+}
+
+@media (min-width:768px){
+  .guessing-card{
+    margin-top: 0rem;
+  }
 }

@@ -3,43 +3,51 @@
 <%- include("partials/head", {page: "collection", title: collection.name}) %>
 
 <body>
-	<%- include("partials/header", {searchbar: true}) %>
-	<main class="collections-main">
-		<%- include("partials/aside", {showFilters: true}) %>
-		<div class="collections-wrapper">
-			<% if (!collection) { %>
-				<p>Collectie niet gevonden.</p>
-			<% } else { %>
-				<h1 class="title"><%= collection.name %></h1>
+  <%- include("partials/header", {searchbar: true}) %>
+  <div class="layout">
+    <%- include("partials/aside", {showFilters: true}) %>
+    <main class="collection-main">
+      <div class="collection-wrapper">
+        <% if (!collection) { %>
+          <p>Collectie niet gevonden.</p>
+        <% } else { %>
+          <h1 class="title"><%= collection.name %></h1>
 
-				<% if (collection.description) { %>
-					<p class="description"><%= collection.description %></p>
-				<% } %>
+          <% if (collection.description) { %>
+            <p class="description"><%= collection.description %></p>
+          <% } %>
 
-				<section class="collections-actions" aria-label="Acties">
-					<button type="button" class="edit-btn" aria-label="Collectie bewerken">✎</button>
-				</section>
+          <section class="collections-actions" aria-label="Acties">
+            <button type="button" class="edit-btn" aria-label="Collectie bewerken">✎</button>
+          </section>
 
-				<section class="collections-grid" aria-label="Games in collectie">
-					<% if (collection.games.length === 0) { %>
-						<p>Deze collectie bevat nog geen games.</p>
-					<% } else { %>
-						<% collection.games.forEach(game => { %>
-							<article class="collection-card">
-								<a href="/game/<%= game.slug %>">
-									<img src="<%= game.image %>" alt="<%= game.name %>">
-									<h2><%= game.name %></h2>
-									<p>⭐ <%= game.rating %></p>
-									<p><%= game.released %></p>
-								</a>
-							</article>
-						<% }) %>
-					<% } %>
-				</section>
-			<% } %>
-		</div>
-	</main>
-	<script src="/js/collection.js"></script>
-	<%- include("partials/footer") %>
+          <section class="collections-grid" aria-label="Games in collectie">
+            <% if (collection.games.length === 0) { %>
+              <p>Deze collectie bevat nog geen games.</p>
+            <% } else { %>
+              <% collection.games.forEach(game => { %>
+                <article class="collection-card">
+                  <a href="/game/<%= game.slug %>">
+                    <div class="collection-card-img-wrap">
+                      <img src="<%= game.image %>" alt="<%= game.name %>">
+                    </div>
+                    <div class="collection-card-content">
+                      <div class="collection-card-header">
+                        <h2><%= game.name %></h2>
+                        <span class="collection-card-rating">⭐ <%= game.rating %></span>
+                      </div>
+                      <p class="collection-card-date"><%= game.released %></p>
+                    </div>
+                  </a>
+                </article>
+              <% }) %>
+            <% } %>
+          </section>
+        <% } %>
+      </div>
+    </main>
+  </div>
+  <script src="/js/collection.js"></script>
+  <%- include("partials/footer") %>
 </body>
 </html>

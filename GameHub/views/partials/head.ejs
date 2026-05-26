@@ -13,7 +13,6 @@
     <script src="https://kit.fontawesome.com/de97115803.js" crossorigin="anonymous"></script>
     <script defer src="/js/aside-nav.js"></script>
     <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/footer.css">
 
     <% if (typeof(collection) != "undefined") { %>
@@ -36,11 +35,17 @@
     <script defer src="/js/compare-bar.js"></script>
     <% } %>
 
-    <% if (page == "home" || page == "compare") { %>
-     <script src="/js/autocomplete.js" defer></script>
+    <% if (page == "home" || page == "gamedetails") { %>
+    <script defer src="/js/add-to-collection.js"></script>
+    <% } %>
+
+    <% if (page != "account" ||page != "stattracker" ) { %>
+     <script defer src="/js/autocomplete.js"></script>
     <% } %>
 
     <% if (page == "compare" || page == "gamedetails") { %>
     <script defer src="/js/show-more-less.js"></script>
     <% } %>
+
+    <link rel="stylesheet" href="/css/style.css">
 </head>
