@@ -66,7 +66,8 @@
 }
 
 .profile-actions button,
-.logout-btn {
+.logout-btn,
+#avatarUpload {
   padding: 0.5rem 1rem;
   border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
@@ -76,7 +77,8 @@
 }
 
 .profile-actions button:hover,
-.logout-btn:hover {
+.logout-btn:hover,
+#avatarUpload {
   border-color: var(--green);
   filter: brightness(1.1);
 }
@@ -176,7 +178,8 @@
   flex-wrap: wrap;
 }
 
-.button-group button {
+.button-group button,
+#avatarUpload {
   padding: 0.5rem 1rem;
   border-radius: var(--radius-50);
   border: 1px solid oklch(35% 0.015 216.9);
@@ -185,11 +188,13 @@
   transition: 0.2s ease;
 }
 
-.button-group button[type="submit"] {
+.button-group button[type="submit"],
+#avatarUpload {
   border-color: var(--green);
 }
 
-.button-group button:hover {
+.button-group button:hover,
+#avatarUpload {
   filter: brightness(1.1);
 }
 
@@ -203,6 +208,8 @@
   color: var(--green);
 }
 
+#avatarUpload{
+  width: fit-content;
 .current-game-card {
     position: fixed;
     top: 5rem;

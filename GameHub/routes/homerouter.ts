@@ -37,7 +37,7 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
         });
     } catch (err) {
         console.error("RAWG API error:", err);
-        res.render("Home", { title: "Home", games: [], search: "", activeGenres: [] });
+        res.render("Home", { title: "Home", games: [], search: "", activeGenres: [], user: req.session.user });
     }
 });
 export default router;

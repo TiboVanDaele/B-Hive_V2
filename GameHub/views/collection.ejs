@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
 <%- include("partials/head", {page: "collection", title: collection.name}) %>
-
 <body>
-  <%- include("partials/header", {searchbar: true}) %>
+  <%- include("partials/header", {searchbar: true, user: user}) %>
   <div class="layout">
     <%- include("partials/aside", {showFilters: true}) %>
     <main class="collection-main">
@@ -12,7 +11,6 @@
           <p>Collectie niet gevonden.</p>
         <% } else { %>
           <h1 class="title"><%= collection.name %></h1>
-
           <% if (collection.description) { %>
             <p class="description"><%= collection.description %></p>
           <% } %>

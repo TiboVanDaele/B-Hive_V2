@@ -2,7 +2,7 @@
 <html lang="nl-BE">
 <%- include("partials/head", {page:"home", title:"GameHub"}) %>
 <body>
-  <%- include("partials/header", { searchbar: true }) %>
+  <%- include("partials/header", { searchbar: true, user: user}) %>
   <div class="layout">
     <%- include("partials/aside", { showFilters: true }) %>
     <main class="home-main">

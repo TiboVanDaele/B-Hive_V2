@@ -11,4 +11,8 @@ export interface User {
         name: string;
         image: string;
     };
+    avatar?:{
+        data: Buffer;
+        contentType: string;
+    };
 }
