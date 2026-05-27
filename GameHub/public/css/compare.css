@@ -61,11 +61,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  /*
-  display: flex;
-
-  gap: 1rem;
-  align-self: center;*/
+  align-self: center;
 }
 .search-input{
     border-radius: var(--radius-round);
@@ -77,8 +73,6 @@ body {
   display: flex;
   flex-wrap: wrap; 
   /*
-  display: flex;
-  flex-direction: column;
   gap: 0.5rem;
   flex-wrap: wrap;
   */
