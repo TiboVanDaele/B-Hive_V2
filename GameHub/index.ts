@@ -6,16 +6,18 @@ import gameCompareRouter from "./routes/gamecomparerouter";
 import stattracker from "./routes/stattracker"
 import collectionsRouter from "./routes/collectionsrouter";
 import homeRouter from "./routes/homerouter";
-import { connectToDatabase, updateUser, userCollection } from "./database";
+import { connectToDatabase, updateAvatar, updateUser, userCollection } from "./database";
 import bcrypt from "bcrypt";
 
 dotenv.config();
 import session from "./session";
 import { secureMiddleware } from "./middleware/secureMiddleware";
 import { loginRouter } from "./routes/loginRouter";
-import { Db, MongoClient } from "mongodb";
+import { Db, MongoClient, ObjectId } from "mongodb";
 
 const app : Express = express();
+//Max 10Mb image size for user avatar, so we don't go over the 16Mb document limit of Mongodb
+const MAX_IMAGE_SIZE = 10 * 1024 * 1024; 
 getGame();
 
 let attempts = 6;
@@ -166,6 +168,41 @@ app.get("/account", secureMiddleware, (req, res) => {
   });
 });
 
+app.post("/account/avatar", secureMiddleware, express.raw({
+    type: ["image/png", "image/jpeg", "image/webp"],
+    limit: MAX_IMAGE_SIZE,
+  }), async (req, res) => {
+    const user = req.session.user!;
+    const fileBuffer = req.body;
+
+  try {
+    const { ObjectId } = await import("mongodb");
+    const objectId = typeof user._id === "string" ? new ObjectId(user._id) : user._id;
+    const dbUser = await userCollection.findOne({ _id: objectId });
+    if (!dbUser) throw new Error("Gebruiker niet gevonden");
+
+    if(!Buffer.isBuffer(fileBuffer)){
+      throw new Error("Ongeldige avatar afbeelding upload");
+    }
+    const contentType: string | undefined = req.headers["content-type"];
+
+    if (!contentType?.startsWith("image/")) {
+      throw new Error("Enkel het uploaden van afbeeldingen is toegestaan. Kijk formaat na")
+    }
+
+    await updateAvatar(user._id!, fileBuffer, contentType);
+
+    res.render("account", {
+      title: "Account",
+      user: req.session.user,
+      updateSuccess: "Avatar succesvol bijgewerkt"
+    });
+  }
+    catch(e){
+      console.log(e);
+    }
+  });
+
 app.post("/account/update", secureMiddleware, async (req, res) => {
   const { newUsername, currentPassword, newPassword, confirmPassword } = req.body;
   const user = req.session.user!;
@@ -245,6 +282,19 @@ app.use("/game", gameDetailsRouter);
 app.use("/compare", gameCompareRouter);
 app.use("/rg-stat-tracker", stattracker);
 app.use(loginRouter());
+
+app.get("/users/:id/avatar", async (req, res) => {
+  const user = await userCollection.findOne({
+    _id: new ObjectId(req.params.id),
+  });
+
+  if (!user?.avatar) {
+    return res.status(404).send("No avatar");
+  }
+
+  res.setHeader("Content-Type", user.avatar.contentType);
+  return res.send(user.avatar.data.buffer);
+});
 
 const PORT = process.env.PORT || 3000;
 

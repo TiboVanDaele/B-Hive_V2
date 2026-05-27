@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
 <%- include("partials/head", {page:"collections", title:"Mijn collecties"}) %>
-
   <body>
-    <%- include("partials/header", { searchbar: true }) %>
+    <%- include("partials/header", { searchbar: true, user: user }) %>
       <div class="layout">
         <%- include("partials/aside", { showFilters: false }) %>
           <main class="collections-main">
@@ -51,5 +50,4 @@
       <script src="/js/collections.js"></script>
       <%- include("partials/footer") %>
   </body>
-
 </html>

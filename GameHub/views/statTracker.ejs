@@ -1,47 +1,41 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
-    <head>
-        <meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/reset.css">
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/css/index.css">
-  	    <link rel="stylesheet" href="/css/footer.css">
-        <link rel="stylesheet" href="/css/header.css">
-	    <link rel="stylesheet" href="/css/aside.css">
-        <link rel="stylesheet" href="/css/stattracker.css">
-        <title>stat-tracker</title>
-    </head>
-<body>
-	    <%- include("partials/header", { searchbar: true }) %>
-	    <div class="page-layout">
-	    	<%- include("partials/aside", { showFilters: false }) %>
+<%- include("partials/head", {page:"stattracker", title:"LoL stat tracker"}) %>
+    <body>
+        <%- include("partials/header", { searchbar: false, user: user}) %>
+        <div class="layout">
+            <%- include("partials/aside", { showFilters: false }) %>
+            <main>
+                                <h1 class="title">LoL Stat Tracker</h1>
+
             <div class="stat-tracker">
                 <form class="search-by-name" method="post">
-                    <input type="text" class="search-bar outline-black" placeholder="GamerTag#2200" name="GamerTag" >
+                    <input type="text" class="search-bar outline-black" placeholder="GamerTag#2200" name="GamerTag">
                     <button type="submit" class="outline-black search-button">search</button>
                 </form>
-                <% for(let i = 0; i < ChampNames.length;i++){ %>
-                    <div class="champ-listing">
-                        <img src="<%=ChampSplashArtUrl[i]%>" alt="">
+
+                <% for (let i = 0; i < ChampNames.length; i++) { %>
+                    <div class="champ-listing <%= i > 4 ? 'devided' : '' %>">
+                        <img src="<%= ChampSplashArtUrl[i] %>" alt="">
                         <div class="champ-info">
-                            <h2>
-                                <%=ChampNames[i]%>
-                            </h2>
-                            <h3>Mastery : <%=ChampLevels[i]%></h3>
-                            <h3>Level Progress : <%=ChampLevelProgress[i]%>%</h3>
+                            <h2><%= ChampNames[i] %></h2>
+                            <h3>Mastery: <%= ChampLevels[i] %></h3>
+                            <h3>Level Progress: <%= ChampLevelProgress[i] %>%</h3>
                         </div>
                     </div>
-                <%}%>
-                <% if (ChampNames.length < 1){%>
-                    <% if(responsecode != 200){%>
-                    <p class="error">Uw gamertag is niet gevonden. Hebt u deze correct ingevuld?</p>
-                    <%}else{%>
-                        <p></p>
-                    <p class="no-user-loaded">Welkom bij de riot games stat tracker. Hierboven kan je je gamertag ingeven en je champions met de hoogste mastery op je account vinden</p>
-                    <%}%>
-                <%}%>
+                <% } %>
+
+                <% if (ChampNames.length < 1) { %>
+                    <% if (responsecode != 200) { %>
+                        <p class="error">Uw gamertag is niet gevonden. Hebt u deze correct ingevuld?</p>
+                    <% } else { %>
+                        <p class="no-user-loaded">Welkom bij de riot games stat tracker. Hierboven kan je je gamertag ingeven en je champions met de hoogste mastery op je account vinden</p>
+                    <% } %>
+                <% } %>
+
             </div>
         </div>
+        </main>
         <%- include("partials/footer") %>
     </body>
+</html>

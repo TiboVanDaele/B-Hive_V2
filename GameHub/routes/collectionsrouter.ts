@@ -22,7 +22,7 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
             return { ...col, coverImage };
         }));
 
-        res.render("collections", { collections: collectionsWithImages });
+        res.render("collections", { collections: collectionsWithImages, user: req.session.user  });
     } catch (err) {
         console.error(err);
         res.status(500).render("collections", { collections: [] });
@@ -68,11 +68,11 @@ router.get("/:id", async (req: Request, res: Response): Promise<void> => {
             }))
         };
 
-        res.render("collection", { collection: fullCollection });
+        res.render("collection", { collection: fullCollection, user: req.session.user  });
 
     } catch (err) {
         console.error("Error:", err);
-        res.status(500).render("collection", { collection: null });
+        res.status(500).render("collection", { collection: null, user: req.session.user  });
     }
 });
 

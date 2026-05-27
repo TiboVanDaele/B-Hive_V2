@@ -1,62 +1,99 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
 <%- include("partials/head", {page:"account", title:"Mijn account"}) %>
+
     <body>
-        <%- include("partials/header", { searchbar: false }) %>
+        <%- include("partials/header", { searchbar: false, user: user} ) %>
             <div class="layout">
-            <%- include("partials/aside", { showFilters: false }) %>
- <main class="account-main">
-    <div class="account-wrapper">
-        <h1 class="title">Account</h1>
-        <section class="profile-card">
-            <div class="profile-header">
-                <div class="profile-info">
-                    <h1><%= user.username %></h1>
-                    <p class="subtitle">Level <%= user.xp % 15%></p>
-                </div>
-            </div>
-            <div class="profile-actions">
-                <button type="button" id="editProfileBtn">Profiel bewerken</button>
-                <form action="/logout" method="POST">
-                    <button type="submit" class="logout-btn">Uitloggen</button>
-                </form>
-            </div>
-        </section>
+                <%- include("partials/aside", { showFilters: false }) %>
+                    <main class="account-main">
+                        <div class="account-wrapper">
+                            <h1 class="title">Account</h1>
+                            <section class="profile-card">
+                                <div class="profile-header">
+                                    <div class="profile-info">
+                                        <h1>
+                                            <%= user.username %>
+                                        </h1>
+                                        <p class="subtitle">Level <%= user.xp %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="profile-actions">
+                                    <button type="button" id="editProfileBtn">Profiel bewerken</button>
+                                    <form action="/logout" method="POST">
+                                        <button type="submit" class="logout-btn">Uitloggen</button>
+                                    </form>
+                                </div>
 
-        <section class="edit-profile-card" id="editProfileCard">
-            <h2>Profiel bewerken</h2>
-            <% if (typeof updateError !== 'undefined' && updateError) { %>
-                <p class="error-msg"><%= updateError %></p>
-            <% } %>
-            <% if (typeof updateSuccess !== 'undefined' && updateSuccess) { %>
-                <p class="success-msg"><%= updateSuccess %></p>
-            <% } %>
-            <form action="/account/update" method="POST" class="edit-form">
-                <div class="form-group">
-                    <label for="newUsername">Nieuwe gebruikersnaam</label>
-                    <input type="text" id="newUsername" name="newUsername" placeholder="<%= user.username %>">
-                </div>
-                <div class="form-group">
-                    <label for="currentPassword">Huidig wachtwoord</label>
-                    <input type="password" id="currentPassword" name="currentPassword" required>
-                </div>
-                <div class="form-group">
-                    <label for="newPassword">Nieuw wachtwoord (optioneel)</label>
-                    <input type="password" id="newPassword" name="newPassword">
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Bevestig nieuw wachtwoord</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword">
-                </div>
-                <div class="button-group">
-                    <button type="submit">Opslaan</button>
-                    <button type="button" id="cancelEditBtn">Annuleren</button>
-                </div>
-            </form>
-        </section>
-    </div>
+                                <% if (user && user.current_game) { %>
+                                    <div class="current-game-card">
+                                        <div class="current-game-card-header">
+                                            <span class="current-game-label">Huidige game</span>
+                                            <button class="remove-current-btn" id="removeCurrentBtn">x</button>
+                                        </div>
+                                        <a href="/game/<%= user.current_game.slug %>" class="current-game-preview">
+                                            <img src="<%= user.current_game.image %>"
+                                                alt="<%= user.current_game.name %>">
+                                            <span>
+                                                <%= user.current_game.name %>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <% } %>
+                            </section>
 
-    <% if (user && user.current_game) { %>
+                            <section class="edit-profile-card" id="editProfileCard">
+                                <h2>Profiel bewerken</h2>
+                                <% if (typeof updateError !=='undefined' && updateError) { %>
+                                    <p class="error-msg">
+                                        <%= updateError %>
+                                    </p>
+                                    <% } %>
+                                        <% if (typeof updateSuccess !=='undefined' && updateSuccess) { %>
+                                            <p class="success-msg">
+                                                <%= updateSuccess %>
+                                            </p>
+                                            <% } %>
+                                                <div class="form-group">
+                                                    <label for="avatar">Upload avatar (max 10MB)</label>
+
+                                                    <input type="file" id="avatar"
+                                                        accept="image/png, image/jpeg, image/webp" />
+
+                                                    <button type="button" id="avatarUpload">
+                                                        Avatar uploaden
+                                                    </button>
+                                                </div>
+                                                <form action="/account/update" method="POST" class="edit-form"
+                                                    enctype="text/plain">
+                                                    <div class="form-group">
+                                                        <label for="newUsername">Nieuwe gebruikersnaam</label>
+                                                        <input type="text" id="newUsername" name="newUsername"
+                                                            placeholder="<%= user.username %>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="currentPassword">Huidig wachtwoord</label>
+                                                        <input type="password" id="currentPassword"
+                                                            name="currentPassword" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="newPassword">Nieuw wachtwoord (optioneel)</label>
+                                                        <input type="password" id="newPassword" name="newPassword">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="confirmPassword">Bevestig nieuw wachtwoord</label>
+                                                        <input type="password" id="confirmPassword"
+                                                            name="confirmPassword">
+                                                    </div>
+                                                    <div class="button-group">
+                                                        <button type="submit">Opslaan</button>
+                                                        <button type="button" id="cancelEditBtn">Annuleren</button>
+                                                    </div>
+                                                </form>
+                          </section>
+                        </div>
+                          <% if (user && user.current_game) { %>
     <div class="current-game-card">
     <button class="remove-current-btn" id="removeCurrentBtn">x</button>
     <span class="current-game-label">Huidige game</span>
@@ -66,8 +103,7 @@
     </a>
 </div>
     <% } %>
-
-</main>
+                    </main>
         </div>
     <%- include("partials/footer") %>
 
